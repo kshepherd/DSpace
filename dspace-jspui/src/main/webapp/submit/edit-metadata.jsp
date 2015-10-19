@@ -286,12 +286,12 @@
     	 }
          first.setLength(0);
          first.append(fieldName).append("_first");
-         if (repeatable && i != fieldCount-1)
+         if (repeatable)
             first.append('_').append(i+1);
 
          last.setLength(0);
          last.append(fieldName).append("_last");
-         if (repeatable && i != fieldCount-1)
+         if (repeatable)
             last.append('_').append(i+1);
 
          if (i < defaults.length)
@@ -338,7 +338,7 @@
     	 }
          
 
-         if (repeatable && !readonly && i < defaults.length)
+         if (repeatable && !readonly && i < fieldCount - 1)
          {
             name.setLength(0);
             name.append(Utils.addEntities(dpn.getLastName()))
@@ -399,9 +399,9 @@
             .append("</span><select class=\"form-control\" name=\"")
             .append(fieldName)
             .append("_month");
-         if (repeatable && i>0)
+         if (repeatable)
          {
-            sb.append('_').append(i);
+            sb.append('_').append(i+1);
          }
          if (readonly)
          {
@@ -430,8 +430,8 @@
                 .append("</span><input class=\"form-control\" type=\"text\" name=\"")
             .append(fieldName)
             .append("_day");
-         if (repeatable && i>0)
-            sb.append("_").append(i);
+         if (repeatable)
+            sb.append("_").append(i+1);
          if (readonly)
          {
              sb.append("\" disabled=\"disabled");
@@ -444,8 +444,8 @@
                 .append("</span><input class=\"form-control\" type=\"text\" name=\"")
             .append(fieldName)
             .append("_year");
-         if (repeatable && i>0)
-            sb.append("_").append(i);
+         if (repeatable)
+            sb.append("_").append(i+1);
          if (readonly)
          {
              sb.append("\" disabled=\"disabled");
@@ -454,8 +454,8 @@
             .append((dateIssued.getYear() > 0 ?
                  String.valueOf(dateIssued.getYear()) : "" ))
             .append("\"/></span></div></div>\n");
-    
-         if (repeatable && !readonly && i < defaults.length)
+
+         if (repeatable && !readonly && i < fieldCount - 1)
          {
             // put a remove button next to filled in values
             sb.append("<button class=\"btn btn-danger col-md-2\" name=\"submit_")
@@ -511,7 +511,7 @@
          sb.append("<div class=\"row col-md-12\"><span class=\"col-md-5\"><input class=\"form-control\" type=\"text\" name=\"")
            .append(fieldName)
            .append("_series");
-         if (repeatable && i!= fieldCount)
+         if (repeatable)
            sb.append("_").append(i+1);
          if (readonly)
          {
@@ -524,7 +524,7 @@
            .append("\"/></span><span class=\"col-md-5\"><input class=\"form-control\" type=\"text\" name=\"")
            .append(fieldName)
            .append("_number");
-         if (repeatable && i!= fieldCount)
+         if (repeatable)
            sb.append("_").append(i+1);
          if (readonly)
          {
@@ -536,7 +536,7 @@
            .append(sn.getNumber().replaceAll("\"", "&quot;"))
            .append("\"/></span>\n");
 
-         if (repeatable && !readonly && i < defaults.length)
+         if (repeatable && !readonly && i < fieldCount - 1)
          {
             // put a remove button next to filled in values
             sb.append("<button class=\"btn btn-danger col-md-2\" name=\"submit_")
@@ -567,7 +567,8 @@
 
     void doTextArea(javax.servlet.jsp.JspWriter out, Item item,
       String fieldName, String schema, String element, String qualifier, boolean repeatable, boolean required, boolean readonly,
-      int fieldCountIncr, String label, PageContext pageContext, String vocabulary, boolean closedVocabulary, int collectionID)
+      int fieldCountIncr, String label, PageContext pageContext, String vocabulary, boolean closedVocabulary, int collectionID,
+      boolean language, List<String> valueLanguageList)
       throws java.io.IOException
     {
       String authorityType = getAuthorityType(pageContext, fieldName, collectionID);
@@ -586,11 +587,14 @@
       
       for (int i = 0; i < fieldCount; i++)
       {
+         String lang = null;
+
          if (i < defaults.length)
          {
-           val = defaults[i].value;
-              auth = defaults[i].authority;
-              conf = defaults[i].confidence;
+             val = defaults[i].value;
+             lang = defaults[i].language;
+             auth = defaults[i].authority;
+             conf = defaults[i].confidence;
          }
          else
          {
@@ -598,8 +602,17 @@
             auth = "";
          }
          sb.append("<div class=\"row col-md-12\">\n");
-         String fieldNameIdx = fieldName + ((repeatable && i != fieldCount-1)?"_" + (i+1):"");
-         sb.append("<div class=\"col-md-10\">");
+         String fieldNameIdx = fieldName + ((repeatable)?"_" + (i+1):"");
+
+         if (language)
+         {
+             sb.append("<div class=\"col-md-8\">");
+         }
+         else
+         {
+             sb.append("<div class=\"col-md-10\">");
+         }
+
          if (authorityType != null)
          {
         	 sb.append("<div class=\"col-md-10\">");
@@ -611,7 +624,18 @@
            .append(">")
            .append(val)
            .append("</textarea>")
-           .append(doControlledVocabulary(fieldNameIdx, pageContext, vocabulary, readonly));
+           .append(doControlledVocabulary(fieldNameIdx, pageContext, vocabulary, readonly))
+           .append("</div>");
+
+         if (language)
+         {
+             if (null == lang)
+             {
+                 lang = ConfigurationManager.getProperty("default.language");
+             }
+                 sb = doLanguageTag(sb, fieldNameIdx, valueLanguageList, lang);
+         }
+
          if (authorityType != null)
          {
         	 sb.append("</div><div class=\"col-md-2\">");
@@ -620,11 +644,8 @@
                             defaults, null, collectionID));
 	         sb.append("</div>");
          }
-
-         sb.append("</div>");
-           
          
-         if (repeatable && !readonly && i < defaults.length)
+         if (repeatable && !readonly && i < fieldCount - 1)
          {
             // put a remove button next to filled in values
             sb.append("<button class=\"btn btn-danger col-md-2\" name=\"submit_")
@@ -655,7 +676,8 @@
 
     void doOneBox(javax.servlet.jsp.JspWriter out, Item item,
       String fieldName, String schema, String element, String qualifier, boolean repeatable, boolean required, boolean readonly,
-      int fieldCountIncr, String label, PageContext pageContext, String vocabulary, boolean closedVocabulary, int collectionID)
+      int fieldCountIncr, String label, PageContext pageContext, String vocabulary, boolean closedVocabulary, int collectionID,
+      boolean language, List<String> valueLanguageList)
       throws java.io.IOException
     {
       String authorityType = getAuthorityType(pageContext, fieldName, collectionID);
@@ -674,11 +696,14 @@
       sb.append("<div class=\"col-md-10\">");  
       for (int i = 0; i < fieldCount; i++)
       {
+          String lang = null;
+
            if (i < defaults.length)
            {
              val = defaults[i].value.replaceAll("\"", "&quot;");
              auth = defaults[i].authority;
              conf = defaults[i].confidence;
+             lang = defaults[i].language;
            }
            else
            {
@@ -688,9 +713,17 @@
            }
 
            sb.append("<div class=\"row col-md-12\">");
-           String fieldNameIdx = fieldName + ((repeatable && i != fieldCount-1)?"_" + (i+1):"");
-           
-           sb.append("<div class=\"col-md-10\">");
+           String fieldNameIdx = fieldName + ((repeatable)?"_" + (i+1):"");
+
+           if (language)
+           {
+               sb.append("<div class=\"col-md-8\">");
+           }
+           else
+           {
+               sb.append("<div class=\"col-md-10\">");
+           }
+
            if (authorityType != null)
            {
         	   sb.append("<div class=\"row col-md-10\">");
@@ -705,16 +738,25 @@
 			 .append(doControlledVocabulary(fieldNameIdx, pageContext, vocabulary, readonly))             
              .append("</div>");
            
+           if (language)
+           {
+               if(null == lang)
+               {
+                    lang = ConfigurationManager.getProperty("default.language");
+               }
+               sb = doLanguageTag(sb, fieldNameIdx, valueLanguageList, lang);
+           }
+
            if (authorityType != null)
            {
         	   sb.append("<div class=\"col-md-2\">");
 	           sb.append(doAuthority(pageContext, fieldName, i,  fieldCount,
                               fieldName, auth, conf, false, repeatable,
                               defaults, null, collectionID));
-           	   sb.append("</div></div>");
+	           sb.append("</div></div>");
            }             
 
-          if (repeatable && !readonly && i < defaults.length)
+          if (repeatable && !readonly && i < fieldCount - 1)
           {
              // put a remove button next to filled in values
              sb.append("<button class=\"btn btn-danger col-md-2\" name=\"submit_")
@@ -765,8 +807,8 @@
       for (int i = 0; i < fieldCount; i++)
       {
      	 sb.append("<div class=\"row col-md-12\">");
-    	  
-         if(i != fieldCount)
+
+         if(repeatable)
          {
              //param is field name and index, starting from 1 (e.g. myfield_2)
              fieldParam = fieldName + "_" + (i+1);
@@ -779,30 +821,32 @@
                  
          if (i < defaults.length)
          {
-           sb.append("<span class=\"col-md-4\"><input class=\"form-control\" type=\"text\" name=\"")
-             .append(fieldParam)
-             .append("\" size=\"15\" value=\"")
-             .append(defaults[i].value.replaceAll("\"", "&quot;"))
-             .append("\"")
-             .append((hasVocabulary(vocabulary)&&closedVocabulary) || readonly?" disabled=\"disabled\" ":"")
-             .append("\" />");
-          
-           sb.append(doControlledVocabulary(fieldParam, pageContext, vocabulary, readonly));
-           sb.append("</span>");
-          if (!readonly)
-          {
-                       sb.append("<button class=\"btn btn-danger col-md-2\" name=\"submit_")
+                 sb.append("<span class=\"col-md-4\"><input class=\"form-control\" type=\"text\" name=\"")
+                         .append(fieldParam)
+                         .append("\" size=\"15\" value=\"")
+                         .append(defaults[i].value.replaceAll("\"", "&quot;"))
+                         .append("\"")
+                         .append((hasVocabulary(vocabulary) && closedVocabulary) || readonly ? " disabled=\"disabled\" " : "")
+                         .append("\" />");
+
+                 sb.append(doControlledVocabulary(fieldParam, pageContext, vocabulary, readonly));
+                 sb.append("</span>");
+                 if (repeatable && !readonly && i < fieldCount - 1)
+                 {
+                     // put a remove button next to filled in values
+                     sb.append("<button class=\"btn btn-danger col-md-2\" name=\"submit_")
                              .append(fieldName)
                              .append("_remove_")
                              .append(i)
                              .append("\" value=\"")
                              .append(LocaleSupport.getLocalizedMessage(pageContext, "jsp.submit.edit-metadata.button.remove2"))
-                             .append("\"><span class=\"glyphicon glyphicon-trash\"></span>&nbsp;&nbsp;"+LocaleSupport.getLocalizedMessage(pageContext, "jsp.submit.edit-metadata.button.remove")+"</button>");
-          }
-          else {
-        	  sb.append("<span class=\"col-md-2\">&nbsp;</span>");
-          }
-         }
+                             .append("\"><span class=\"glyphicon glyphicon-trash\"></span>&nbsp;&nbsp;" + LocaleSupport.getLocalizedMessage(pageContext, "jsp.submit.edit-metadata.button.remove") + "</button>");
+                 }
+                 else
+                 {
+                     sb.append("<span class=\"col-md-2\">&nbsp;</span>");
+                 }
+             }
          else
          {
            sb.append("<span class=\"col-md-4\"><input class=\"form-control\" type=\"text\" name=\"")
@@ -817,7 +861,7 @@
          
          i++;
 
-         if(i != fieldCount)
+         if(repeatable)
                  {
                          //param is field name and index, starting from 1 (e.g. myfield_2)
                      fieldParam = fieldName + "_" + (i+1);
@@ -830,31 +874,33 @@
         
                  if (i < defaults.length)
                  {
-                   sb.append("<span class=\"col-md-4\"><input class=\"form-control\" type=\"text\" name=\"")
-                     .append(fieldParam)
-                     .append("\" size=\"15\" value=\"")
-                     .append(defaults[i].value.replaceAll("\"", "&quot;"))
-                         .append("\"")
-                         .append((hasVocabulary(vocabulary)&&closedVocabulary) || readonly?" disabled=\"disabled\" ":"")
-                         .append("/>");
-                   sb.append(doControlledVocabulary(fieldParam, pageContext, vocabulary, readonly));      
-                   sb.append("</span>");
-                   if (!readonly)
-                   {
-                               sb.append(" <button class=\"btn btn-danger col-md-2\" name=\"submit_")
+                         sb.append("<span class=\"col-md-4\"><input class=\"form-control\" type=\"text\" name=\"")
+                                 .append(fieldParam)
+                                 .append("\" size=\"15\" value=\"")
+                                 .append(defaults[i].value.replaceAll("\"", "&quot;"))
+                                 .append("\"")
+                                 .append((hasVocabulary(vocabulary) && closedVocabulary) || readonly ? " disabled=\"disabled\" " : "")
+                                 .append("/>");
+                         sb.append(doControlledVocabulary(fieldParam, pageContext, vocabulary, readonly));
+                         sb.append("</span>");
+                         if (repeatable && !readonly && i < fieldCount - 1)
+                         {
+                             // put a remove button next to filled in values
+                             sb.append(" <button class=\"btn btn-danger col-md-2\" name=\"submit_")
                                      .append(fieldName)
                                      .append("_remove_")
                                      .append(i)
                                      .append("\" value=\"")
                                      .append(LocaleSupport.getLocalizedMessage(pageContext, "jsp.submit.edit-metadata.button.remove2"))
-                                     .append("\"><span class=\"glyphicon glyphicon-trash\"></span>&nbsp;&nbsp;"+LocaleSupport.getLocalizedMessage(pageContext, "jsp.submit.edit-metadata.button.remove")+"</button>");
-                   }
-                   else {
-                 	  sb.append("<span class=\"col-md-2\">&nbsp;</span>");
-                   }              
-                 }
+                                     .append("\"><span class=\"glyphicon glyphicon-trash\"></span>&nbsp;&nbsp;" + LocaleSupport.getLocalizedMessage(pageContext, "jsp.submit.edit-metadata.button.remove") + "</button>");
+                         }
+                         else
+                         {
+                             sb.append("<span class=\"col-md-2\">&nbsp;</span>");
+                         }
+                     }
                  else
-                 {
+           {
                    sb.append("<span class=\"col-md-4\"><input class=\"form-control\" type=\"text\" name=\"")
                      .append(fieldParam)
                      .append("\" size=\"15\"")
@@ -930,7 +976,7 @@
          sb.append("<div class=\"row col-md-12\"><span class=\"input-group col-md-10\"><span class=\"input-group-addon\"><select name=\"")
            .append(fieldName)
            .append("_qualifier");
-         if (repeatable && j!= fieldCount-1)
+         if (repeatable)
            sb.append("_").append(j+1);
          if (readonly)
          {
@@ -954,7 +1000,7 @@
          sb.append("</select></span><input class=\"form-control\" type=\"text\" name=\"")
            .append(fieldName)
            .append("_value");
-         if (repeatable && j!= fieldCount-1)
+         if (repeatable)
            sb.append("_").append(j+1);
          if (readonly)
          {
@@ -964,9 +1010,9 @@
            .append(currentVal.replaceAll("\"", "&quot;"))
            .append("\"/></span>\n");
 
-         if (repeatable && !readonly && j < defaults.length)
-         {
-            // put a remove button next to filled in values
+         if (repeatable && !readonly && j < fieldCount - 1)
+          {
+             // put a remove button next to filled in values
             sb.append("<button class=\"btn btn-danger col-md-2\" name=\"submit_")
               .append(fieldName)
               .append("_remove_")
@@ -1159,6 +1205,34 @@
             
             out.write(sb.toString());
           }//end doList
+
+    /** Display language tags **/
+     StringBuffer doLanguageTag(StringBuffer sb, String fieldNameIdx, List<String> valueLanguageList, String lang)
+     {
+         sb.append("<div class=\"col-md-2\">")
+                 .append("<select class=\"form-control\" name=\"")
+                 .append(fieldNameIdx + "[lang]")
+                 .append("\"")
+                 .append(">");
+
+         for (int j = 0; j < valueLanguageList.size(); j += 2)
+         {
+             String display = (String) valueLanguageList.get(j);
+             String value = (String) valueLanguageList.get(j + 1);
+
+             sb.append("<option ")
+                     .append(value.equals(lang) ? " selected=\"selected\" " : "")
+                     .append("value=\"")
+                     .append(value.replaceAll("\"", "&quot;"))
+                     .append("\">")
+                     .append(display)
+                     .append("</option>");
+         }
+
+         sb.append("</select>");
+         sb.append("</div>");
+         return sb;
+    }
 %>
 
 <%
@@ -1274,7 +1348,8 @@
        String dcElement = inputs[z].getElement();
        String dcQualifier = inputs[z].getQualifier();
        String dcSchema = inputs[z].getSchema();
-       
+       boolean language = inputs[z].getLanguage();
+
        String fieldName;
        int fieldCountIncr;
        boolean repeatable;
@@ -1328,13 +1403,10 @@
 
        repeatable = inputs[z].getRepeatable();
        fieldCountIncr = 0;
-       if (repeatable && !readonly)
+
+       if (si.getMoreBoxesFor() != null && si.getMoreBoxesFor().equals(fieldName))
        {
-         fieldCountIncr = 1;
-         if (si.getMoreBoxesFor() != null && si.getMoreBoxesFor().equals(fieldName))
-             {
-           fieldCountIncr = 2;
-         }
+           fieldCountIncr = 1;
        }
 
        String inputType = inputs[z].getInputType();
@@ -1370,7 +1442,7 @@
        {
                    doTextArea(out, item, fieldName, dcSchema, dcElement, dcQualifier,
                                   repeatable, required, readonly, fieldCountIncr, label, pageContext, vocabulary,
-                                  closedVocabulary, collectionID);
+                                  closedVocabulary, collectionID, language, inputs[z].getValueLanguageList());
        }
        else if (inputType.equals("dropdown"))
        {
@@ -1392,7 +1464,7 @@
        {
                         doOneBox(out, item, fieldName, dcSchema, dcElement, dcQualifier,
                                  repeatable, required, readonly, fieldCountIncr, label, pageContext, vocabulary,
-                                 closedVocabulary, collectionID);
+                                 closedVocabulary, collectionID, language, inputs[z].getValueLanguageList());
        }
        
      } // end of 'for rows'
