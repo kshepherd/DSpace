@@ -12,6 +12,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.text.Normalizer;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.apache.solr.common.SolrInputDocument;
@@ -33,6 +34,7 @@ import org.dspace.utils.DSpace;
 /**
  * 
  * @author Andrea Bollini (CILEA)
+ * @author Kim Shepherd
  *
  */
 public class SolrBrowseCreateDAO implements BrowseCreateDAO,
@@ -46,6 +48,8 @@ public class SolrBrowseCreateDAO implements BrowseCreateDAO,
 
     private static final Logger log = Logger
             .getLogger(SolrBrowseCreateDAO.class);
+
+    public static final String FILTER_SEPARATOR = "\n|||\n";
 
     private BrowseIndex[] bis;
 
@@ -99,6 +103,12 @@ public class SolrBrowseCreateDAO implements BrowseCreateDAO,
             return;
         }
         Item item = (Item) dso;
+
+	String separator = new DSpace().getConfigurationService().getProperty("discovery.solr.facets.split.char");
+                        if(separator == null)
+                        {
+                            separator = FILTER_SEPARATOR;
+                        }
 
         // faceting for metadata browsing. It is different than search facet
         // because if there are authority with variants support we want all the
@@ -305,10 +315,8 @@ public class SolrBrowseCreateDAO implements BrowseCreateDAO,
                     }
                 }
 
-                for (String facet : distFValues)
-                {
-                    doc.addField(bi.getDistinctTableName() + "_filter", facet);
-                }
+		// rather than iterate distFValues to add filters, we will add them in
+		// the distFVal pass so we can construct better normalised text before the separator
                 for (String facet : distFAuths)
                 {
                     doc.addField(bi.getDistinctTableName()
@@ -320,6 +328,10 @@ public class SolrBrowseCreateDAO implements BrowseCreateDAO,
                 }
                 for (String facet : distFVal)
                 {
+		    String normString = Normalizer.normalize(facet, Normalizer.Form.NFD);
+                    String normValue = normString.replaceAll("[^\\p{ASCII}]", "").toLowerCase();
+                    doc.addField(bi.getDistinctTableName() + "_filter", normValue+separator+facet);
+
                     doc.addField(bi.getDistinctTableName()+"_value_filter", facet);
                 }
             }

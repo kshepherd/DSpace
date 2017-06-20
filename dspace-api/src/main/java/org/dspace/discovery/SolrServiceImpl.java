@@ -17,6 +17,7 @@ import java.net.URISyntaxException;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -1181,6 +1182,8 @@ public class SolrServiceImpl implements SearchService, IndexingService {
 
                         if(searchFilter.getFilterType().equals(DiscoverySearchFilterFacet.FILTER_TYPE_FACET))
                         {
+			    String normString = Normalizer.normalize(value, Normalizer.Form.NFD);
+			    String normValue = normString.replaceAll("[^\\p{ASCII}]", "").toLowerCase();
                             if(searchFilter.getType().equals(DiscoveryConfigurationParameters.TYPE_TEXT))
                             {
                             	//Add a special filter
@@ -1193,7 +1196,7 @@ public class SolrServiceImpl implements SearchService, IndexingService {
                             	}
                             	else
                             	{
-                                	doc.addField(searchFilter.getIndexFieldName() + "_filter", value.toLowerCase() + separator + value);
+                                	doc.addField(searchFilter.getIndexFieldName() + "_filter", normValue + separator + value);
                             	}
                             }else
                                 if(searchFilter.getType().equals(DiscoveryConfigurationParameters.TYPE_DATE))
