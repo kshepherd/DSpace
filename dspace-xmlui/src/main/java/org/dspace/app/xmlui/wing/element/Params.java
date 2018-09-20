@@ -21,12 +21,21 @@ import org.xml.sax.ContentHandler;
 import org.xml.sax.SAXException;
 import org.xml.sax.ext.LexicalHandler;
 import org.xml.sax.helpers.NamespaceSupport;
+
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 
 public class Params extends AbstractWingElement implements StructuralElement
 {
     /** The name of the params element */
     public static final String E_PARAMS = "params";
+
+    /** The name of an individual param element */
+    public static final String E_PARAM = "param";
+
+    /** The name of the param name attribute */
+    public static final String A_PARAM_NAME = "name";
 
     /** The name of the operations attribute */
     public static final String A_OPERATIONS = "operations";
@@ -132,6 +141,9 @@ public class Params extends AbstractWingElement implements StructuralElement
 
     /** Value of choicesClosed option */
     protected boolean choicesClosed = false;
+
+    /** Value of language options */
+    protected Collection<Option> languageOptions = new ArrayList<Option>();
 
     /**
      * Construct a new parameter's element
@@ -349,7 +361,15 @@ public class Params extends AbstractWingElement implements StructuralElement
         this.choicesClosed = true;
     }
 
-
+    /**
+     * Set the language options to be presented for the field
+     * @param languageOptions
+     *      The list of language Option elements
+     *      (hard-pathed to java.util since List is also used by Wing)
+     */
+    public void setLanguageOptions(java.util.List<Option> languageOptions) {
+        this.languageOptions = languageOptions;
+    }
 
     /**
      * Translate this element and all contained elements into SAX events. The
@@ -465,6 +485,19 @@ public class Params extends AbstractWingElement implements StructuralElement
         }
 
         startElement(contentHandler, namespaces, E_PARAMS, attributes);
+
+        // Build extra parameters / parameter metadata
+        // Add language options as 'languages' attribute
+        if(languageOptions.size() > 0) {
+            AttributeMap languageAttributes = new AttributeMap();
+            languageAttributes.put(A_PARAM_NAME, "languages");
+            startElement(contentHandler, namespaces, E_PARAM, languageAttributes);
+            for(Option option : languageOptions) {
+                option.toSAX(contentHandler, lexicalHandler, namespaces);
+            }
+            endElement(contentHandler, namespaces, E_PARAM);
+        }
+
         endElement(contentHandler, namespaces, E_PARAMS);
     }
 }
