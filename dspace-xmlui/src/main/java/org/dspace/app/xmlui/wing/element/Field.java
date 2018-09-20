@@ -59,6 +59,7 @@ package org.dspace.app.xmlui.wing.element;
  */
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.dspace.app.xmlui.wing.AttributeMap;
@@ -485,6 +486,26 @@ public abstract class Field extends AbstractWingElement implements
             values.remove(remove);
             remove.dispose();
         }
+    }
+
+    /**
+     * Populate language options for dropdown selection in form
+     *
+     * @param valueLanguageList
+     *          The language value list configured for dcInput in input-forms configuration
+     */
+    public void setValueLanguageList(List<String> valueLanguageList) throws WingException {
+        List<Option> languageOptions = new ArrayList<>();
+
+        for(int i = 0; i < languageOptions.size(); i += 2) {
+            String display = valueLanguageList.get(i);
+            String value = valueLanguageList.get(i+1);
+            Option option = new Option(context, value);
+            option.addContent(display);
+            languageOptions.add(option);
+        }
+
+        this.params.setLanguageOptions(languageOptions);
     }
 
     /**
