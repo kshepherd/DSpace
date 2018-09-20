@@ -223,8 +223,16 @@ public class Instance extends Container
         contents.add(value);
         value.addContent(characters);
     }
-    
-    
+
+    /**
+     * Set the language value for this field
+     * @param language
+     *      (may be null) String containing language code eg. 'en_NZ'
+     */
+    public void setLanguageValue(String language) throws WingException {
+        this.removeValueOfType(Value.TYPE_LANG);
+    }
+
     /**
      * Translate this element and all contained elements into SAX events. The
      * events should be routed to the contentHandler found in the WingContext.
