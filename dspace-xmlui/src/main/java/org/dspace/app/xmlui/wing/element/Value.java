@@ -46,7 +46,7 @@ public class Value extends RichTextContainer
 
     public static final String TYPE_OPTION = "option";
 
-    public static final String TYPE_LANG = "language";
+    public static final String TYPE_LANG = "lang";
 
     /** value of the metadata authority code associated with a raw value */
     public static final String TYPE_AUTHORITY = "authority";

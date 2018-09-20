@@ -487,10 +487,10 @@ public class Params extends AbstractWingElement implements StructuralElement
         startElement(contentHandler, namespaces, E_PARAMS, attributes);
 
         // Build extra parameters / parameter metadata
-        // Add language options as 'languages' attribute
+        // Add language options as 'langs' attribute
         if(languageOptions.size() > 0) {
             AttributeMap languageAttributes = new AttributeMap();
-            languageAttributes.put(A_PARAM_NAME, "languages");
+            languageAttributes.put(A_PARAM_NAME, "langs");
             startElement(contentHandler, namespaces, E_PARAM, languageAttributes);
             for(Option option : languageOptions) {
                 option.toSAX(contentHandler, lexicalHandler, namespaces);
