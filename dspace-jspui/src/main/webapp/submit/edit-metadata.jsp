@@ -1514,7 +1514,7 @@
        {
                         doTwoBox(out, item, fieldName, dcSchema, dcElement, dcQualifier,
                                  repeatable, required, readonly, fieldCountIncr, label, pageContext, 
-                                 vocabulary, closedVocabulary);
+                                 vocabulary, closedVocabulary, language, inputs[z].getValueLanguageList());
        }
        else if (inputType.equals("list"))
        {
