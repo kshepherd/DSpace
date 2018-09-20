@@ -231,6 +231,9 @@ public class Instance extends Container
      */
     public void setLanguageValue(String language) throws WingException {
         this.removeValueOfType(Value.TYPE_LANG);
+        Value value = new Value(context, Value.TYPE_LANG);
+        value.addContent(language);
+        contents.add(value);
     }
 
     /**
