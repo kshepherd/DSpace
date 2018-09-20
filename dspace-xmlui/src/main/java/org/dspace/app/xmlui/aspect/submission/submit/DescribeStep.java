@@ -821,6 +821,9 @@ public class DescribeStep extends AbstractSubmissionStep
                 // Plain old Textarea
                 TextArea textArea = form.addItem().addTextArea(fieldName,"submit-textarea");
 
+                // Add language options if this input is configured for language selection
+                addLanguageOptions(textArea, dcInput);
+
                 // Setup the text area
                 textArea.setLabel(dcInput.getLabel());
                 textArea.setHelp(cleanHints(dcInput.getHints()));
@@ -873,6 +876,9 @@ public class DescribeStep extends AbstractSubmissionStep
                         {
                                 Instance ti = textArea.addInstance();
                                 ti.setValue(dcValue.value);
+                                if(dcValue.language != null) {
+                                    ti.setLanguageValue(dcValue.language);
+                                }
                                 if (isAuth)
                                 {
                                     if (dcValue.authority == null || dcValue.authority.equals(""))
@@ -889,6 +895,9 @@ public class DescribeStep extends AbstractSubmissionStep
                 else if (dcValues.length == 1)
                 {
                         textArea.setValue(dcValues[0].value);
+                        if(dcValues[0].language != null) {
+                            textArea.setLanguageValue(dcValues[0].language);
+                        }
                         if (isAuth)
                         {
                             if (dcValues[0].authority == null || dcValues[0].authority.equals(""))
@@ -1157,6 +1166,9 @@ public class DescribeStep extends AbstractSubmissionStep
             org.dspace.app.xmlui.wing.element.Item item = form.addItem();
             Text text = item.addText(fieldName, "submit-text");
 
+            // And language options if this input is configured for language selection
+            addLanguageOptions(text, dcInput);
+
             if(dcInput.getVocabulary() != null){
                 String vocabularyUrl = new DSpace().getConfigurationService().getProperty("dspace.url");
                 vocabularyUrl += "/JSON/controlled-vocabulary?vocabularyIdentifier=" + dcInput.getVocabulary();
@@ -1219,7 +1231,7 @@ public class DescribeStep extends AbstractSubmissionStep
                                 Instance ti = text.addInstance();
                                 ti.setValue(dcValue.value);
                                 if(dcValue.language != null) {
-                                    // ti.setLanguageValue(dcValue.language);
+                                    ti.setLanguageValue(dcValue.language);
                                 }
                                 if (isAuth)
                                 {
@@ -1237,6 +1249,9 @@ public class DescribeStep extends AbstractSubmissionStep
                 else if (dcValues.length == 1)
                 {
                         text.setValue(dcValues[0].value);
+                        if(dcValues[0].language != null) {
+                            text.setLanguageValue(dcValues[0].language);
+                        }
                         if (isAuth)
                         {
                             if (dcValues[0].authority == null || dcValues[0].authority.equals(""))
@@ -1248,6 +1263,12 @@ public class DescribeStep extends AbstractSubmissionStep
                                 text.setAuthorityValue(dcValues[0].authority, Choices.getConfidenceText(dcValues[0].confidence));
                             }
                 }
+            }
+        }
+
+        public void addLanguageOptions(Field field, DCInput dcInput) throws WingException {
+            if(dcInput.getLanguage() && dcInput.getValueLanguageList() != null ) {
+                field.setValueLanguageList(dcInput.getValueLanguageList());
             }
         }
 
