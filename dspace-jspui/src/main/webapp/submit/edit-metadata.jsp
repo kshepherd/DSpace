@@ -633,7 +633,9 @@
              {
                  lang = ConfigurationManager.getProperty("default.language");
              }
-                 sb = doLanguageTag(sb, fieldNameIdx, valueLanguageList, lang);
+             sb.append("<div class=\"col-md-2\">");
+             sb = doLanguageTag(sb, fieldNameIdx, valueLanguageList, lang);
+             sb.append("</div>");
          }
 
          if (authorityType != null)
@@ -744,7 +746,9 @@
                {
                     lang = ConfigurationManager.getProperty("default.language");
                }
+               sb.append("<div class=\"col-md-2\">");
                sb = doLanguageTag(sb, fieldNameIdx, valueLanguageList, lang);
+               sb.append("</div>");
            }
 
            if (authorityType != null)
@@ -787,7 +791,7 @@
 
     void doTwoBox(javax.servlet.jsp.JspWriter out, Item item,
       String fieldName, String schema, String element, String qualifier, boolean repeatable, boolean required, boolean readonly,
-      int fieldCountIncr, String label, PageContext pageContext, String vocabulary, boolean closedVocabulary)
+      int fieldCountIncr, String label, PageContext pageContext, String vocabulary, boolean closedVocabulary, boolean language, List<String> valueLanguageList)
       throws java.io.IOException
     {
       Metadatum[] defaults = item.getMetadata(schema, element, qualifier, Item.ANY);
@@ -806,7 +810,8 @@
       sb.append("<div class=\"col-md-10\">");
       for (int i = 0; i < fieldCount; i++)
       {
-     	 sb.append("<div class=\"row col-md-12\">");
+         sb.append("<div class=\"row\">\n");
+     	 sb.append("<div class=\"col-md-5\">");
 
          if(repeatable)
          {
@@ -821,16 +826,31 @@
                  
          if (i < defaults.length)
          {
-                 sb.append("<span class=\"col-md-4\"><input class=\"form-control\" type=\"text\" name=\"")
-                         .append(fieldParam)
-                         .append("\" size=\"15\" value=\"")
-                         .append(defaults[i].value.replaceAll("\"", "&quot;"))
-                         .append("\"")
-                         .append((hasVocabulary(vocabulary) && closedVocabulary) || readonly ? " disabled=\"disabled\" " : "")
-                         .append("\" />");
+                 sb.append("<span class=\"col-md-")
+                     .append(language ? "6" : "10")
+                     .append("\"><input class=\"form-control\" type=\"text\" name=\"")
+                     .append(fieldParam)
+                     .append("\" size=\"15\" value=\"")
+                     .append(defaults[i].value.replaceAll("\"", "&quot;"))
+                     .append("\"")
+                     .append((hasVocabulary(vocabulary) && closedVocabulary) || readonly ? " disabled=\"disabled\" " : "")
+                     .append("\" />");
 
                  sb.append(doControlledVocabulary(fieldParam, pageContext, vocabulary, readonly));
                  sb.append("</span>");
+
+                 if (language)
+                 {
+                     String lang = defaults[i].language;
+                     if(null == lang)
+                     {
+                         lang = ConfigurationManager.getProperty("default.language");
+                     }
+                     sb.append("<span class=\"col-md-4\">");
+                     sb = doLanguageTag(sb, fieldParam, valueLanguageList, lang);
+                     sb.append("</span>");
+                 }
+
                  if (repeatable && !readonly && i < fieldCount - 1)
                  {
                      // put a remove button next to filled in values
@@ -849,17 +869,31 @@
              }
          else
          {
-           sb.append("<span class=\"col-md-4\"><input class=\"form-control\" type=\"text\" name=\"")
-             .append(fieldParam)
-             .append("\" size=\"15\"")
-             .append((hasVocabulary(vocabulary)&&closedVocabulary) || readonly?" disabled=\"disabled\" ":"")
-             .append("/>")
-             .append(doControlledVocabulary(fieldParam, pageContext, vocabulary, readonly))
-             .append("</span>\n")
-             .append("<span class=\"col-md-2\">&nbsp;</span>");
+             sb.append("<span class=\"col-md-")
+                 .append(language ? "6" : "10")
+                 .append("\"><input class=\"form-control\" type=\"text\" name=\"")
+                 .append(fieldParam)
+                 .append("\" size=\"15\"")
+                 .append((hasVocabulary(vocabulary)&&closedVocabulary) || readonly?" disabled=\"disabled\" ":"")
+                 .append("/>")
+                 .append(doControlledVocabulary(fieldParam, pageContext, vocabulary, readonly))
+                 .append("</span>\n")
+                 .append("<span class=\"col-md-2\">&nbsp;</span>");
+
+             if (language)
+             {
+                 String lang = ConfigurationManager.getProperty("default.language");
+                 sb.append("<span class=\"col-md-4\">");
+                 sb = doLanguageTag(sb, fieldParam, valueLanguageList, lang);
+                 sb.append("</span>");
+             }
+
+             sb.append("<span class=\"col-md-2\">&nbsp;</span>"); // no remove button
          }
-         
+
+         sb.append("</div>\n"); //<div class="col-md-5>
          i++;
+         sb.append("<div class=\"col-md-5\">");
 
          if(repeatable)
                  {
@@ -874,15 +908,30 @@
         
                  if (i < defaults.length)
                  {
-                         sb.append("<span class=\"col-md-4\"><input class=\"form-control\" type=\"text\" name=\"")
-                                 .append(fieldParam)
-                                 .append("\" size=\"15\" value=\"")
-                                 .append(defaults[i].value.replaceAll("\"", "&quot;"))
-                                 .append("\"")
-                                 .append((hasVocabulary(vocabulary) && closedVocabulary) || readonly ? " disabled=\"disabled\" " : "")
-                                 .append("/>");
-                         sb.append(doControlledVocabulary(fieldParam, pageContext, vocabulary, readonly));
+                     sb.append("<span class=\"col-md-")
+                         .append(language ? "6" : "10")
+                         .append("\"><input class=\"form-control\" type=\"text\" name=\"")
+                         .append(fieldParam)
+                         .append("\" size=\"15\" value=\"")
+                         .append(defaults[i].value.replaceAll("\"", "&quot;"))
+                         .append("\"")
+                         .append((hasVocabulary(vocabulary) && closedVocabulary) || readonly ? " disabled=\"disabled\" " : "")
+                         .append("/>");
+                     sb.append(doControlledVocabulary(fieldParam, pageContext, vocabulary, readonly));
+                     sb.append("</span>");
+
+                     if (language)
+                     {
+                         String lang = defaults[i].language;
+                         if(null == lang)
+                         {
+                             lang = ConfigurationManager.getProperty("default.language");
+                         }
+                         sb.append("<span class=\"col-md-2\">");
+                         sb = doLanguageTag(sb, fieldParam, valueLanguageList, lang);
                          sb.append("</span>");
+                     }
+
                          if (repeatable && !readonly && i < fieldCount - 1)
                          {
                              // put a remove button next to filled in values
@@ -901,13 +950,25 @@
                      }
                  else
            {
-                   sb.append("<span class=\"col-md-4\"><input class=\"form-control\" type=\"text\" name=\"")
+               sb.append("<span class=\"col-md-")
+                   .append(language ? "6" : "10")
+                   .append("\"><input class=\"form-control\" type=\"text\" name=\"")
                      .append(fieldParam)
                      .append("\" size=\"15\"")
                      .append((hasVocabulary(vocabulary)&&closedVocabulary)||readonly?" disabled=\"disabled\" ":"")
                      .append("/>")
                      .append(doControlledVocabulary(fieldParam, pageContext, vocabulary, readonly))
         			 .append("</span>\n");
+
+               if (language)
+               {
+                   String lang = ConfigurationManager.getProperty("default.language");
+                   sb.append("<span class=\"col-md-2\">");
+                   sb = doLanguageTag(sb, fieldParam, valueLanguageList, lang);
+                   sb.append("</span>");
+               }
+               sb.append("<span class=\"col-md-2\">&nbsp;</span>"); // no remove button
+
                    if (i+1 >= fieldCount && !readonly)
                    {
                      sb.append(" <button class=\"btn btn-default col-md-2\" name=\"submit_")
