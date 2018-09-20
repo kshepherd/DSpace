@@ -509,6 +509,20 @@ public abstract class Field extends AbstractWingElement implements
     }
 
     /**
+     * Set a language for a value and return the resulting Value
+     *
+     * @param language
+     *      String with language code to set to value, eg. 'en_NZ'
+     */
+    public Value setLanguageValue(String language) throws WingException {
+        this.removeValueOfType(Value.TYPE_LANG);
+        Value value = new Value(context, Value.TYPE_LANG);
+        value.addContent(language);
+        values.add(value);
+        return value;
+    }
+
+    /**
      * Translate this element and all contained elements into SAX events. The
      * events should be routed to the contentHandler found in the WingContext.
      *

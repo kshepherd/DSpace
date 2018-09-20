@@ -30,6 +30,7 @@ import org.dspace.app.xmlui.wing.element.Division;
 import org.dspace.app.xmlui.wing.element.Field;
 import org.dspace.app.xmlui.wing.element.Instance;
 import org.dspace.app.xmlui.wing.element.List;
+import org.dspace.app.xmlui.wing.element.Option;
 import org.dspace.app.xmlui.wing.element.PageMeta;
 import org.dspace.app.xmlui.wing.element.Params;
 import org.dspace.app.xmlui.wing.element.Radio;
@@ -1217,6 +1218,9 @@ public class DescribeStep extends AbstractSubmissionStep
                         {
                                 Instance ti = text.addInstance();
                                 ti.setValue(dcValue.value);
+                                if(dcValue.language != null) {
+                                    // ti.setLanguageValue(dcValue.language);
+                                }
                                 if (isAuth)
                                 {
                                     if (dcValue.authority == null || dcValue.authority.equals(""))

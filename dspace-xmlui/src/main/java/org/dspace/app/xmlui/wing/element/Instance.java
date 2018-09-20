@@ -225,7 +225,7 @@ public class Instance extends Container
     }
 
     /**
-     * Set the language value for this field
+     * Set the language for a field
      * @param language
      *      (may be null) String containing language code eg. 'en_NZ'
      */
