@@ -471,6 +471,14 @@
             <input type="checkbox" value="{concat(@n,'_',$position)}" name="{concat(@n,'_selected')}"/>
             <xsl:apply-templates select="dri:instance[position()=$position]" mode="interpreted"/>
 
+            <!-- if we have langs attribute, call language select builder tempalte -->
+            <xsl:if test="dri:params/dri:param[@name='langs']">
+                <xsl:call-template name="languageSelectBuilder">
+                    <xsl:with-param name="name" select="concat(@n, '_', $position)"/>
+                    <xsl:with-param name="selected" select="dri:instance[position()=$position]/dri:value[@type='lang']"/>
+                </xsl:call-template>
+            </xsl:if>
+
             <!-- look for authority value in instance. -->
             <xsl:if test="dri:instance[position()=$position]/dri:value[@type='authority']">
               <xsl:call-template name="authorityConfidenceIcon">
@@ -770,7 +778,28 @@
         </xsl:choose>
     </xsl:template>
 
+    <!-- Template to iterate language options and build the select dropdown from them -->
+    <xsl:template name="languageSelectBuilder">
+        <xsl:param name="name"/>
+        <xsl:param name="selected"/>
+        <select>
+            <xsl:attribute name="name">
+                <xsl:value-of select="concat($name, '[lang]')"/>
+            </xsl:attribute>
+            <xsl:for-each select="dri:params/dri:param[@name='langs']/dri:option">
+                <option>
+                    <xsl:attribute name="value">
+                        <xsl:value-of select="@returnValue"/>
+                    </xsl:attribute>
+                    <xsl:if test="$selected = @returnValue">
+                        <xsl:attribute name="selected"/>
+                    </xsl:if>
+                    <xsl:value-of select="."/>
+                </option>
+            </xsl:for-each>
 
+        </select>
+    </xsl:template>
 
 
 
@@ -1053,6 +1082,31 @@
                                 </xsl:call-template>
                             </xsl:when>
                         </xsl:choose>
+
+                        <!-- language option handling for normal fields -->
+                        <xsl:if test="dri:params/dri:param[@name='langs']">
+                            <!-- handle position tracking for repeatable fields -->
+                            <xsl:variable name="pos" select="count(dri:instance)+1"/>
+                            <xsl:variable name="name">
+                                <xsl:choose>
+                                    <xsl:when test="dri:params[@operations='add delete']">
+                                        <!-- this field is repeatable -->
+                                        <xsl:value-of select="concat(@n, '_', $pos)"/>
+                                    </xsl:when>
+                                    <xsl:otherwise>
+                                        <!-- this field isn't repeatable, proceed without pos -->
+                                        <xsl:value-of select="@n"/>
+                                    </xsl:otherwise>
+                                </xsl:choose>
+                            </xsl:variable>
+                            <!-- call language select builder template -->
+                            <xsl:call-template name="languageSelectBuilder">
+                                <xsl:with-param name="name" select="$name"/>
+                                <xsl:with-param name="selected" select="dri:value[@type='lang']"/>
+                            </xsl:call-template>
+
+                        </xsl:if>
+
                     </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
