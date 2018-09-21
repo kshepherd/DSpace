@@ -26,8 +26,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 
+// REMOVE AFTER DEBUGGING
+import org.apache.log4j.Logger;
+
 public class Params extends AbstractWingElement implements StructuralElement
 {
+
+    private static Logger log = Logger.getLogger(Params.class);
+
     /** The name of the params element */
     public static final String E_PARAMS = "params";
 
@@ -485,14 +491,16 @@ public class Params extends AbstractWingElement implements StructuralElement
         }
 
         startElement(contentHandler, namespaces, E_PARAMS, attributes);
-
+        log.info("PARAMS element started, moving to lang options");
         // Build extra parameters / parameter metadata
         // Add language options as 'langs' attribute
         if(languageOptions.size() > 0) {
+            log.info("language options size > 0, building option list");
             AttributeMap languageAttributes = new AttributeMap();
             languageAttributes.put(A_PARAM_NAME, "langs");
             startElement(contentHandler, namespaces, E_PARAM, languageAttributes);
             for(Option option : languageOptions) {
+                log.info(option.toString());
                 option.toSAX(contentHandler, lexicalHandler, namespaces);
             }
             endElement(contentHandler, namespaces, E_PARAM);

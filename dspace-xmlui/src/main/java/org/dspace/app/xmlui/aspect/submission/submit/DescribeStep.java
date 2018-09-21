@@ -52,6 +52,9 @@ import org.dspace.content.authority.Choices;
 import org.dspace.utils.DSpace;
 import org.xml.sax.SAXException;
 
+// REMOVE AFTER DEBUGGING
+import org.apache.log4j.Logger;
+
 /**
  * This is a step of the item submission processes. The describe step queries
  * the user for various metadata items about the item. For the most part all the
@@ -95,6 +98,8 @@ public class DescribeStep extends AbstractSubmissionStep
      */
     private static DCInputsReader INPUTS_READER = null;
     private static final Message T_vocabulary_link = message("xmlui.Submission.submit.DescribeStep.controlledvocabulary.link");
+
+    private static Logger log = Logger.getLogger(DescribeStep.class);
 
     /**
      * Ensure that the inputs reader has been initialized, this method may be
@@ -1268,6 +1273,7 @@ public class DescribeStep extends AbstractSubmissionStep
 
         public void addLanguageOptions(Field field, DCInput dcInput) throws WingException {
             if(dcInput.getLanguage()) {
+                log.info("addLanguageOptions: found language tag for dcInput " + dcInput.getElement() + '.' + dcInput.getQualifier());
                 field.setValueLanguageList(dcInput.getValueLanguageList());
             }
         }
