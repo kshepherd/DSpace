@@ -229,11 +229,12 @@ public class Instance extends Container
      * @param language
      *      (may be null) String containing language code eg. 'en_NZ'
      */
-    public void setLanguageValue(String language) throws WingException {
+    public Value setLanguageValue(String language) throws WingException {
         this.removeValueOfType(Value.TYPE_LANG);
         Value value = new Value(context, Value.TYPE_LANG);
         value.addContent(language);
         contents.add(value);
+        return value;
     }
 
     /**
