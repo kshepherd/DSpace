@@ -59,7 +59,6 @@ package org.dspace.app.xmlui.wing.element;
  */
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import org.dspace.app.xmlui.wing.AttributeMap;
@@ -72,15 +71,10 @@ import org.xml.sax.SAXException;
 import org.xml.sax.ext.LexicalHandler;
 import org.xml.sax.helpers.NamespaceSupport;
 
-// REMOVE AFTER DEBUGGING
-import org.apache.log4j.Logger;
-
-
 
 public abstract class Field extends AbstractWingElement implements
         StructuralElement
 {
-    private static Logger log = Logger.getLogger(Field.class);
 
     /** The name of the field element */
     public static final String E_FIELD = "field";
@@ -503,11 +497,9 @@ public abstract class Field extends AbstractWingElement implements
      */
     public void setValueLanguageList(List<String> valueLanguageList) throws WingException {
         List<Option> languageOptions = new ArrayList<>();
-        log.info("Applying language list for a field: "+ this.name);
         for(int i = 0; i < valueLanguageList.size(); i += 2) {
             String display = valueLanguageList.get(i);
             String value = valueLanguageList.get(i+1);
-            log.info(i + ": " + display + "," + value);
             Option option = new Option(context, value);
             option.addContent(display);
             languageOptions.add(option);
@@ -523,7 +515,6 @@ public abstract class Field extends AbstractWingElement implements
      *      String with language code to set to value, eg. 'en_NZ'
      */
     public Value setLanguageValue(String language) throws WingException {
-        log.info("Setting a language value for a field "+ this.name +" to " + language);
         this.removeValueOfType(Value.TYPE_LANG);
         Value value = new Value(context, Value.TYPE_LANG);
         value.addContent(language);

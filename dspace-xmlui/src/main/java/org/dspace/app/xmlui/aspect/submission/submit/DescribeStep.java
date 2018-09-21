@@ -12,7 +12,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Locale;
 
-import javax.security.auth.login.Configuration;
 import javax.servlet.ServletException;
 
 import org.dspace.app.util.DCInput;
@@ -31,7 +30,6 @@ import org.dspace.app.xmlui.wing.element.Division;
 import org.dspace.app.xmlui.wing.element.Field;
 import org.dspace.app.xmlui.wing.element.Instance;
 import org.dspace.app.xmlui.wing.element.List;
-import org.dspace.app.xmlui.wing.element.Option;
 import org.dspace.app.xmlui.wing.element.PageMeta;
 import org.dspace.app.xmlui.wing.element.Params;
 import org.dspace.app.xmlui.wing.element.Radio;
@@ -51,12 +49,8 @@ import org.dspace.content.authority.Choice;
 import org.dspace.content.authority.Choices;
 
 import org.dspace.core.ConfigurationManager;
-import org.dspace.core.LogManager;
 import org.dspace.utils.DSpace;
 import org.xml.sax.SAXException;
-
-// REMOVE AFTER DEBUGGING
-import org.apache.log4j.Logger;
 
 /**
  * This is a step of the item submission processes. The describe step queries
@@ -101,8 +95,6 @@ public class DescribeStep extends AbstractSubmissionStep
      */
     private static DCInputsReader INPUTS_READER = null;
     private static final Message T_vocabulary_link = message("xmlui.Submission.submit.DescribeStep.controlledvocabulary.link");
-
-    private static Logger log = Logger.getLogger(DescribeStep.class);
 
     /**
      * Ensure that the inputs reader has been initialized, this method may be
@@ -183,7 +175,6 @@ public class DescribeStep extends AbstractSubmissionStep
 
             // Obtain the inputs (i.e. metadata fields we are going to display)
                 Item item = submission.getItem();
-            log.info(LogManager.getHeader(context, "start_describe_addbody", "handle=" + item.getHandle()));
                 Collection collection = submission.getCollection();
                 String actionURL = contextPath + "/handle/"+collection.getHandle() + "/submit/" + knot.getId() + ".continue";
 
@@ -1185,8 +1176,6 @@ public class DescribeStep extends AbstractSubmissionStep
                 // decision is not something the Aspect can effect we merely place
                 // as a render hint.
 
-            log.info("Render onebox started");
-
             org.dspace.app.xmlui.wing.element.Item item = form.addItem();
             Text text = item.addText(fieldName, "submit-text");
 
@@ -1292,11 +1281,7 @@ public class DescribeStep extends AbstractSubmissionStep
 
         public void addLanguageOptions(Field field, DCInput dcInput) throws WingException {
             if(dcInput.getLanguage()) {
-                log.info("addLanguageOptions: found language tag for dcInput " + dcInput.getElement() + '.' + dcInput.getQualifier() + ", " + dcInput.getValueLanguageList().toString());
                 field.setValueLanguageList(dcInput.getValueLanguageList());
-            }
-            else {
-                log.info("addLanguageOptions: did not find language tag for dcInput " + dcInput.getElement() + '.' + dcInput.getQualifier());
             }
         }
 
