@@ -49,6 +49,7 @@ import org.dspace.content.authority.ChoiceAuthorityManager;
 import org.dspace.content.authority.Choice;
 import org.dspace.content.authority.Choices;
 
+import org.dspace.core.LogManager;
 import org.dspace.utils.DSpace;
 import org.xml.sax.SAXException;
 
@@ -167,10 +168,11 @@ public class DescribeStep extends AbstractSubmissionStep
         UIException, SQLException, IOException, AuthorizeException
         {
 
-            log.info("Describe step addBody method starting");
 
-                // Obtain the inputs (i.e. metadata fields we are going to display)
+
+            // Obtain the inputs (i.e. metadata fields we are going to display)
                 Item item = submission.getItem();
+            log.info(LogManager.getHeader(context, "start_describe_addbody", "handle=" + item.getHandle()));
                 Collection collection = submission.getCollection();
                 String actionURL = contextPath + "/handle/"+collection.getHandle() + "/submit/" + knot.getId() + ".continue";
 
