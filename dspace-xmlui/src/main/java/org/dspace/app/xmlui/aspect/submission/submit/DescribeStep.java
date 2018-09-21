@@ -166,6 +166,9 @@ public class DescribeStep extends AbstractSubmissionStep
         public void addBody(Body body) throws SAXException, WingException,
         UIException, SQLException, IOException, AuthorizeException
         {
+
+            log.info("Describe step addBody method starting");
+
                 // Obtain the inputs (i.e. metadata fields we are going to display)
                 Item item = submission.getItem();
                 Collection collection = submission.getCollection();
@@ -1168,6 +1171,9 @@ public class DescribeStep extends AbstractSubmissionStep
                 // as twobox should be listed in a two column format. Since this
                 // decision is not something the Aspect can effect we merely place
                 // as a render hint.
+
+            log.info("Render onebox started");
+
             org.dspace.app.xmlui.wing.element.Item item = form.addItem();
             Text text = item.addText(fieldName, "submit-text");
 
@@ -1275,6 +1281,9 @@ public class DescribeStep extends AbstractSubmissionStep
             if(dcInput.getLanguage()) {
                 log.info("addLanguageOptions: found language tag for dcInput " + dcInput.getElement() + '.' + dcInput.getQualifier());
                 field.setValueLanguageList(dcInput.getValueLanguageList());
+            }
+            else {
+                log.info("addLanguageOptions: did not find language tag for dcInput " + dcInput.getElement() + '.' + dcInput.getQualifier());
             }
         }
 
