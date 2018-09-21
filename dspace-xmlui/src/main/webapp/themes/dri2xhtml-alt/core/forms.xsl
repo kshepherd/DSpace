@@ -962,7 +962,7 @@
                       <xsl:value-of select="concat(@n,'_confidence')"/>
                     </xsl:with-param>
                   </xsl:call-template>
-            </xsl:when>
+                </xsl:when>
                 <xsl:when test="dri:params/@choicesPresentation = 'lookup'">
                   <xsl:call-template name="addLookupButton">
                     <xsl:with-param name="isName" select="'false'"/>
@@ -976,6 +976,14 @@
                       </xsl:call-template>
                   </xsl:when>
               </xsl:choose>
+                <!-- add language options for textarea -->
+                <xsl:if test="dri:params/dri:param[@name='langs']">
+                    <!-- call language select builder template -->
+                    <xsl:call-template name="languageSelectBuilder">
+                        <xsl:with-param name="name" select="@n"/>
+                        <xsl:with-param name="selected" select="dri:value[@type='lang']"/>
+                    </xsl:call-template>
+                </xsl:if>
             </xsl:when>
 
             <!-- This is changing dramatically -->
