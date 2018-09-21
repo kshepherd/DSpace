@@ -1281,7 +1281,7 @@ public class DescribeStep extends AbstractSubmissionStep
 
         public void addLanguageOptions(Field field, DCInput dcInput) throws WingException {
             if(dcInput.getLanguage()) {
-                log.info("addLanguageOptions: found language tag for dcInput " + dcInput.getElement() + '.' + dcInput.getQualifier());
+                log.info("addLanguageOptions: found language tag for dcInput " + dcInput.getElement() + '.' + dcInput.getQualifier() + ", " + dcInput.getValueLanguageList().toString());
                 field.setValueLanguageList(dcInput.getValueLanguageList());
             }
             else {

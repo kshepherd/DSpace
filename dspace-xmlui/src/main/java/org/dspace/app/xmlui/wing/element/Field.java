@@ -504,7 +504,7 @@ public abstract class Field extends AbstractWingElement implements
     public void setValueLanguageList(List<String> valueLanguageList) throws WingException {
         List<Option> languageOptions = new ArrayList<>();
         log.info("Applying language list for a field: "+ this.name);
-        for(int i = 0; i < languageOptions.size(); i += 2) {
+        for(int i = 0; i < valueLanguageList.size(); i += 2) {
             String display = valueLanguageList.get(i);
             String value = valueLanguageList.get(i+1);
             log.info(i + ": " + display + "," + value);
