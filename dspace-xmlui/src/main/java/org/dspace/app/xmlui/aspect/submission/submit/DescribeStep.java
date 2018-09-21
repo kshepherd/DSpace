@@ -1267,7 +1267,7 @@ public class DescribeStep extends AbstractSubmissionStep
         }
 
         public void addLanguageOptions(Field field, DCInput dcInput) throws WingException {
-            if(dcInput.getLanguage() && dcInput.getValueLanguageList() != null ) {
+            if(dcInput.getLanguage()) {
                 field.setValueLanguageList(dcInput.getValueLanguageList());
             }
         }
