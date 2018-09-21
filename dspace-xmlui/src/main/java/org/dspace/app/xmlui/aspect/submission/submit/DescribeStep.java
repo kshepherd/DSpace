@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Locale;
 
+import javax.security.auth.login.Configuration;
 import javax.servlet.ServletException;
 
 import org.dspace.app.util.DCInput;
@@ -49,6 +50,7 @@ import org.dspace.content.authority.ChoiceAuthorityManager;
 import org.dspace.content.authority.Choice;
 import org.dspace.content.authority.Choices;
 
+import org.dspace.core.ConfigurationManager;
 import org.dspace.core.LogManager;
 import org.dspace.utils.DSpace;
 import org.xml.sax.SAXException;
@@ -162,6 +164,15 @@ public class DescribeStep extends AbstractSubmissionStep
             {
                 pageMeta.addMetadata("page", "jumpTo").addContent(jumpTo);
             }
+
+            // Add default language to page metadata to set initial "selected" values for dropdown.
+            // This may be different from current locale or supported locale.
+            // (though, we'll check with Pascal, currentLocale may be a better thing to try first?)
+            String defaultLanguage = ConfigurationManager.getProperty("default.language");
+            if(defaultLanguage != null) {
+                pageMeta.addMetadata("dspace","defaultLanguage").addContent(defaultLanguage);
+            }
+
         }
 
         public void addBody(Body body) throws SAXException, WingException,

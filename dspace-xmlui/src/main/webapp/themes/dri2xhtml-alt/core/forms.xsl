@@ -786,14 +786,24 @@
             <xsl:attribute name="name">
                 <xsl:value-of select="concat($name, '[lang]')"/>
             </xsl:attribute>
+            <!-- get default language from page metadata -->
+            <xsl:variable name="defaultLanguage" select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='dspace'][@qualifier='defaultLanguage']"/>
             <xsl:for-each select="dri:params/dri:param[@name='langs']/dri:option">
                 <option>
                     <xsl:attribute name="value">
                         <xsl:value-of select="@returnValue"/>
                     </xsl:attribute>
-                    <xsl:if test="$selected = @returnValue">
-                        <xsl:attribute name="selected"/>
-                    </xsl:if>
+                    <xsl:choose>
+                        <xsl:when test="$selected = @returnValue">
+                            <xsl:attribute name="selected"/>
+                        </xsl:when>
+                        <xsl:when test="not($selected) and $defaultLanguage = @returnValue">
+                            <xsl:attribute name="selected"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <!-- we may think of other conditions here... current locale etc -->
+                        </xsl:otherwise>
+                    </xsl:choose>
                     <xsl:value-of select="."/>
                 </option>
             </xsl:for-each>
