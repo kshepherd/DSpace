@@ -45,6 +45,7 @@ import org.dspace.app.util.GoogleMetadata;
 import org.dspace.content.crosswalk.CrosswalkException;
 import org.dspace.content.crosswalk.DisseminationCrosswalk;
 import org.dspace.core.PluginManager;
+import org.dspace.services.ConfigurationService;
 import org.jdom.Element;
 import org.jdom.Text;
 import org.jdom.output.XMLOutputter;
@@ -84,6 +85,9 @@ public class ItemViewer extends AbstractDSpaceTransformer implements CacheablePr
         message("xmlui.ArtifactBrowser.ItemViewer.head_parent_collections");
 
     private static final Message T_withdrawn = message("xmlui.ArtifactBrowser.ItemViewer.withdrawn");
+
+    // Additional withdrawn message for items with an "is replaced by" URI
+    private static final Message T_is_replaced_by = message("lincoln.ItemViewer.is_replaced_by");
     
 	/** Cached validity object */
 	private SourceValidity validity = null;
@@ -352,6 +356,27 @@ public class ItemViewer extends AbstractDSpaceTransformer implements CacheablePr
             Division div = division.addDivision("notice", "notice");
             Para p = div.addPara();
             p.addContent(T_withdrawn);
+
+            // Check if custom "is replaced by" behaviour is enabled and which field it uses
+            Boolean replacedByEnabled = new DSpace().getConfigurationService()
+                    .getPropertyAsType("lincoln.replacedby",true);
+            String replacedByField = new DSpace().getConfigurationService()
+                    .getPropertyAsType("lincoln.replacedby_field", "dc.relation.isreplacedby");
+
+            if(replacedByEnabled) {
+                Metadatum[] replacedBy = item.getMetadataByMetadataString(replacedByField);
+                if (replacedBy != null && replacedBy.length > 0) {
+                    String replacementUri = replacedBy[0].value;
+                    // Check URI isn't empty and is an http(s) URL - we could do some more regex here too, to ensure a valid URL
+                    if (replacementUri.length() > 0 && replacementUri.startsWith("http")) {
+                        Para replacement = div.addPara();
+                        replacement.addContent(T_is_replaced_by);
+                        replacement.addContent(" "); // Ensure a space between message and link
+                        replacement.addXref(replacementUri).addContent(replacementUri);
+                    }
+
+                }
+            }
             //Set proper response. Return "404 Not Found"
             HttpServletResponse response = (HttpServletResponse)objectModel
                     .get(HttpEnvironment.HTTP_RESPONSE_OBJECT);   
