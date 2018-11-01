@@ -374,9 +374,9 @@ public class ItemViewer extends AbstractDSpaceTransformer implements CacheablePr
                         replacement.addContent(" "); // Ensure a space between message and link
                         replacement.addXref(replacementUri).addContent(replacementUri);
                     }
-
                 }
             }
+
             //Set proper response. Return "404 Not Found"
             HttpServletResponse response = (HttpServletResponse)objectModel
                     .get(HttpEnvironment.HTTP_RESPONSE_OBJECT);   
