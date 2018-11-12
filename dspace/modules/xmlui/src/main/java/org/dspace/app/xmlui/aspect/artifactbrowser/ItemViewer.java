@@ -87,7 +87,7 @@ public class ItemViewer extends AbstractDSpaceTransformer implements CacheablePr
     private static final Message T_withdrawn = message("xmlui.ArtifactBrowser.ItemViewer.withdrawn");
 
     // Additional withdrawn message for items with an "is replaced by" URI
-    private static final Message T_is_replaced_by = message("lincoln.ItemViewer.is_replaced_by");
+    private static final Message T_replaced_by = message("xmlui.ArtifactBrowser.ItemViewer.replaced_by");
     
 	/** Cached validity object */
 	private SourceValidity validity = null;
@@ -359,9 +359,9 @@ public class ItemViewer extends AbstractDSpaceTransformer implements CacheablePr
 
             // Check if custom "is replaced by" behaviour is enabled and which field it uses
             Boolean replacedByEnabled = new DSpace().getConfigurationService()
-                    .getPropertyAsType("lincoln.replacedby",true);
+                    .getPropertyAsType("tombstone.replaced_by.enabled",true);
             String replacedByField = new DSpace().getConfigurationService()
-                    .getPropertyAsType("lincoln.replacedby_field", "dc.relation.isreplacedby");
+                    .getPropertyAsType("tombstone.replaced_by.field", "dc.relation.isreplacedby");
 
             if(replacedByEnabled) {
                 Metadatum[] replacedBy = item.getMetadataByMetadataString(replacedByField);
@@ -370,7 +370,7 @@ public class ItemViewer extends AbstractDSpaceTransformer implements CacheablePr
                     // Check URI isn't empty and is an http(s) URL - we could do some more regex here too, to ensure a valid URL
                     if (replacementUri.length() > 0 && replacementUri.startsWith("http")) {
                         Para replacement = div.addPara();
-                        replacement.addContent(T_is_replaced_by);
+                        replacement.addContent(T_replaced_by);
                         replacement.addContent(" "); // Ensure a space between message and link
                         replacement.addXref(replacementUri).addContent(replacementUri);
                     }
