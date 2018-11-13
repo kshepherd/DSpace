@@ -206,7 +206,7 @@ public class RestrictedItem extends AbstractDSpaceTransformer //implements Cache
                             replacementUri = replacedBy[0].value;
                             // Check URI isn't empty and is an http(s) URL - we could do some more regex here too, to ensure a valid URL
                             if (replacementUri.length() > 0 && replacementUri.startsWith("http")) {
-
+                                isReplaced = true;
                             }
                         }
                     }
