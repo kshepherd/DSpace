@@ -45,7 +45,6 @@ import org.dspace.app.util.GoogleMetadata;
 import org.dspace.content.crosswalk.CrosswalkException;
 import org.dspace.content.crosswalk.DisseminationCrosswalk;
 import org.dspace.core.PluginManager;
-import org.dspace.services.ConfigurationService;
 import org.jdom.Element;
 import org.jdom.Text;
 import org.jdom.output.XMLOutputter;
@@ -358,11 +357,17 @@ public class ItemViewer extends AbstractDSpaceTransformer implements CacheablePr
             p.addContent(T_withdrawn);
 
             // Check if custom "is replaced by" behaviour is enabled and which field it uses
+            /*
             Boolean replacedByEnabled = new DSpace().getConfigurationService()
                     .getPropertyAsType("tombstone.replaced_by.enabled",true);
             String replacedByField = new DSpace().getConfigurationService()
                     .getPropertyAsType("tombstone.replaced_by.field", "dc.relation.isreplacedby");
-
+            */
+            Boolean replacedByEnabled = ConfigurationManager.getBooleanProperty("tombstone.replaced_by.enabled",true);
+            String replacedByField = ConfigurationManager.getProperty("tombstone.replaced_by.field");
+            if (replacedByField == null || replacedByField.equals("")) {
+                replacedByField = "dc.relation.isreplacedby";
+            }
             if(replacedByEnabled) {
                 Metadatum[] replacedBy = item.getMetadataByMetadataString(replacedByField);
                 if (replacedBy != null && replacedBy.length > 0) {
