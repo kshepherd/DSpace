@@ -371,7 +371,7 @@ public class ItemViewer extends AbstractDSpaceTransformer implements CacheablePr
                 replacedByField = "dc.relation.isreplacedby";
             }
             if(replacedByEnabled) {
-                /*
+
                 Metadatum[] replacedBy = item.getMetadataByMetadataString(replacedByField);
                 if (replacedBy != null && replacedBy.length > 0) {
                     String replacementUri = replacedBy[0].value;
@@ -383,7 +383,7 @@ public class ItemViewer extends AbstractDSpaceTransformer implements CacheablePr
                         replacement.addXref(replacementUri).addContent(replacementUri);
                     }
                 }
-                */
+
             }
 
             //Set proper response. Return "404 Not Found"
