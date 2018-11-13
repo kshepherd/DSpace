@@ -182,6 +182,8 @@ public class RestrictedItem extends AbstractDSpaceTransformer //implements Cache
                 String divID = "restricted";
                 Message title = T_head_item;
                 Message status = T_para_item_restricted;
+                Boolean isReplaced = false;
+                String replacementUri = null;
                 //if item is withdrawn, display withdrawn status info
                 if (((Item) dso).isWithdrawn()) 
                 {
@@ -189,6 +191,7 @@ public class RestrictedItem extends AbstractDSpaceTransformer //implements Cache
                     title = T_head_item_withdrawn;
                     status = T_para_item_withdrawn;
                     isWithdrawn = true;
+
 
                     // Check replacement configuration and metadata
                     Boolean replacedByEnabled = ConfigurationManager.getBooleanProperty("tombstone.replaced_by.enabled",true);
@@ -200,13 +203,10 @@ public class RestrictedItem extends AbstractDSpaceTransformer //implements Cache
                         Metadatum[] replacedBy = ((Item)dso).getMetadataByMetadataString(replacedByField);
                         if (replacedBy != null && replacedBy.length > 0) {
                             Division replacementDiv = body.addDivision("replaced-resource","primary");
-                            String replacementUri = replacedBy[0].value;
+                            replacementUri = replacedBy[0].value;
                             // Check URI isn't empty and is an http(s) URL - we could do some more regex here too, to ensure a valid URL
                             if (replacementUri.length() > 0 && replacementUri.startsWith("http")) {
-                                Para replacement = replacementDiv.addPara();
-                                replacement.addContent(T_replaced_by);
-                                replacement.addContent(" "); // Ensure a space between message and link
-                                replacement.addXref(replacementUri).addContent(replacementUri);
+
                             }
                         }
                     }
@@ -219,7 +219,15 @@ public class RestrictedItem extends AbstractDSpaceTransformer //implements Cache
                 unauthorized = body.addDivision(divID, "primary");
                 unauthorized.setHead(title);
                 unauthorized.addPara(T_para_item.parameterize(identifier));
-                unauthorized.addPara("item_status", status.getKey()).addContent(status);
+                if(isReplaced) {
+                    Para replacement = unauthorized.addPara();
+                    replacement.addContent(T_replaced_by);
+                    replacement.addContent(" "); // Ensure a space between message and link
+                    replacement.addXref(replacementUri).addContent(replacementUri);
+                }
+                else {
+                    unauthorized.addPara("item_status", status.getKey()).addContent(status);
+                }
 
             }
         } // end if Item 

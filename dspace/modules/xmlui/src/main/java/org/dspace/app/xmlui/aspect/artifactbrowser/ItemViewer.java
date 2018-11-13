@@ -87,7 +87,7 @@ public class ItemViewer extends AbstractDSpaceTransformer implements CacheablePr
 
     // Additional withdrawn message for items with an "is replaced by" URI
     private static final Message T_replaced_by = message("xmlui.ArtifactBrowser.ItemViewer.replaced_by");
-    
+
 	/** Cached validity object */
 	private SourceValidity validity = null;
 
@@ -365,10 +365,13 @@ public class ItemViewer extends AbstractDSpaceTransformer implements CacheablePr
             */
             Boolean replacedByEnabled = ConfigurationManager.getBooleanProperty("tombstone.replaced_by.enabled",true);
             String replacedByField = ConfigurationManager.getProperty("tombstone.replaced_by.field");
+            log.info("admin itemviewer: found " + replacedByField);
+            log.info("admin itemviewer: found " + (replacedByEnabled).toString());
             if (replacedByField == null || replacedByField.equals("")) {
                 replacedByField = "dc.relation.isreplacedby";
             }
             if(replacedByEnabled) {
+                /*
                 Metadatum[] replacedBy = item.getMetadataByMetadataString(replacedByField);
                 if (replacedBy != null && replacedBy.length > 0) {
                     String replacementUri = replacedBy[0].value;
@@ -380,6 +383,7 @@ public class ItemViewer extends AbstractDSpaceTransformer implements CacheablePr
                         replacement.addXref(replacementUri).addContent(replacementUri);
                     }
                 }
+                */
             }
 
             //Set proper response. Return "404 Not Found"
