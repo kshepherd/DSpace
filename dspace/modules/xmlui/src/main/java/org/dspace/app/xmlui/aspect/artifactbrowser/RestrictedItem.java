@@ -21,8 +21,10 @@ import org.dspace.app.xmlui.wing.WingException;
 import org.dspace.app.xmlui.wing.element.Body;
 import org.dspace.app.xmlui.wing.element.Division;
 import org.dspace.app.xmlui.wing.element.PageMeta;
+import org.dspace.app.xmlui.wing.element.Para;
 import org.dspace.authorize.AuthorizeException;
 import org.dspace.content.*;
+import org.dspace.core.ConfigurationManager;
 import org.xml.sax.SAXException;
 
 import javax.servlet.http.HttpServletResponse;
@@ -93,6 +95,9 @@ public class RestrictedItem extends AbstractDSpaceTransformer //implements Cache
             message("xmlui.ArtifactBrowser.RestrictedItem.para_item_restricted");
     private static final Message T_para_item_withdrawn =
             message("xmlui.ArtifactBrowser.RestrictedItem.para_item_withdrawn");
+
+    // Additional withdrawn message for items with an "is replaced by" URI
+    private static final Message T_replaced_by = message("xmlui.ArtifactBrowser.ItemViewer.replaced_by");
 
 
     private static final Message T_para_login =
@@ -184,6 +189,28 @@ public class RestrictedItem extends AbstractDSpaceTransformer //implements Cache
                     title = T_head_item_withdrawn;
                     status = T_para_item_withdrawn;
                     isWithdrawn = true;
+
+                    // Check replacement configuration and metadata
+                    Boolean replacedByEnabled = ConfigurationManager.getBooleanProperty("tombstone.replaced_by.enabled",true);
+                    String replacedByField = ConfigurationManager.getProperty("tombstone.replaced_by.field");
+                    if (replacedByField == null || replacedByField.equals("")) {
+                        replacedByField = "dc.relation.isreplacedby";
+                    }
+                    if(replacedByEnabled) {
+                        Metadatum[] replacedBy = ((Item)dso).getMetadataByMetadataString(replacedByField);
+                        if (replacedBy != null && replacedBy.length > 0) {
+                            Division replacementDiv = body.addDivision("replaced-resource","primary");
+                            String replacementUri = replacedBy[0].value;
+                            // Check URI isn't empty and is an http(s) URL - we could do some more regex here too, to ensure a valid URL
+                            if (replacementUri.length() > 0 && replacementUri.startsWith("http")) {
+                                Para replacement = replacementDiv.addPara();
+                                replacement.addContent(T_replaced_by);
+                                replacement.addContent(" "); // Ensure a space between message and link
+                                replacement.addXref(replacementUri).addContent(replacementUri);
+                            }
+                        }
+                    }
+
                 }//if user is not authenticated, display info to authenticate
                 else if (context.getCurrentUser() == null) 
                 {
