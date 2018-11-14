@@ -356,17 +356,9 @@ public class ItemViewer extends AbstractDSpaceTransformer implements CacheablePr
             Para p = div.addPara();
             p.addContent(T_withdrawn);
 
-            // Check if custom "is replaced by" behaviour is enabled and which field it uses
-            /*
-            Boolean replacedByEnabled = new DSpace().getConfigurationService()
-                    .getPropertyAsType("tombstone.replaced_by.enabled",true);
-            String replacedByField = new DSpace().getConfigurationService()
-                    .getPropertyAsType("tombstone.replaced_by.field", "dc.relation.isreplacedby");
-            */
+            // Check replacement configuration
             Boolean replacedByEnabled = ConfigurationManager.getBooleanProperty("tombstone.replaced_by.enabled",true);
             String replacedByField = ConfigurationManager.getProperty("tombstone.replaced_by.field");
-            log.info("admin itemviewer: found " + replacedByField);
-            log.info("admin itemviewer: found " + (replacedByEnabled).toString());
             if (replacedByField == null || replacedByField.equals("")) {
                 replacedByField = "dc.relation.isreplacedby";
             }
@@ -374,20 +366,17 @@ public class ItemViewer extends AbstractDSpaceTransformer implements CacheablePr
                 Metadatum[] replacedBy = item.getMetadataByMetadataString(replacedByField);
                 if (replacedBy != null && replacedBy.length > 0) {
                     String replacementUri = replacedBy[0].value;
-                    log.info("Found replacement metadata in field "+replacedByField+": " + replacementUri);
-                    // Check URI isn't empty and is an http(s) URL - we could do some more regex here too, to ensure a valid URL
+                    log.debug(item.getHandle() + ": found replaced-by metadata in field "+replacedByField+": " + replacementUri);
                     if (replacementUri.length() > 0 && replacementUri.startsWith("http")) {
                         Para replacement = div.addPara();
                         replacement.addContent(T_replaced_by);
                         replacement.addContent(" "); // Ensure a space between message and link
                         replacement.addXref(replacementUri).addContent(replacementUri);
-                        log.info("added DRI elements");
                     }
                 }
 
             }
 
-            log.info("about to send generic response");
             //Set proper response. Return "404 Not Found"
             HttpServletResponse response = (HttpServletResponse)objectModel
                     .get(HttpEnvironment.HTTP_RESPONSE_OBJECT);   
