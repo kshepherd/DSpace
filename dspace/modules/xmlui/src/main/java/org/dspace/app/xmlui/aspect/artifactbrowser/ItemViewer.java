@@ -371,21 +371,23 @@ public class ItemViewer extends AbstractDSpaceTransformer implements CacheablePr
                 replacedByField = "dc.relation.isreplacedby";
             }
             if(replacedByEnabled) {
-
                 Metadatum[] replacedBy = item.getMetadataByMetadataString(replacedByField);
                 if (replacedBy != null && replacedBy.length > 0) {
                     String replacementUri = replacedBy[0].value;
+                    log.info("Found replacement metadata in field "+replacedByField+": " + replacementUri);
                     // Check URI isn't empty and is an http(s) URL - we could do some more regex here too, to ensure a valid URL
                     if (replacementUri.length() > 0 && replacementUri.startsWith("http")) {
                         Para replacement = div.addPara();
                         replacement.addContent(T_replaced_by);
                         replacement.addContent(" "); // Ensure a space between message and link
                         replacement.addXref(replacementUri).addContent(replacementUri);
+                        log.info("added DRI elements");
                     }
                 }
 
             }
 
+            log.info("about to send generic response");
             //Set proper response. Return "404 Not Found"
             HttpServletResponse response = (HttpServletResponse)objectModel
                     .get(HttpEnvironment.HTTP_RESPONSE_OBJECT);   
