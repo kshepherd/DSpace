@@ -268,7 +268,7 @@
 	<message key="xmlui.ArtifactBrowser.ItemViewer.show_simple">Show simple item record</message>
 	<message key="xmlui.ArtifactBrowser.ItemViewer.show_full">Show full item record</message>
 
-	<message key="xmlui.ArtifactBrowser.ItemViewer.withdrawn">This item has been withdrawn and is no longer available.</message>
+        <message key="xmlui.ArtifactBrowser.ItemViewer.withdrawn">This item has been withdrawn and is no longer available.</message>
 
 	<!-- org.dspace.app.xmlui.artifactbrowser.Navigation.java -->
 	<message key="xmlui.ArtifactBrowser.Navigation.head_browse">Browse</message>
@@ -2505,5 +2505,14 @@
 
 	<!-- LDR1: Withdrawn items -->
 	<message key="xmlui.ArtifactBrowser.ItemViewer.replaced_by">The item you are trying to access has been moved and can now be found at </message>
+
+
+	<message key="xmlui.Submission.Submissions.workflow_column_task">task</message>
+	<message key="xmlui.Submission.Submissions.workflow_column_item">item</message>
+	<message key="xmlui.Submission.Submissions.workflow_column_collection">collection</message>
+	<message key="xmlui.Submission.Submissions.workflow_column_submitter">submitter</message>
+	<message key="xmlui.Submission.Submissions.workflow_column_type">type</message>
+	<message key="xmlui.Submission.Submissions.workflow_column_date">date</message>
+	<message key="xmlui.Submission.Submissions.workflow_column_author">first author</message>
 
 </catalogue>
