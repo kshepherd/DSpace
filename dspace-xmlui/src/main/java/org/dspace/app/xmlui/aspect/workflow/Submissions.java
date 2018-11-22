@@ -7,6 +7,7 @@
  */
 package org.dspace.app.xmlui.aspect.workflow;
 
+import org.apache.log4j.Logger;
 import org.dspace.app.xmlui.cocoon.AbstractDSpaceTransformer;
 import org.dspace.app.xmlui.utils.UIException;
 import org.dspace.app.xmlui.wing.Message;
@@ -110,6 +111,8 @@ public class Submissions extends AbstractDSpaceTransformer
     protected static final Message T_status_unknown =
         message("xmlui.Submission.Submissions.status_unknown");
 
+    private static Logger log = Logger.getLogger(Submissions.class);
+
     String columnConfiguration = ConfigurationManager.getProperty("workflow.submissions.columns");
 
     @Override
@@ -153,6 +156,7 @@ public class Submissions extends AbstractDSpaceTransformer
         if(columnConfiguration != null && !columnConfiguration.equals("")) {
             columnsToDisplay = columnConfiguration.split(",");
         }
+        log.info("Found " + columnsToDisplay.length + " cols in config or defaults. Config line is " + columnConfiguration);
 
 
 
