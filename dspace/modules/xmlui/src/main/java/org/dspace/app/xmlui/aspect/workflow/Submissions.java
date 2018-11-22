@@ -188,8 +188,11 @@ public class Submissions extends AbstractDSpaceTransformer
 
         // Now loop through configuration and add column headers in the order they appear
         for (String col : columnsToDisplay) {
+            col = col.trim();
             Message T_w_column_header =
                     message("xmlui.Submission.Submissions.workflow_column_"+col);
+            log.info("T_w_column_header is: " + T_w_column_header.toString());
+
             header.addCellContent(T_w_column_header);
         }
 
