@@ -15,7 +15,10 @@ import org.dspace.app.xmlui.wing.element.*;
 import org.dspace.authorize.AuthorizeException;
 import org.dspace.content.*;
 import org.dspace.content.Item;
+import org.dspace.core.ConfigurationManager;
 import org.dspace.eperson.EPerson;
+import org.dspace.services.ConfigurationService;
+import org.dspace.utils.DSpace;
 import org.dspace.workflow.WorkflowItem;
 import org.dspace.workflow.WorkflowManager;
 import org.xml.sax.SAXException;
@@ -60,6 +63,10 @@ public class Submissions extends AbstractDSpaceTransformer
         message("xmlui.Submission.Submissions.workflow_column4");
     protected static final Message T_w_column5 =
         message("xmlui.Submission.Submissions.workflow_column5");
+    protected static final Message T_w_type =
+        message("xmlui.Submission.Submissions.workflow_column_type");
+    protected static final Message T_w_issued =
+        message("xmlui.Submission.Submissions.workflow_column_issued");
     protected static final Message T_w_submit_return =
         message("xmlui.Submission.Submissions.workflow_submit_return");
     protected static final Message T_w_info2 =
@@ -103,6 +110,7 @@ public class Submissions extends AbstractDSpaceTransformer
     protected static final Message T_status_unknown =
         message("xmlui.Submission.Submissions.status_unknown");
 
+    String columnConfiguration = ConfigurationManager.getProperty("workflow.submissions.columns");
 
     @Override
     public void addPageMeta(PageMeta pageMeta) throws SAXException,
@@ -140,6 +148,14 @@ public class Submissions extends AbstractDSpaceTransformer
      */
     private void addWorkflowTasks(Division division) throws SQLException, WingException
     {
+
+        String[] columnsToDisplay = {"task", "item", "collection", "submitter"};
+        if(columnConfiguration != null && !columnConfiguration.equals("")) {
+            columnsToDisplay = columnConfiguration.split(",");
+        }
+
+
+
     	@SuppressWarnings("unchecked") // This cast is correct
     	List<WorkflowItem> ownedItems = WorkflowManager.getOwnedTasks(context, context
                 .getCurrentUser());
@@ -162,11 +178,23 @@ public class Submissions extends AbstractDSpaceTransformer
     	Table table = workflow.addTable("workflow-tasks",ownedItems.size() + 2,5);
         table.setHead(T_w_head2);
         Row header = table.addRow(Row.ROLE_HEADER);
+
+        // Column 1 is the task number / checkbox. We'll leave this in no matter what
         header.addCellContent(T_w_column1);
+
+        // Now loop through configuration and add column headers in the order they appear
+        for (String col : columnsToDisplay) {
+            Message T_w_column_header =
+                    message("xmlui.Submission.Submissions.workflow_column_"+col);
+            header.addCellContent(T_w_column_header);
+        }
+
+        /* KMS OLD
         header.addCellContent(T_w_column2);
         header.addCellContent(T_w_column3);
         header.addCellContent(T_w_column4);
         header.addCellContent(T_w_column5);
+        */
 
         if (ownedItems.size() > 0)
         {
@@ -180,8 +208,12 @@ public class Submissions extends AbstractDSpaceTransformer
         		EPerson submitter = owned.getSubmitter();
         		String submitterName = submitter.getFullName();
         		String submitterEmail = submitter.getEmail();
+        		// Get additional metadata
+                Metadatum[] dates = owned.getItem().getMetadata("dc","date","issued",Item.ANY);
+                Metadatum[] types = owned.getItem().getMetadata("dc","type",null,Item.ANY);
+                Metadatum[] authors = owned.getItem().getMetadata("dc","contributor","author",Item.ANY);
 
-        		Message state = getWorkflowStateMessage(owned);
+                Message state = getWorkflowStateMessage(owned);
 
         		Row row = table.addRow();
 
@@ -189,6 +221,10 @@ public class Submissions extends AbstractDSpaceTransformer
 	        	remove.setLabel("selected");
 	        	remove.addOption(workflowItemID);
 
+	        	addWorkflowTaskRow(row, ownedWorkflowItemUrl,state,titles,collectionName,collectionUrl,submitterName,
+                        submitterEmail,dates,types,authors,columnsToDisplay);
+
+                /* KMS OLD
         		// The task description
 	        	row.addCell().addXref(ownedWorkflowItemUrl, state);
 
@@ -214,6 +250,7 @@ public class Submissions extends AbstractDSpaceTransformer
 	        	Cell cell = row.addCell();
 	        	cell.addContent(T_email);
 	        	cell.addXref("mailto:"+submitterEmail,submitterName);
+	        	*/
         	}
 
         	Row row = table.addRow();
@@ -234,11 +271,21 @@ public class Submissions extends AbstractDSpaceTransformer
         table.setHead(T_w_head3);
 
         header = table.addRow(Row.ROLE_HEADER);
+        // Task ID / checkbox. Always displayed
         header.addCellContent(T_w_column1);
+
+        // Now loop through configuration and add column headers in the order they appear
+        for (String col : columnsToDisplay) {
+            Message T_w_column_header =
+                    message("xmlui.Submission.Submissions.workflow_column_"+col);
+            header.addCellContent(T_w_column_header);
+        }
+        /* KMS OLD
         header.addCellContent(T_w_column2);
         header.addCellContent(T_w_column3);
         header.addCellContent(T_w_column4);
         header.addCellContent(T_w_column5);
+        */
 
         if (pooledItems.size() > 0)
         {
@@ -253,8 +300,13 @@ public class Submissions extends AbstractDSpaceTransformer
         		EPerson submitter = pooled.getSubmitter();
         		String submitterName = submitter.getFullName();
         		String submitterEmail = submitter.getEmail();
+                // Get additional metadata
+                Metadatum[] dates = pooled.getItem().getMetadata("dc","date","issued",Item.ANY);
+                Metadatum[] types = pooled.getItem().getMetadata("dc","type",null,Item.ANY);
+                Metadatum[] authors = pooled.getItem().getMetadata("dc","contributor","author",Item.ANY);
 
-        		Message state = getWorkflowStateMessage(pooled);
+
+                Message state = getWorkflowStateMessage(pooled);
 
 
         		Row row = table.addRow();
@@ -263,6 +315,10 @@ public class Submissions extends AbstractDSpaceTransformer
 	        	remove.setLabel("selected");
 	        	remove.addOption(workflowItemID);
 
+                addWorkflowTaskRow(row, pooledItemUrl, state, titles, collectionName, collectionUrl,
+                        submitterName, submitterEmail, dates, types, authors, columnsToDisplay);
+
+                /* KMS OLD
         		// The task description
 	        	row.addCell().addXref(pooledItemUrl, state);
 
@@ -288,7 +344,7 @@ public class Submissions extends AbstractDSpaceTransformer
         		// Submitted by
         		Cell cell = row.addCell();
 	        	cell.addContent(T_email);
-	        	cell.addXref("mailto:"+submitterEmail,submitterName);
+	        	cell.addXref("mailto:"+submitterEmail,submitterName);*/
 
         	}
         	Row row = table.addRow();
@@ -426,4 +482,100 @@ public class Submissions extends AbstractDSpaceTransformer
         division.addDivision("completed-submissions");
 
     }
+
+    private void addWorkflowTaskRow(Row row,
+                                    String itemUrl,
+                                    Message state,
+                                    Metadatum[] titles,
+                                    String collectionName,
+                                    String collectionUrl,
+                                    String submitterName,
+                                    String submitterEmail,
+                                    Metadatum[] dates,
+                                    Metadatum[] types,
+                                    Metadatum[] authors,
+                                    String[] columnsToDisplay) throws WingException
+    {
+        for (String col : columnsToDisplay) {
+            if(col != null) {
+                if(col.equals("task")) {
+                    // The task description
+                    row.addCell().addXref(itemUrl, state);
+                }
+                else if(col.equals("item")) {
+                    // The item description / title
+                    if (titles != null && titles.length > 0)
+                    {
+                        String displayTitle = titles[0].value;
+                        if (displayTitle.length() > 50)
+                        {
+                            displayTitle = displayTitle.substring(0, 50) + " ...";
+                        }
+                        row.addCell().addXref(itemUrl, displayTitle);
+                    }
+                    else
+                    {
+                        row.addCell().addXref(itemUrl, T_untitled);
+                    }
+                }
+                else if(col.equals("collection")) {
+                    // Collection submitted to
+                    row.addCell().addXref(collectionUrl, collectionName);
+                }
+                else if(col.equals("submitter")) {
+                    // Submitter details
+                    Cell cell = row.addCell();
+                    cell.addContent(T_email);
+                    cell.addXref("mailto:"+submitterEmail,submitterName);
+                }
+                else if(col.equals("date")) {
+                    // The item date issued
+                    if (dates != null && dates.length > 0)
+                    {
+                        row.addCell().addContent(dates[0].value);
+                    }
+                    else
+                    {
+                        row.addCell().addContent("");
+                    }
+                }
+                else if(col.equals("type")) {
+                    // The item document type
+                    if (types != null && types.length > 0)
+                    {
+                        String displayType = titles[0].value;
+                        if (displayType.length() > 50)
+                        {
+                            displayType = displayType.substring(0, 50) + " ...";
+                        }
+                        row.addCell().addContent(displayType);
+                    }
+                    else
+                    {
+                        row.addCell().addContent("");
+                    }
+                }
+                else if(col.equals("author")) {
+                    // The first author that appears in metadata
+                    if (authors != null && authors.length > 0)
+                    {
+                        String displayAuthor = authors[0].value;
+                        if (displayAuthor.length() > 50)
+                        {
+                            displayAuthor = displayAuthor.substring(0, 50) + " ...";
+                        }
+                        row.addCell().addContent(displayAuthor);
+                    }
+                    else
+                    {
+                        row.addCell().addContent("");
+                    }
+                }
+                else {
+                    // Unknown column. Skip or log.
+                }
+            }
+        }
+    }
+
 }
