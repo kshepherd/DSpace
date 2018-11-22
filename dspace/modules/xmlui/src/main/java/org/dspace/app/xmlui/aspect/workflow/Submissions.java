@@ -551,7 +551,7 @@ public class Submissions extends AbstractDSpaceTransformer
                     // The item document type
                     if (types != null && types.length > 0)
                     {
-                        String displayType = titles[0].value;
+                        String displayType = types[0].value;
                         if (displayType.length() > 50)
                         {
                             displayType = displayType.substring(0, 50) + " ...";
