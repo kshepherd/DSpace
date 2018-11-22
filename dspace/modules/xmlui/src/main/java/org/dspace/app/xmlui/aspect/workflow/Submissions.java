@@ -502,6 +502,7 @@ public class Submissions extends AbstractDSpaceTransformer
     {
         for (String col : columnsToDisplay) {
             if(col != null) {
+                col = col.trim();
                 if(col.equals("task")) {
                     // The task description
                     row.addCell().addXref(itemUrl, state);
