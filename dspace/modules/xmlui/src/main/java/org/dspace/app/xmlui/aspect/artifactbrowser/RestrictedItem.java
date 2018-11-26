@@ -216,7 +216,9 @@ public class RestrictedItem extends AbstractDSpaceTransformer //implements Cache
                 }
                 unauthorized = body.addDivision(divID, "primary");
                 unauthorized.setHead(title);
-                unauthorized.addPara(T_para_item.parameterize(identifier));
+
+                // If withdrawn and replaced, display custom message with new URI
+                // Only display "restricted item" message and status if not replaced
                 if(isReplaced) {
                     Para replacement = unauthorized.addPara();
                     replacement.addContent(T_replaced_by);
@@ -224,6 +226,7 @@ public class RestrictedItem extends AbstractDSpaceTransformer //implements Cache
                     replacement.addXref(replacementUri).addContent(replacementUri);
                 }
                 else {
+                    unauthorized.addPara(T_para_item.parameterize(identifier));
                     unauthorized.addPara("item_status", status.getKey()).addContent(status);
                 }
 
