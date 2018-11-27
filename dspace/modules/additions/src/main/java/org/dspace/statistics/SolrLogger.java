@@ -1082,6 +1082,11 @@ public class SolrLogger
             {
                 dateformatString = "MMMM yyyy";
                 // TODO: if configuration says "use short months", use MMM instead?
+                Boolean shortMonthNames = ConfigurationManager.
+                        getBooleanProperty("xmlui.statistics.short_months",false);
+                if(shortMonthNames) {
+                    dateformatString = "MMM yyyy";
+                }
 
             } // TODO: or do we add a new type, and make sure it's logically equiv to 'month' but results in diff display
             else if ("YEAR".equals(type))
