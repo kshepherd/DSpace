@@ -1081,8 +1081,9 @@ public class SolrLogger
             else if ("MONTH".equals(type))
             {
                 dateformatString = "MMMM yyyy";
+                // TODO: if configuration says "use short months", use MMM instead?
 
-            }
+            } // TODO: or do we add a new type, and make sure it's logically equiv to 'month' but results in diff display
             else if ("YEAR".equals(type))
             {
                 dateformatString = "yyyy";
