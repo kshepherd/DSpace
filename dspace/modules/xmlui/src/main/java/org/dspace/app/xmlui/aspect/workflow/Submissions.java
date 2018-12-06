@@ -191,17 +191,8 @@ public class Submissions extends AbstractDSpaceTransformer
             col = col.trim();
             Message T_w_column_header =
                     message("xmlui.Submission.Submissions.workflow_column_"+col);
-            log.info("T_w_column_header is: " + T_w_column_header.toString());
-
             header.addCellContent(T_w_column_header);
         }
-
-        /* KMS OLD
-        header.addCellContent(T_w_column2);
-        header.addCellContent(T_w_column3);
-        header.addCellContent(T_w_column4);
-        header.addCellContent(T_w_column5);
-        */
 
         if (ownedItems.size() > 0)
         {
@@ -283,16 +274,11 @@ public class Submissions extends AbstractDSpaceTransformer
 
         // Now loop through configuration and add column headers in the order they appear
         for (String col : columnsToDisplay) {
+            col = col.trim();
             Message T_w_column_header =
                     message("xmlui.Submission.Submissions.workflow_column_"+col);
             header.addCellContent(T_w_column_header);
         }
-        /* KMS OLD
-        header.addCellContent(T_w_column2);
-        header.addCellContent(T_w_column3);
-        header.addCellContent(T_w_column4);
-        header.addCellContent(T_w_column5);
-        */
 
         if (pooledItems.size() > 0)
         {
