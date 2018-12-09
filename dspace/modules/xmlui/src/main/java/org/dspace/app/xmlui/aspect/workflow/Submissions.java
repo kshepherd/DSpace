@@ -214,7 +214,7 @@ public class Submissions extends AbstractDSpaceTransformer
                 if(dateFields.length > 0) {
                     for(String df : dateFields) {
                         df = df.trim();
-                        String[] parts = df.split(".");
+                        String[] parts = df.split("\\.");
                         dates = owned.getItem().getMetadata(parts[0],parts[1],(parts.length>2?parts[2]:null),Item.ANY);
                         if(dates.length > 0 && dates[0].value != null) {
                             // A date found, use this and break loop
@@ -288,7 +288,7 @@ public class Submissions extends AbstractDSpaceTransformer
                 if(dateFields.length > 0) {
                     for(String df : dateFields) {
                         df = df.trim();
-                        String[] parts = df.split(".");
+                        String[] parts = df.split("\\.");
                         dates = pooled.getItem().getMetadata(parts[0],parts[1],(parts.length>2?parts[2]:null),Item.ANY);
                         if(dates.length > 0 && dates[0].value != null) {
                             // A date found, use this and break loop
