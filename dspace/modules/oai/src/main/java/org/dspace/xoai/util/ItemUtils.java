@@ -73,6 +73,7 @@ public class ItemUtils
             context = new Context();
         } catch(SQLException e) {
             e.printStackTrace();
+            context = null;
         }
         
         // read all metadata into Metadata Object
