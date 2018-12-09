@@ -113,7 +113,8 @@ public class Submissions extends AbstractDSpaceTransformer
 
     private static Logger log = Logger.getLogger(Submissions.class);
 
-    String columnConfiguration = ConfigurationManager.getProperty("workflow.submissions.columns");
+    private static String columnConfiguration = ConfigurationManager.getProperty("workflow.submissions.columns");
+    private static String datePriority = ConfigurationManager.getProperty("workflow.submissions.date_priority");
 
     @Override
     public void addPageMeta(PageMeta pageMeta) throws SAXException,
@@ -156,9 +157,7 @@ public class Submissions extends AbstractDSpaceTransformer
         if(columnConfiguration != null && !columnConfiguration.equals("")) {
             columnsToDisplay = columnConfiguration.split(",");
         }
-        log.info("Found " + columnsToDisplay.length + " cols in config or defaults. Config line is " + columnConfiguration);
-
-
+        log.debug("Found " + columnsToDisplay.length + " cols in config or defaults. Config line is " + columnConfiguration);
 
     	@SuppressWarnings("unchecked") // This cast is correct
     	List<WorkflowItem> ownedItems = WorkflowManager.getOwnedTasks(context, context
@@ -206,8 +205,23 @@ public class Submissions extends AbstractDSpaceTransformer
         		EPerson submitter = owned.getSubmitter();
         		String submitterName = submitter.getFullName();
         		String submitterEmail = submitter.getEmail();
-        		// Get additional metadata
+        		/*
+        		 * Get additional metadata
+        		 */
+                // Get default date then iterate date list to get priority dates
                 Metadatum[] dates = owned.getItem().getMetadata("dc","date","issued",Item.ANY);
+                String[] dateFields = datePriority.split(",");
+                if(dateFields.length > 0) {
+                    for(String df : dateFields) {
+                        df = df.trim();
+                        String[] parts = df.split(".");
+                        dates = owned.getItem().getMetadata(parts[0],parts[1],(parts.length>2?parts[2]:null),Item.ANY);
+                        if(dates.length > 0 && dates[0].value != null) {
+                            // A date found, use this and break loop
+                            break;
+                        }
+                    }
+                }
                 Metadatum[] types = owned.getItem().getMetadata("dc","type",null,Item.ANY);
                 Metadatum[] authors = owned.getItem().getMetadata("dc","contributor","author",Item.ANY);
 
@@ -221,34 +235,6 @@ public class Submissions extends AbstractDSpaceTransformer
 
 	        	addWorkflowTaskRow(row, ownedWorkflowItemUrl,state,titles,collectionName,collectionUrl,submitterName,
                         submitterEmail,dates,types,authors,columnsToDisplay);
-
-                /* KMS OLD
-        		// The task description
-	        	row.addCell().addXref(ownedWorkflowItemUrl, state);
-
-        		// The item description
-        		if (titles != null && titles.length > 0)
-        		{
-        			String displayTitle = titles[0].value;
-        			if (displayTitle.length() > 50)
-                    {
-                        displayTitle = displayTitle.substring(0, 50) + " ...";
-                    }
-        			row.addCell().addXref(ownedWorkflowItemUrl, displayTitle);
-        		}
-        		else
-                {
-                    row.addCell().addXref(ownedWorkflowItemUrl, T_untitled);
-                }
-
-        		// Submitted too
-        		row.addCell().addXref(collectionUrl, collectionName);
-
-        		// Submitted by
-	        	Cell cell = row.addCell();
-	        	cell.addContent(T_email);
-	        	cell.addXref("mailto:"+submitterEmail,submitterName);
-	        	*/
         	}
 
         	Row row = table.addRow();
@@ -293,8 +279,23 @@ public class Submissions extends AbstractDSpaceTransformer
         		EPerson submitter = pooled.getSubmitter();
         		String submitterName = submitter.getFullName();
         		String submitterEmail = submitter.getEmail();
-                // Get additional metadata
+                /*
+        		 * Get additional metadata
+        		 */
+                // Get default date then iterate date list to get priority dates
                 Metadatum[] dates = pooled.getItem().getMetadata("dc","date","issued",Item.ANY);
+                String[] dateFields = datePriority.split(",");
+                if(dateFields.length > 0) {
+                    for(String df : dateFields) {
+                        df = df.trim();
+                        String[] parts = df.split(".");
+                        dates = pooled.getItem().getMetadata(parts[0],parts[1],(parts.length>2?parts[2]:null),Item.ANY);
+                        if(dates.length > 0 && dates[0].value != null) {
+                            // A date found, use this and break loop
+                            break;
+                        }
+                    }
+                }
                 Metadatum[] types = pooled.getItem().getMetadata("dc","type",null,Item.ANY);
                 Metadatum[] authors = pooled.getItem().getMetadata("dc","contributor","author",Item.ANY);
 
@@ -310,34 +311,6 @@ public class Submissions extends AbstractDSpaceTransformer
 
                 addWorkflowTaskRow(row, pooledItemUrl, state, titles, collectionName, collectionUrl,
                         submitterName, submitterEmail, dates, types, authors, columnsToDisplay);
-
-                /* KMS OLD
-        		// The task description
-	        	row.addCell().addXref(pooledItemUrl, state);
-
-        		// The item description
-        		if (titles != null && titles.length > 0)
-        		{
-        			String displayTitle = titles[0].value;
-        			if (displayTitle.length() > 50)
-                    {
-                        displayTitle = displayTitle.substring(0, 50) + " ...";
-                    }
-
-        			row.addCell().addXref(pooledItemUrl, displayTitle);
-        		}
-        		else
-                {
-                    row.addCell().addXref(pooledItemUrl, T_untitled);
-                }
-
-        		// Submitted too
-        		row.addCell().addXref(collectionUrl, collectionName);
-
-        		// Submitted by
-        		Cell cell = row.addCell();
-	        	cell.addContent(T_email);
-	        	cell.addXref("mailto:"+submitterEmail,submitterName);*/
 
         	}
         	Row row = table.addRow();
