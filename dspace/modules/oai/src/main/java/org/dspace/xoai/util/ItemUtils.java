@@ -312,6 +312,10 @@ public class ItemUtils
 
                 }
             }
+            // Make sure context / db connections are closed
+            if(context != null) {
+                context.abort();
+            }
         }
         catch (SQLException e1)
         {
