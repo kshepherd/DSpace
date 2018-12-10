@@ -31,6 +31,8 @@ import org.xml.sax.SAXException;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import org.apache.log4j.Logger;
+
 /**
  * @author Kevin Van de Velde (kevin at atmire dot com)
  * @author Ben Bosman (ben at atmire dot com)
@@ -46,6 +48,8 @@ public class StatisticsWorkflowTransformer extends AbstractStatisticsDataTransfo
     private static final Message T_no_results = message("xmlui.statistics.workflow.no-results");
     private static final Message T_workflow_head = message("xmlui.statistics.workflow.head");
     private static final Message T_workflow_head_dso = message("xmlui.statistics.workflow.head-dso");
+
+    private static final Logger log = Logger.getLogger(StatisticsWorkflowTransformer.class);
 
     /**
      * Add a page title and trail links
@@ -120,7 +124,9 @@ public class StatisticsWorkflowTransformer extends AbstractStatisticsDataTransfo
             addDisplayTable(workflowTermsDivision, statisticsTable, true, new String[]{"xmlui.statistics.display.table.workflow.step."});
         } catch (Exception e) {
             mainDivision.addPara().addContent(T_retrieval_error);
-
+            log.debug(e.getMessage());
+            e.printStackTrace();
+            log.debug(e.getStackTrace().toString());
         }
     }
 
