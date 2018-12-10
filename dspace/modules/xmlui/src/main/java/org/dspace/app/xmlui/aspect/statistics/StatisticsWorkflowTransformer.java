@@ -124,9 +124,7 @@ public class StatisticsWorkflowTransformer extends AbstractStatisticsDataTransfo
             addDisplayTable(workflowTermsDivision, statisticsTable, true, new String[]{"xmlui.statistics.display.table.workflow.step."});
         } catch (Exception e) {
             mainDivision.addPara().addContent(T_retrieval_error);
-            log.debug(e.getMessage());
-            e.printStackTrace();
-            log.debug(e.getStackTrace().toString());
+            log.debug("Error generating workflow statistics", e);
         }
     }
 
