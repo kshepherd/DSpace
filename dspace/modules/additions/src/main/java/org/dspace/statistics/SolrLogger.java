@@ -1020,11 +1020,19 @@ public class SolrLogger
     }
 
     public static Map<String, Integer> queryFacetQuery(String query,
-            String filterQuery, List<String> facetQueries)
+            String filterQuery, List<String> facetQueries, int max)
             throws SolrServerException
     {
         QueryResponse response = query(query, filterQuery, null,0, 1, null, null,
                 null, facetQueries, null, false);
+        /*
+
+        Map<String,Integer> facetQueryReponse = response.getFacetQuery();
+
+        for(String rowName : facetQueryReponse.keySet()) {
+
+        }
+         */
         return response.getFacetQuery();
     }
 
