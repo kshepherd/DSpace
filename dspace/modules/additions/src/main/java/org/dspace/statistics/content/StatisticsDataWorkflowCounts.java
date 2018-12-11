@@ -97,8 +97,8 @@ public class StatisticsDataWorkflowCounts extends StatisticsData {
                 }
 
                 dataset = new Dataset(objectCounts.size(), 2);
-                dataset.setColLabel(0, "Workflow Action");
-                dataset.setColLabel(1, "Total Count");
+                dataset.setColLabel(0, "action");
+                dataset.setColLabel(1, "count");
 
                 int i = 0;
                 for (String action : actions.keySet()) {
