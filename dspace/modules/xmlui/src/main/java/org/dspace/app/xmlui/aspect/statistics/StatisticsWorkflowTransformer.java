@@ -10,6 +10,7 @@ package org.dspace.app.xmlui.aspect.statistics;
 import org.apache.cocoon.ProcessingException;
 import org.apache.cocoon.environment.ObjectModelHelper;
 import org.apache.cocoon.environment.Request;
+import org.apache.commons.lang.StringUtils;
 import org.dspace.app.statistics.Statistics;
 import org.dspace.app.util.Util;
 import org.dspace.app.xmlui.utils.HandleUtil;
@@ -19,6 +20,7 @@ import org.dspace.app.xmlui.wing.WingException;
 import org.dspace.app.xmlui.wing.element.Body;
 import org.dspace.app.xmlui.wing.element.Division;
 import org.dspace.app.xmlui.wing.element.PageMeta;
+import org.dspace.app.xmlui.wing.element.Select;
 import org.dspace.authorize.AuthorizeException;
 import org.dspace.content.DSpaceObject;
 import org.dspace.statistics.content.DatasetTypeGenerator;
@@ -30,6 +32,9 @@ import org.xml.sax.SAXException;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import org.apache.log4j.Logger;
 
@@ -101,6 +106,8 @@ public class StatisticsWorkflowTransformer extends AbstractStatisticsDataTransfo
             //Retrieve the optional time filter
             StatisticsSolrDateFilter dateFilter = getDateFilter(selectedTimeFilter);
 
+            addCalendarFilter(workflowTermsDivision);
+
 
 
             int time_filter = -1;
@@ -131,5 +138,29 @@ public class StatisticsWorkflowTransformer extends AbstractStatisticsDataTransfo
     @Override
     protected Message getNoResultsMessage() {
         return T_no_results;
+    }
+
+    protected void addCalendarFilter(Division mainDivision) throws WingException, ParseException {
+        Request request = ObjectModelHelper.getRequest(objectModel);
+        String selectedTimeFilter = request.getParameter("calendar_filter");
+
+        Select monthFilter = mainDivision.addPara().addSelect("month_filter");
+        /* old timefilter
+        monthFilter.addOption(StringUtils.equals(selectedTimeFilter, "-1"), "-1", T_time_filter_last_month);
+        monthFilter.addOption(StringUtils.equals(selectedTimeFilter, "-6"), "-6", T_time_filter_last6_months);
+        monthFilter.addOption(StringUtils.equals(selectedTimeFilter, "-12"), "-12", T_time_filter_last_year);
+        monthFilter.addOption(StringUtils.isBlank(selectedTimeFilter), "", T_time_filter_overall);
+        */
+        for(int i = 1; i <= 12; i++) {
+            SimpleDateFormat monthParse = new SimpleDateFormat("MM");
+            SimpleDateFormat monthDisplay = new SimpleDateFormat("MMMM");
+            monthFilter.addOption(false,i,monthDisplay.format(monthParse.parse(String.valueOf(i))));
+        }
+
+        Select yearFilter = mainDivision.addPara().addSelect("year_filter");
+        for(int i = 2000; i < 2018; i++) {
+            yearFilter.addOption(false,String.valueOf(i),String.valueOf(i));
+        }
+
     }
 }
