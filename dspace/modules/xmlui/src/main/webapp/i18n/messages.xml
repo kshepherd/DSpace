@@ -2515,4 +2515,11 @@
 	<message key="xmlui.Submission.Submissions.workflow_column_date">date</message>
 	<message key="xmlui.Submission.Submissions.workflow_column_author">first author</message>
 
+	<message key="xmlui.statistics.display.table.workflow.step.submitted">Submitted to workflow</message>
+	<message key="xmlui.statistics.display.table.workflow.step.appproved">Approved and sent to final check</message>
+	<message key="xmlui.statistics.display.table.workflow.step.finalcheck">Approved and archived from final check</message>
+	<message key="xmlui.statistics.display.table.workflow.step.rejected">Rejected from any workflow step</message>
+	<message key="xmlui.statistics.display.table.column-label.action">Workflow Action</message>
+	<message key="xmlui.statistics.display.table.column-label.count">Total Count</message>
+
 </catalogue>

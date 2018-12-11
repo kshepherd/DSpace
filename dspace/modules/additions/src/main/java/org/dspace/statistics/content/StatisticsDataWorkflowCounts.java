@@ -72,16 +72,16 @@ public class StatisticsDataWorkflowCounts extends StatisticsData {
         String query = getQuery();
 
         Map<String,String> actions = new HashMap<>();
-        actions.put("Submitted to workflow","previousWorkflowStep:SUBMIT");
-        actions.put("Approved and sent to final check","workflowStep:STEP3POOL AND previousWorkflowStep:STEP2");
-        actions.put("Approved and archived from final check","workflowStep:ARCHIVE AND previousWorkflowStep:STEP3");
-        actions.put("Rejected from any workflow step","workflowStep:SUBMIT AND (previousWorkflowStep:STEP2 OR previousWorkflowStep:STEP3)");
+        actions.put("submitted","previousWorkflowStep:SUBMIT");
+        actions.put("approved","workflowStep:STEP3POOL AND previousWorkflowStep:STEP2");
+        actions.put("finalcheck","workflowStep:ARCHIVE AND previousWorkflowStep:STEP3");
+        actions.put("rejected","workflowStep:SUBMIT AND (previousWorkflowStep:STEP2 OR previousWorkflowStep:STEP3)");
 
         List<String> facetQueries = new ArrayList<>();
-        facetQueries.add(actions.get("Submitted to workflow")); // submitted items
-        facetQueries.add(actions.get("Approved and sent to final check")); // approved and sent to final check
-        facetQueries.add(actions.get("Approved and archived from final check")); // approved and archived from final
-        facetQueries.add(actions.get("Rejected from any workflow step")); // rejected from either step
+        facetQueries.add(actions.get("submitted")); // submitted items
+        facetQueries.add(actions.get("approved")); // approved and sent to final check
+        facetQueries.add(actions.get("finalcheck")); // approved and archived from final
+        facetQueries.add(actions.get("rejected")); // rejected from either step
 
         Dataset dataset = new Dataset(0,0);
         List<DatasetGenerator> datasetGenerators = getDatasetGenerators();
