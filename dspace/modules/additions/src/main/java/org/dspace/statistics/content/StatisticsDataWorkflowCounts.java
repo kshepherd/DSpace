@@ -75,7 +75,7 @@ public class StatisticsDataWorkflowCounts extends StatisticsData {
         actions.put("Submitted to workflow","previousWorkflowStep:SUBMIT");
         actions.put("Approved and sent to final check","workflowStep:STEP3POOL AND previousWorkflowStep:STEP2");
         actions.put("Approved and archived from final check","workflowStep:ARCHIVE AND previousWorkflowStep:STEP3");
-        actions.put("Rejected from any workflow step","workflowStep:ARCHIVE AND previousWorkflowStep:STEP3");
+        actions.put("Rejected from any workflow step","workflowStep:SUBMIT AND (previousWorkflowStep:STEP2 OR previousWorkflowStep:STEP3)");
 
         List<String> facetQueries = new ArrayList<>();
         facetQueries.add(actions.get("Submitted to workflow")); // submitted items
