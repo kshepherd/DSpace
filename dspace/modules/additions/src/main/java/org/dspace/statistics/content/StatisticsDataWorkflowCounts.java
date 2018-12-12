@@ -90,8 +90,8 @@ public class StatisticsDataWorkflowCounts extends StatisticsData {
             DatasetGenerator datasetGenerator = datasetGenerators.get(0);
             if(datasetGenerator instanceof DatasetTypeGenerator){
                 DatasetTypeGenerator typeGenerator = (DatasetTypeGenerator) datasetGenerator;
-                Map<String, Integer> objectCounts = SolrLogger.queryFacetQuery(query, defaultFilterQuery, facetQueries, typeGenerator.getMax());
-
+                Map<String, Integer> objectCounts = SolrLogger.queryFacetQuery("statistics_type:workflow",
+                        defaultFilterQuery, facetQueries, typeGenerator.getMax(),0);
                 for (String o : objectCounts.keySet()) {
                     log.info(o + ": " + objectCounts.get(o));
                 }

@@ -1020,11 +1020,11 @@ public class SolrLogger
     }
 
     public static Map<String, Integer> queryFacetQuery(String query,
-            String filterQuery, List<String> facetQueries, int max)
+            String filterQuery, List<String> facetQueries, int max, int minfacets)
             throws SolrServerException
     {
-        QueryResponse response = query(query, filterQuery, null,0, 1, null, null,
-                null, facetQueries, null, false);
+        QueryResponse response = query(query, filterQuery, null,0, max, null, null,
+                null, facetQueries, null, false, minfacets);
         /*
 
         Map<String,Integer> facetQueryReponse = response.getFacetQuery();
@@ -1112,9 +1112,44 @@ public class SolrLogger
         return name;
     }
 
+    /**
+     * Wrapper for query() method since I added an extra param
+     * @param query
+     * @param filterQuery
+     * @param facetField
+     * @param rows
+     * @param max
+     * @param dateType
+     * @param dateStart
+     * @param dateEnd
+     * @param facetQueries
+     * @param sort
+     * @param ascending
+     * @return
+     * @throws SolrServerException
+     */
+    public static QueryResponse query(String query, String filterQuery,
+                                      String facetField, int rows, int max, String dateType, String dateStart,
+                                      String dateEnd, List<String> facetQueries, String sort, boolean ascending)
+            throws SolrServerException {
+
+        return query(query,
+                filterQuery,
+                facetField,
+                rows, max,
+                dateType,
+                dateStart,
+                dateEnd,
+                facetQueries,
+                sort,
+                ascending,
+                1);
+
+    }
+
     public static QueryResponse query(String query, String filterQuery,
             String facetField, int rows, int max, String dateType, String dateStart,
-            String dateEnd, List<String> facetQueries, String sort, boolean ascending)
+            String dateEnd, List<String> facetQueries, String sort, boolean ascending, int minfacet)
             throws SolrServerException
     {
         if (solr == null)
@@ -1124,7 +1159,7 @@ public class SolrLogger
 
         // System.out.println("QUERY");
         SolrQuery solrQuery = new SolrQuery().setRows(rows).setQuery(query)
-                .setFacetMinCount(1);
+                .setFacetMinCount(minfacet);
         addAdditionalSolrYearCores(solrQuery);
 
         // Set the date facet if present
