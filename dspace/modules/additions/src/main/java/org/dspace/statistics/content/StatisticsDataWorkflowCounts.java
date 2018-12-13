@@ -153,4 +153,39 @@ public class StatisticsDataWorkflowCounts extends StatisticsData {
         }
         return result;
     }
+
+    public Date getOldestWorkflowItemDate() throws SolrServerException {
+        ConfigurationService configurationService = new DSpace().getConfigurationService();
+        String workflowStartDate = configurationService.getProperty("usage-statistics.workflow-start-date");
+        if(workflowStartDate == null){
+            //Query our solr for it !
+            QueryResponse oldestRecord = SolrLogger.query(getQuery(), null, null, 1, 0, null, null, null, null, "time", true);
+            if(0 < oldestRecord.getResults().getNumFound()){
+                SolrDocument solrDocument = oldestRecord.getResults().get(0);
+                Date oldestDate = (Date) solrDocument.getFieldValue("time");
+                //Store the date, we only need to retrieve this once !
+                try {
+                    //Also store it in the solr-statics configuration file, the reason for this being that the sort query
+                    //can be very time consuming & we do not want this delay each time we want to see workflow statistics
+                    String solrConfigDir = configurationService.getProperty("dspace.dir") + File.separator + "config"
+                            + File.separator + "modules" + File.separator + "usage-statistics.cfg";
+                    PropertiesConfiguration config = new PropertiesConfiguration(solrConfigDir);
+                    config.setProperty("workflow-start-date", new DCDate(oldestDate));
+                    config.save();
+                } catch (ConfigurationException e) {
+                    log.error("Error while storing workflow start date", e);
+                }
+                //ALso store it in our local config !
+                configurationService.setProperty("usage-statistics.workflow-start-date", new DCDate(oldestDate).toString());
+
+                //Write to file
+                return oldestDate;
+            }else{
+                return null;
+            }
+
+        }else{
+            return new DCDate(workflowStartDate).toDate();
+        }
+    }
 }

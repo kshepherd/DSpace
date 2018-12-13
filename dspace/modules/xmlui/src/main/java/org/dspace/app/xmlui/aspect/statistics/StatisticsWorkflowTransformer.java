@@ -35,6 +35,8 @@ import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 import org.apache.log4j.Logger;
 
@@ -97,8 +99,11 @@ public class StatisticsWorkflowTransformer extends AbstractStatisticsDataTransfo
             mainDivision.setHead(T_workflow_head);
         }
         try {
+            // Get data
+            StatisticsDataWorkflowCounts statisticsData = new StatisticsDataWorkflowCounts(dso);
 
             //Add the time filter box
+            Date oldestWorkflowDate = statisticsData.getOldestWorkflowItemDate();
             Division workflowTermsDivision = mainDivision.addDivision("workflow-terms");
             workflowTermsDivision.setHead(T_title);
             addTimeFilter(workflowTermsDivision);
@@ -106,9 +111,7 @@ public class StatisticsWorkflowTransformer extends AbstractStatisticsDataTransfo
             //Retrieve the optional time filter
             StatisticsSolrDateFilter dateFilter = getDateFilter(selectedTimeFilter);
 
-            addCalendarFilter(workflowTermsDivision);
-
-
+            addCalendarFilter(workflowTermsDivision, oldestWorkflowDate);
 
             int time_filter = -1;
             if(request.getParameter("time_filter") != null && !"".equals(request.getParameter("time_filter"))){
@@ -116,8 +119,8 @@ public class StatisticsWorkflowTransformer extends AbstractStatisticsDataTransfo
                 time_filter = Math.abs(Util.getIntParameter(request, "time_filter"));
 
             }
-            //StatisticsTable statisticsTable = new StatisticsTable(new StatisticsDataWorkflow(dso, time_filter));
-            StatisticsTable statisticsTable = new StatisticsTable(new StatisticsDataWorkflowCounts(dso));
+
+            StatisticsTable statisticsTable = new StatisticsTable(statisticsData);
 
             DatasetTypeGenerator queryGenerator = new DatasetTypeGenerator();
             //Set our type to previousworkflow step (indicates our performed actions !)
@@ -127,7 +130,6 @@ public class StatisticsWorkflowTransformer extends AbstractStatisticsDataTransfo
             if(dateFilter != null){
                 statisticsTable.addFilter(dateFilter);
             }
-
             addDisplayTable(workflowTermsDivision, statisticsTable, true, new String[]{"xmlui.statistics.display.table.workflow.step."});
         } catch (Exception e) {
             mainDivision.addPara().addContent(T_retrieval_error);
@@ -140,9 +142,12 @@ public class StatisticsWorkflowTransformer extends AbstractStatisticsDataTransfo
         return T_no_results;
     }
 
-    protected void addCalendarFilter(Division mainDivision) throws WingException, ParseException {
+    protected void addCalendarFilter(Division mainDivision, Date oldestDate) throws WingException, ParseException {
         Request request = ObjectModelHelper.getRequest(objectModel);
         String selectedTimeFilter = request.getParameter("calendar_filter");
+
+        String selectedMonthFilter = request.getParameter("month_filter");
+        String selectedYearFilter = request.getParameter("year_filter");
 
         Select monthFilter = mainDivision.addPara().addSelect("month_filter");
         /* old timefilter
@@ -151,15 +156,36 @@ public class StatisticsWorkflowTransformer extends AbstractStatisticsDataTransfo
         monthFilter.addOption(StringUtils.equals(selectedTimeFilter, "-12"), "-12", T_time_filter_last_year);
         monthFilter.addOption(StringUtils.isBlank(selectedTimeFilter), "", T_time_filter_overall);
         */
-        for(int i = 1; i <= 12; i++) {
+
+        Calendar now = Calendar.getInstance();
+
+        int currentMonth = now.get(Calendar.MONTH);
+        for(int i = 0; i <= 11; i++) {
             SimpleDateFormat monthParse = new SimpleDateFormat("MM");
             SimpleDateFormat monthDisplay = new SimpleDateFormat("MMMM");
-            monthFilter.addOption(false,i,monthDisplay.format(monthParse.parse(String.valueOf(i))));
+            boolean selected = false;
+            if(selectedMonthFilter.equals(String.valueOf(i))) {
+                selected = true;
+            }
+            else if(selectedMonthFilter.equals("") && currentMonth == i) {
+                selected = true;
+            }
+            monthFilter.addOption(selected,i,monthDisplay.format(monthParse.parse(String.valueOf(i+1))));
         }
 
+        int currentYear = now.get(Calendar.YEAR);
+        int oldestYear = now.get(Calendar.YEAR);
+
         Select yearFilter = mainDivision.addPara().addSelect("year_filter");
-        for(int i = 2000; i < 2018; i++) {
-            yearFilter.addOption(false,String.valueOf(i),String.valueOf(i));
+        for(int i = oldestYear; i <= currentYear; i++) {
+            boolean selected = false;
+            if(selectedYearFilter.equals(String.valueOf(i))) {
+                selected = true;
+            }
+            else if(selectedYearFilter.equals("") && currentYear == i) {
+                selected = true;
+            }
+            yearFilter.addOption(selected,String.valueOf(i),String.valueOf(i));
         }
 
     }
