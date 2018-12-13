@@ -28,6 +28,7 @@ import org.dspace.statistics.content.StatisticsDataWorkflow;
 import org.dspace.statistics.content.StatisticsDataWorkflowCounts;
 import org.dspace.statistics.content.StatisticsTable;
 import org.dspace.statistics.content.filter.StatisticsSolrDateFilter;
+import org.elasticsearch.common.recycler.Recycler;
 import org.xml.sax.SAXException;
 
 import java.io.IOException;
@@ -143,6 +144,8 @@ public class StatisticsWorkflowTransformer extends AbstractStatisticsDataTransfo
     }
 
     protected void addCalendarFilter(Division mainDivision, Date oldestDate) throws WingException, ParseException {
+        Calendar start = Calendar.getInstance();
+        Calendar end = Calendar.getInstance();
         Request request = ObjectModelHelper.getRequest(objectModel);
         String selectedTimeFilter = request.getParameter("calendar_filter");
 
@@ -163,13 +166,7 @@ public class StatisticsWorkflowTransformer extends AbstractStatisticsDataTransfo
         for(int i = 0; i <= 11; i++) {
             SimpleDateFormat monthParse = new SimpleDateFormat("MM");
             SimpleDateFormat monthDisplay = new SimpleDateFormat("MMMM");
-            boolean selected = false;
-            if(selectedMonthFilter.equals(String.valueOf(i))) {
-                selected = true;
-            }
-            else if(selectedMonthFilter.equals("") && currentMonth == i) {
-                selected = true;
-            }
+            boolean selected = isSelected(i,currentMonth,selectedMonthFilter);
             monthFilter.addOption(selected,i,monthDisplay.format(monthParse.parse(String.valueOf(i+1))));
         }
 
@@ -178,15 +175,36 @@ public class StatisticsWorkflowTransformer extends AbstractStatisticsDataTransfo
 
         Select yearFilter = mainDivision.addPara().addSelect("year_filter");
         for(int i = oldestYear; i <= currentYear; i++) {
-            boolean selected = false;
-            if(selectedYearFilter.equals(String.valueOf(i))) {
-                selected = true;
-            }
-            else if(selectedYearFilter.equals("") && currentYear == i) {
-                selected = true;
-            }
+            boolean selected = isSelected(i, currentYear, selectedYearFilter);
             yearFilter.addOption(selected,String.valueOf(i),String.valueOf(i));
         }
 
+        if(selectedYearFilter != null && selectedMonthFilter != null) {
+            // generate start and end dates for solr
+            int year = Integer.valueOf(selectedYearFilter);
+            int month = Integer.valueOf(selectedMonthFilter);
+            Date startDate = new Date(year,month,1);
+            Date endDate = new Date(year,month,30);
+            start.setTime(startDate);
+            end.setTime(endDate);
+            end.set(Calendar.DAY_OF_MONTH,end.getActualMaximum(Calendar.DAY_OF_MONTH));
+            endDate = end.getTime();
+            startDate = start.getTime();
+            log.info("Start date : " + startDate.toGMTString() + ", End Date: " + endDate.toGMTString());
+        }
+
+    }
+
+    private boolean isSelected(int i,int current,String filter) {
+        boolean selected = false;
+        if(filter == null) {
+            if(current == i) {
+                selected = true;
+            }
+        }
+        else if(filter.equals(String.valueOf(i))) {
+            selected = true;
+        }
+        return selected;
     }
 }
