@@ -190,8 +190,8 @@ public class StatisticsWorkflowTransformer extends AbstractStatisticsDataTransfo
 
         if(selectedYearFilter != null && selectedMonthFilter != null) {
             // generate start and end dates for solr
-            int year = Integer.valueOf(selectedYearFilter);
-            int month = Integer.valueOf(selectedMonthFilter);
+            int year = Integer.valueOf(selectedYearFilter)-1900;
+            int month = Integer.valueOf(selectedMonthFilter)-1900;
             Date startDate = new Date(year,month,1);
             Date endDate = new Date(year,month,30);
             start.setTime(startDate);
