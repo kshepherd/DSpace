@@ -134,7 +134,7 @@ public class StatisticsWorkflowTransformer extends AbstractStatisticsDataTransfo
                 Calendar start = Calendar.getInstance();
                 Calendar end = Calendar.getInstance();
                 int year = Integer.valueOf(selectedYearFilter)-1900;
-                int month = Integer.valueOf(selectedMonthFilter)-1900;
+                int month = Integer.valueOf(selectedMonthFilter);
                 Date startDate = new Date(year,month,1);
                 Date endDate = new Date(year,month,30);
                 start.setTime(startDate);
