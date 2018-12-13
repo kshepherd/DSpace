@@ -169,8 +169,8 @@ public class StatisticsWorkflowTransformer extends AbstractStatisticsDataTransfo
             boolean selected = isSelected(i,currentMonth,selectedMonthFilter);
             monthFilter.addOption(selected,i,monthDisplay.format(monthParse.parse(String.valueOf(i+1))));
         }
-
-        int currentYear = now.get(Calendar.YEAR);
+;
+        int currentYear = oldestDate.getYear();
         int oldestYear = now.get(Calendar.YEAR);
 
         Select yearFilter = mainDivision.addPara().addSelect("year_filter");
@@ -191,6 +191,10 @@ public class StatisticsWorkflowTransformer extends AbstractStatisticsDataTransfo
             endDate = end.getTime();
             startDate = start.getTime();
             log.info("Start date : " + startDate.toGMTString() + ", End Date: " + endDate.toGMTString());
+            StatisticsSolrDateFilter sdf = new StatisticsSolrDateFilter();
+            sdf.setStartDate(startDate);
+            sdf.setEndDate(endDate);
+            log.info("The solrdatefilter query string is " + sdf.toQuery());
         }
 
     }
