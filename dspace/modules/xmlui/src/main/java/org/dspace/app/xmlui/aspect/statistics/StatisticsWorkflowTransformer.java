@@ -179,8 +179,8 @@ public class StatisticsWorkflowTransformer extends AbstractStatisticsDataTransfo
             monthFilter.addOption(selected,i,monthDisplay.format(monthParse.parse(String.valueOf(i+1))));
         }
 ;
-        int currentYear = oldestDate.getYear();
-        int oldestYear = now.get(Calendar.YEAR);
+        int currentYear = now.get(Calendar.YEAR);
+        int oldestYear = oldestDate.getYear();
 
         Select yearFilter = mainDivision.addPara().addSelect("year_filter");
         for(int i = oldestYear; i <= currentYear; i++) {
