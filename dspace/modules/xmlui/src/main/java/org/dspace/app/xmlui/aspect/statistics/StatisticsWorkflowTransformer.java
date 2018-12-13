@@ -144,6 +144,14 @@ public class StatisticsWorkflowTransformer extends AbstractStatisticsDataTransfo
     }
 
     protected void addCalendarFilter(Division mainDivision, Date oldestDate) throws WingException, ParseException {
+
+        if(oldestDate != null) {
+            log.info("Oldest date is " + oldestDate.toGMTString());
+        }
+        else {
+            log.info("Oldest date is null");
+        }
+
         Calendar start = Calendar.getInstance();
         Calendar end = Calendar.getInstance();
         Request request = ObjectModelHelper.getRequest(objectModel);
