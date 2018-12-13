@@ -85,7 +85,8 @@ public class StatisticsWorkflowTransformer extends AbstractStatisticsDataTransfo
         DSpaceObject dso = HandleUtil.obtainHandle(objectModel);
         Request request = ObjectModelHelper.getRequest(objectModel);
         String selectedTimeFilter = request.getParameter("time_filter");
-
+        String selectedMonthFilter = request.getParameter("month_filter");
+        String selectedYearFilter = request.getParameter("year_filter");
 
         StringBuilder actionPath = new StringBuilder().append(contextPath);
         if(dso != null){
@@ -128,9 +129,33 @@ public class StatisticsWorkflowTransformer extends AbstractStatisticsDataTransfo
             queryGenerator.setType("previousWorkflowStep");
             queryGenerator.setMax(10);
             statisticsTable.addDatasetGenerator(queryGenerator);
+            if(selectedYearFilter != null && selectedMonthFilter != null) {
+                // generate start and end dates for solr
+                Calendar start = Calendar.getInstance();
+                Calendar end = Calendar.getInstance();
+                int year = Integer.valueOf(selectedYearFilter)-1900;
+                int month = Integer.valueOf(selectedMonthFilter)-1900;
+                Date startDate = new Date(year,month,1);
+                Date endDate = new Date(year,month,30);
+                start.setTime(startDate);
+                end.setTime(endDate);
+                end.set(Calendar.DAY_OF_MONTH,end.getActualMaximum(Calendar.DAY_OF_MONTH));
+                endDate = end.getTime();
+                startDate = start.getTime();
+                log.info("Start date : " + startDate.toGMTString() + ", End Date: " + endDate.toGMTString());
+                StatisticsSolrDateFilter sdf = new StatisticsSolrDateFilter();
+                sdf.setStartDate(startDate);
+                sdf.setEndDate(endDate);
+                log.info("The solrdatefilter query string is " + sdf.toQuery());
+                if(sdf != null) {
+                    statisticsTable.addFilter(sdf);
+                }
+            }
+            /*
             if(dateFilter != null){
                 statisticsTable.addFilter(dateFilter);
-            }
+            }*/
+
             addDisplayTable(workflowTermsDivision, statisticsTable, true, new String[]{"xmlui.statistics.display.table.workflow.step."});
         } catch (Exception e) {
             mainDivision.addPara().addContent(T_retrieval_error);
@@ -153,8 +178,7 @@ public class StatisticsWorkflowTransformer extends AbstractStatisticsDataTransfo
             oldestDate = new Date(2000,1,1);
         }
 
-        Calendar start = Calendar.getInstance();
-        Calendar end = Calendar.getInstance();
+
         Request request = ObjectModelHelper.getRequest(objectModel);
         String selectedTimeFilter = request.getParameter("calendar_filter");
 
@@ -190,6 +214,8 @@ public class StatisticsWorkflowTransformer extends AbstractStatisticsDataTransfo
 
         if(selectedYearFilter != null && selectedMonthFilter != null) {
             // generate start and end dates for solr
+            Calendar start = Calendar.getInstance();
+            Calendar end = Calendar.getInstance();
             int year = Integer.valueOf(selectedYearFilter)-1900;
             int month = Integer.valueOf(selectedMonthFilter)-1900;
             Date startDate = new Date(year,month,1);
