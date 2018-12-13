@@ -150,6 +150,7 @@ public class StatisticsWorkflowTransformer extends AbstractStatisticsDataTransfo
         }
         else {
             log.info("Oldest date is null");
+            oldestDate = new Date(2000,1,1);
         }
 
         Calendar start = Calendar.getInstance();
