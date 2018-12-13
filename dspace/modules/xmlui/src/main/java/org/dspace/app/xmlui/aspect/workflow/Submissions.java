@@ -209,8 +209,12 @@ public class Submissions extends AbstractDSpaceTransformer
         		 * Get additional metadata
         		 */
                 // Get default date then iterate date list to get priority dates
+
                 Metadatum[] dates = owned.getItem().getMetadata("dc","date","issued",Item.ANY);
-                String[] dateFields = datePriority.split(",");
+                String[] dateFields = {};
+                if(datePriority != null) {
+                    dateFields = datePriority.split(",");
+                }
                 if(dateFields.length > 0) {
                     for(String df : dateFields) {
                         df = df.trim();
@@ -284,7 +288,10 @@ public class Submissions extends AbstractDSpaceTransformer
         		 */
                 // Get default date then iterate date list to get priority dates
                 Metadatum[] dates = pooled.getItem().getMetadata("dc","date","issued",Item.ANY);
-                String[] dateFields = datePriority.split(",");
+                String[] dateFields = {};
+                if(datePriority != null) {
+                    dateFields = datePriority.split(",");
+                }
                 if(dateFields.length > 0) {
                     for(String df : dateFields) {
                         df = df.trim();
