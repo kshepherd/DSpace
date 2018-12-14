@@ -134,32 +134,35 @@ public class StatisticsWorkflowTransformer extends AbstractStatisticsDataTransfo
                 int month;
                 try {
                     year = Integer.valueOf(selectedYearFilter) - 1900;
-                    month = Integer.valueOf(selectedMonthFilter) - 1900;
+                    month = Integer.valueOf(selectedMonthFilter);
                 } catch(NumberFormatException e) {
                     month = 0;
-                    year = 2018;
+                    year = 0;
                 }
-                Date startDate = new Date(year,month,1);
-                Date endDate = new Date(year,month,30);
+
+                start.set(Calendar.YEAR,year);
+                start.set(Calendar.MONTH,month);
+                start.set(Calendar.DAY_OF_MONTH,1);
+                end.set(Calendar.YEAR,year);
+                end.set(Calendar.MONTH,month);
                 if(selectedMonthFilter.equals("all")) {
-                    startDate.setMonth(0);
-                    endDate.setMonth(11);
-                    //start.set(Calendar.MONTH,0);
+                    start.set(Calendar.MONTH,0);
+                    end.set(Calendar.MONTH,11);
                 }
-                start.setTime(startDate);
-                end.setTime(endDate);
                 end.set(Calendar.DAY_OF_MONTH,end.getActualMaximum(Calendar.DAY_OF_MONTH));
-                endDate = end.getTime();
-                startDate = start.getTime();
-                log.info("Start date : " + startDate.toGMTString() + ", End Date: " + endDate.toGMTString());
+
+                log.info("Start date : " + end.getTime().toGMTString() + ", End Date: " + end.getTime().toGMTString());
+
                 StatisticsSolrDateFilter sdf = new StatisticsSolrDateFilter();
-                sdf.setStartDate(startDate);
-                sdf.setEndDate(endDate);
+                sdf.setStartDate(start.getTime());
+                sdf.setEndDate(end.getTime());
                 log.info("The solrdatefilter query string is " + sdf.toQuery());
+
                 statisticsTable.addFilter(sdf);
             }
 
             addDisplayTable(workflowTermsDivision, statisticsTable, true, new String[]{"xmlui.statistics.display.table.workflow.step."});
+
         } catch (Exception e) {
             mainDivision.addPara().addContent(T_retrieval_error);
             log.info("Error generating workflow statistics", e);
