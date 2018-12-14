@@ -208,8 +208,15 @@ public class StatisticsWorkflowTransformer extends AbstractStatisticsDataTransfo
             // generate start and end dates for solr
             Calendar start = Calendar.getInstance();
             Calendar end = Calendar.getInstance();
-            int year = Integer.valueOf(selectedYearFilter)-1900;
-            int month = Integer.valueOf(selectedMonthFilter)-1900;
+            int year;
+            int month;
+            try {
+                year = Integer.valueOf(selectedYearFilter) - 1900;
+                month = Integer.valueOf(selectedMonthFilter) - 1900;
+            } catch(NumberFormatException e) {
+                month = 0;
+                year = 2018;
+            }
             Date startDate = new Date(year,month,1);
             Date endDate = new Date(year,month,30);
             if(selectedMonthFilter.equals("all")) {
