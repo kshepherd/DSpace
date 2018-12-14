@@ -125,14 +125,27 @@ public class StatisticsWorkflowTransformer extends AbstractStatisticsDataTransfo
             queryGenerator.setType("previousWorkflowStep");
             queryGenerator.setMax(10);
             statisticsTable.addDatasetGenerator(queryGenerator);
-            if(selectedYearFilter != null && selectedMonthFilter != null) {
+
+            if(selectedYearFilter != null && selectedMonthFilter != null && !selectedYearFilter.equals("all")) {
                 // generate start and end dates for solr
                 Calendar start = Calendar.getInstance();
                 Calendar end = Calendar.getInstance();
-                int year = Integer.valueOf(selectedYearFilter)-1900;
-                int month = Integer.valueOf(selectedMonthFilter);
+                int year;
+                int month;
+                try {
+                    year = Integer.valueOf(selectedYearFilter) - 1900;
+                    month = Integer.valueOf(selectedMonthFilter) - 1900;
+                } catch(NumberFormatException e) {
+                    month = 0;
+                    year = 2018;
+                }
                 Date startDate = new Date(year,month,1);
                 Date endDate = new Date(year,month,30);
+                if(selectedMonthFilter.equals("all")) {
+                    startDate.setMonth(0);
+                    endDate.setMonth(11);
+                    //start.set(Calendar.MONTH,0);
+                }
                 start.setTime(startDate);
                 end.setTime(endDate);
                 end.set(Calendar.DAY_OF_MONTH,end.getActualMaximum(Calendar.DAY_OF_MONTH));
@@ -143,14 +156,8 @@ public class StatisticsWorkflowTransformer extends AbstractStatisticsDataTransfo
                 sdf.setStartDate(startDate);
                 sdf.setEndDate(endDate);
                 log.info("The solrdatefilter query string is " + sdf.toQuery());
-                if(sdf != null) {
-                    statisticsTable.addFilter(sdf);
-                }
+                statisticsTable.addFilter(sdf);
             }
-            /*
-            if(dateFilter != null){
-                statisticsTable.addFilter(dateFilter);
-            }*/
 
             addDisplayTable(workflowTermsDivision, statisticsTable, true, new String[]{"xmlui.statistics.display.table.workflow.step."});
         } catch (Exception e) {
@@ -203,39 +210,6 @@ public class StatisticsWorkflowTransformer extends AbstractStatisticsDataTransfo
             boolean selected = isSelected(i, currentYear, selectedYearFilter);
             yearFilter.addOption(selected,String.valueOf(i),String.valueOf(i));
         }
-
-        if(selectedYearFilter != null && selectedMonthFilter != null && !selectedYearFilter.equals("all")) {
-            // generate start and end dates for solr
-            Calendar start = Calendar.getInstance();
-            Calendar end = Calendar.getInstance();
-            int year;
-            int month;
-            try {
-                year = Integer.valueOf(selectedYearFilter) - 1900;
-                month = Integer.valueOf(selectedMonthFilter) - 1900;
-            } catch(NumberFormatException e) {
-                month = 0;
-                year = 2018;
-            }
-            Date startDate = new Date(year,month,1);
-            Date endDate = new Date(year,month,30);
-            if(selectedMonthFilter.equals("all")) {
-                startDate.setMonth(0);
-                endDate.setMonth(11);
-                //start.set(Calendar.MONTH,0);
-            }
-            start.setTime(startDate);
-            end.setTime(endDate);
-            end.set(Calendar.DAY_OF_MONTH,end.getActualMaximum(Calendar.DAY_OF_MONTH));
-            endDate = end.getTime();
-            startDate = start.getTime();
-            log.info("Start date : " + startDate.toGMTString() + ", End Date: " + endDate.toGMTString());
-            StatisticsSolrDateFilter sdf = new StatisticsSolrDateFilter();
-            sdf.setStartDate(startDate);
-            sdf.setEndDate(endDate);
-            log.info("The solrdatefilter query string is " + sdf.toQuery());
-        }
-
     }
 
     private boolean isSelected(int i,int current,String filter) {
