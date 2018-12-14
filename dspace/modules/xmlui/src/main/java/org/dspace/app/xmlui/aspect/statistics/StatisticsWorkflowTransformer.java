@@ -17,10 +17,7 @@ import org.dspace.app.xmlui.utils.HandleUtil;
 import org.dspace.app.xmlui.utils.UIException;
 import org.dspace.app.xmlui.wing.Message;
 import org.dspace.app.xmlui.wing.WingException;
-import org.dspace.app.xmlui.wing.element.Body;
-import org.dspace.app.xmlui.wing.element.Division;
-import org.dspace.app.xmlui.wing.element.PageMeta;
-import org.dspace.app.xmlui.wing.element.Select;
+import org.dspace.app.xmlui.wing.element.*;
 import org.dspace.authorize.AuthorizeException;
 import org.dspace.content.DSpaceObject;
 import org.dspace.statistics.content.DatasetTypeGenerator;
@@ -108,7 +105,7 @@ public class StatisticsWorkflowTransformer extends AbstractStatisticsDataTransfo
             Date oldestWorkflowDate = statisticsData.getOldestWorkflowItemDate();
             Division workflowTermsDivision = mainDivision.addDivision("workflow-terms");
             workflowTermsDivision.setHead(T_title);
-            addTimeFilter(workflowTermsDivision);
+            //addTimeFilter(workflowTermsDivision);
 
             //Retrieve the optional time filter
             StatisticsSolrDateFilter dateFilter = getDateFilter(selectedTimeFilter);
@@ -119,7 +116,6 @@ public class StatisticsWorkflowTransformer extends AbstractStatisticsDataTransfo
             if(request.getParameter("time_filter") != null && !"".equals(request.getParameter("time_filter"))){
                 //Our time filter is a negative value if present
                 time_filter = Math.abs(Util.getIntParameter(request, "time_filter"));
-
             }
 
             StatisticsTable statisticsTable = new StatisticsTable(statisticsData);
@@ -178,24 +174,20 @@ public class StatisticsWorkflowTransformer extends AbstractStatisticsDataTransfo
             oldestDate = new Date(2000,1,1);
         }
 
-
         Request request = ObjectModelHelper.getRequest(objectModel);
         String selectedTimeFilter = request.getParameter("calendar_filter");
 
         String selectedMonthFilter = request.getParameter("month_filter");
         String selectedYearFilter = request.getParameter("year_filter");
 
-        Select monthFilter = mainDivision.addPara().addSelect("month_filter");
-        /* old timefilter
-        monthFilter.addOption(StringUtils.equals(selectedTimeFilter, "-1"), "-1", T_time_filter_last_month);
-        monthFilter.addOption(StringUtils.equals(selectedTimeFilter, "-6"), "-6", T_time_filter_last6_months);
-        monthFilter.addOption(StringUtils.equals(selectedTimeFilter, "-12"), "-12", T_time_filter_last_year);
-        monthFilter.addOption(StringUtils.isBlank(selectedTimeFilter), "", T_time_filter_overall);
-        */
+        Para datePickers = mainDivision.addPara();
+        Select yearFilter = datePickers.addSelect("year_filter");
+        Select monthFilter = datePickers.addSelect("month_filter");
 
         Calendar now = Calendar.getInstance();
 
         int currentMonth = now.get(Calendar.MONTH);
+        monthFilter.addOption("all","Entire year");
         for(int i = 0; i <= 11; i++) {
             SimpleDateFormat monthParse = new SimpleDateFormat("MM");
             SimpleDateFormat monthDisplay = new SimpleDateFormat("MMMM");
@@ -206,13 +198,13 @@ public class StatisticsWorkflowTransformer extends AbstractStatisticsDataTransfo
         int currentYear = now.get(Calendar.YEAR);
         int oldestYear = oldestDate.getYear();
 
-        Select yearFilter = mainDivision.addPara().addSelect("year_filter");
+        yearFilter.addOption("all","All time");
         for(int i = oldestYear; i <= currentYear; i++) {
             boolean selected = isSelected(i, currentYear, selectedYearFilter);
             yearFilter.addOption(selected,String.valueOf(i),String.valueOf(i));
         }
 
-        if(selectedYearFilter != null && selectedMonthFilter != null) {
+        if(selectedYearFilter != null && selectedMonthFilter != null && !selectedYearFilter.equals("all")) {
             // generate start and end dates for solr
             Calendar start = Calendar.getInstance();
             Calendar end = Calendar.getInstance();
@@ -220,6 +212,11 @@ public class StatisticsWorkflowTransformer extends AbstractStatisticsDataTransfo
             int month = Integer.valueOf(selectedMonthFilter)-1900;
             Date startDate = new Date(year,month,1);
             Date endDate = new Date(year,month,30);
+            if(selectedMonthFilter.equals("all")) {
+                startDate.setMonth(0);
+                endDate.setMonth(11);
+                //start.set(Calendar.MONTH,0);
+            }
             start.setTime(startDate);
             end.setTime(endDate);
             end.set(Calendar.DAY_OF_MONTH,end.getActualMaximum(Calendar.DAY_OF_MONTH));
