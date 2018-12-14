@@ -124,9 +124,8 @@ public class StatisticsDataWorkflowCounts extends StatisticsData {
      * @return the query as a string
      */
     protected String getQuery() {
-        String query = "";
+        String query = "statistics_type:" + SolrLogger.StatisticsType.WORKFLOW.text();;
         if(currentDso != null){
-            query += "statistics_type:" + SolrLogger.StatisticsType.WORKFLOW.text();
             if(currentDso.getType() == Constants.COMMUNITY){
                 query += " AND owningComm:";
 
