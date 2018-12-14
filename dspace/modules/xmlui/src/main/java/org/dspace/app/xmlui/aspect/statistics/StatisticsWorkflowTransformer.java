@@ -133,7 +133,7 @@ public class StatisticsWorkflowTransformer extends AbstractStatisticsDataTransfo
                 int year = 0;
                 int month = 0;
                 try {
-                    year = Integer.valueOf(selectedYearFilter) - 1900;
+                    year = Integer.valueOf(selectedYearFilter);
                     month = Integer.valueOf(selectedMonthFilter);
                 } catch(NumberFormatException e) {
                     // that's fine, we set defaults
