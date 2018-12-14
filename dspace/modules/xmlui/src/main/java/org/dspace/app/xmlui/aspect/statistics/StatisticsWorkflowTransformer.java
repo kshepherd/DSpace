@@ -205,7 +205,7 @@ public class StatisticsWorkflowTransformer extends AbstractStatisticsDataTransfo
         }
 ;
         int currentYear = now.get(Calendar.YEAR);
-        int oldestYear = oldestDate.getYear();
+        int oldestYear = oldestDate.getYear()+1900;
 
         yearFilter.addOption("all","All time");
         for(int i = oldestYear; i <= currentYear; i++) {
