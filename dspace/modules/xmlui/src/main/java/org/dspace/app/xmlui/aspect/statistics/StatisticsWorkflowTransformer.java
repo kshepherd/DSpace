@@ -208,7 +208,7 @@ public class StatisticsWorkflowTransformer extends AbstractStatisticsDataTransfo
         int oldestYear = oldestDate.getYear()+1900;
 
         boolean allTimeSelected = (selectedMonthFilter == null && selectedYearFilter == null);
-        yearFilter.addOption("all","All time");
+        yearFilter.addOption(allTimeSelected,"all","All time");
         for(int i = oldestYear; i <= currentYear; i++) {
             boolean selected = isSelected(i, currentYear, selectedYearFilter);
             yearFilter.addOption(selected,String.valueOf(i),String.valueOf(i));
