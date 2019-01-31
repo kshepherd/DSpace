@@ -207,8 +207,8 @@ public class StatisticsWorkflowTransformer extends AbstractStatisticsDataTransfo
         int currentYear = now.get(Calendar.YEAR);
         int oldestYear = oldestDate.getYear()+1900;
 
-        boolean allTimeSelected = (selectedMonthFilter == null && selectedYearFilter == null);
-        yearFilter.addOption(allTimeSelected,"all","All time");
+        //boolean allTimeSelected = (selectedMonthFilter == null && selectedYearFilter == null);
+        yearFilter.addOption("all","All time");
         for(int i = oldestYear; i <= currentYear; i++) {
             boolean selected = isSelected(i, currentYear, selectedYearFilter);
             yearFilter.addOption(selected,String.valueOf(i),String.valueOf(i));
@@ -217,12 +217,14 @@ public class StatisticsWorkflowTransformer extends AbstractStatisticsDataTransfo
 
     private boolean isSelected(int i,int current,String filter) {
         boolean selected = false;
+        /*
         if(filter == null) {
             if(current == i) {
                 selected = true;
             }
         }
-        else if(filter.equals(String.valueOf(i))) {
+        else */
+        if(filter.equals(String.valueOf(i))) {
             selected = true;
         }
         return selected;
