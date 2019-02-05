@@ -150,12 +150,9 @@ public class StatisticsWorkflowTransformer extends AbstractStatisticsDataTransfo
                 }
                 end.set(Calendar.DAY_OF_MONTH,end.getActualMaximum(Calendar.DAY_OF_MONTH));
 
-                log.info("Start date : " + end.getTime().toGMTString() + ", End Date: " + end.getTime().toGMTString());
-
                 StatisticsSolrDateFilter sdf = new StatisticsSolrDateFilter();
                 sdf.setStartDate(start.getTime());
                 sdf.setEndDate(end.getTime());
-                log.info("The solrdatefilter query string is " + sdf.toQuery());
 
                 statisticsTable.addFilter(sdf);
             }
@@ -184,8 +181,6 @@ public class StatisticsWorkflowTransformer extends AbstractStatisticsDataTransfo
         }
 
         Request request = ObjectModelHelper.getRequest(objectModel);
-        String selectedTimeFilter = request.getParameter("calendar_filter");
-
         String selectedMonthFilter = request.getParameter("month_filter");
         String selectedYearFilter = request.getParameter("year_filter");
 
@@ -196,23 +191,25 @@ public class StatisticsWorkflowTransformer extends AbstractStatisticsDataTransfo
         Calendar now = Calendar.getInstance();
 
         int currentMonth = now.get(Calendar.MONTH);
-        monthFilter.addOption("all","Entire year");
+
+        monthFilter.addOption((selectedMonthFilter==null),"all","Entire year");
         for(int i = 0; i <= 11; i++) {
             SimpleDateFormat monthParse = new SimpleDateFormat("MM");
             SimpleDateFormat monthDisplay = new SimpleDateFormat("MMMM");
             boolean selected = isSelected(i,currentMonth,selectedMonthFilter);
             monthFilter.addOption(selected,i,monthDisplay.format(monthParse.parse(String.valueOf(i+1))));
         }
+
 ;
         int currentYear = now.get(Calendar.YEAR);
         int oldestYear = oldestDate.getYear()+1900;
 
-        //boolean allTimeSelected = (selectedMonthFilter == null && selectedYearFilter == null);
-        yearFilter.addOption("all","All time");
+        yearFilter.addOption((selectedYearFilter==null),"all","All time");
         for(int i = oldestYear; i <= currentYear; i++) {
             boolean selected = isSelected(i, currentYear, selectedYearFilter);
             yearFilter.addOption(selected,String.valueOf(i),String.valueOf(i));
         }
+
     }
 
     private boolean isSelected(int i,int current,String filter) {
@@ -224,6 +221,9 @@ public class StatisticsWorkflowTransformer extends AbstractStatisticsDataTransfo
             }
         }
         else */
+        if(filter == null) {
+            return false;
+        }
         if(filter.equals(String.valueOf(i))) {
             selected = true;
         }
