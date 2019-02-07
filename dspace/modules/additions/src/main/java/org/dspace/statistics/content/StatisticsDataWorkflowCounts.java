@@ -72,16 +72,19 @@ public class StatisticsDataWorkflowCounts extends StatisticsData {
         String query = getQuery();
 
         Map<String,String> actions = new HashMap<>();
-        actions.put("submitted","previousWorkflowStep:SUBMIT");
-        actions.put("approved","workflowStep:STEP3POOL AND previousWorkflowStep:STEP2");
-        actions.put("finalcheck","workflowStep:ARCHIVE AND previousWorkflowStep:STEP3");
-        actions.put("rejected","workflowStep:SUBMIT AND (previousWorkflowStep:STEP2 OR previousWorkflowStep:STEP3)");
+        actions.put("1_submitted","previousWorkflowStep:SUBMIT");
+        actions.put("2_approved","workflowStep:STEP3POOL AND previousWorkflowStep:STEP2");
+        actions.put("3_finalcheck","workflowStep:ARCHIVE AND previousWorkflowStep:STEP3");
+        actions.put("4_rejected","workflowStep:SUBMIT AND (previousWorkflowStep:STEP2 OR previousWorkflowStep:STEP3)");
+
+        // Sort actions by key for later table display
+        Map<String, String> sortedActions = new TreeMap<>(actions);
 
         List<String> facetQueries = new ArrayList<>();
-        facetQueries.add(actions.get("submitted")); // submitted items
-        facetQueries.add(actions.get("approved")); // approved and sent to final check
-        facetQueries.add(actions.get("finalcheck")); // approved and archived from final
-        facetQueries.add(actions.get("rejected")); // rejected from either step
+        facetQueries.add(actions.get("1_submitted")); // submitted items
+        facetQueries.add(actions.get("2_approved")); // approved and sent to final check
+        facetQueries.add(actions.get("3_finalcheck")); // approved and archived from final
+        facetQueries.add(actions.get("4_rejected")); // rejected from either step
 
         Dataset dataset = new Dataset(0,0);
         List<DatasetGenerator> datasetGenerators = getDatasetGenerators();
@@ -101,10 +104,10 @@ public class StatisticsDataWorkflowCounts extends StatisticsData {
                 dataset.setColLabel(1, "count");
 
                 int i = 0;
-                for (String action : actions.keySet()) {
+                for (String action : sortedActions.keySet()) {
                     long count = 0;
-                    if(objectCounts.containsKey(actions.get(action))) {
-                        count = objectCounts.get(actions.get(action));
+                    if(objectCounts.containsKey(sortedActions.get(action))) {
+                        count = objectCounts.get(sortedActions.get(action));
                     }
                     dataset.setRowLabel(i, String.valueOf(i + 1));
                     dataset.addValueToMatrix(i, 0, action);
