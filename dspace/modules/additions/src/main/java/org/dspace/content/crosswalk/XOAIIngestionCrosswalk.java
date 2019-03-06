@@ -60,7 +60,6 @@ public class XOAIIngestionCrosswalk implements IngestionCrosswalk {
             // Check if this node name is a reserved string for a different type
             // eg bundles, others, repository
             String schema = schemaNode.getAttributeValue("name");
-            log.info("first level = " + schemaNode.getName() + ": " + schema);
             if ("bundles".equals(schema)) {
                 // TODO - could ingest bitstreams here if we wanted..
                 continue;
@@ -78,23 +77,23 @@ public class XOAIIngestionCrosswalk implements IngestionCrosswalk {
             List<Element> elementNodes = schemaNode.getChildren();
             for (Element elementNode : elementNodes) {
                 String element = elementNode.getAttributeValue("name");
-                log.info("second level = " + elementNode.getName() + ": " + element);
 
                 // Third level: QUALIFIER
                 // Values of "none" are crosswalked to NULL
                 List<Element> thirdLevelNodes = elementNode.getChildren();
                 for (Element thirdLevelNode : thirdLevelNodes) {
-                    List<Element> fourthLevelNodes = thirdLevelNode.getChildren();
+
                     String qualifier = thirdLevelNode.getAttributeValue("name");
-                    log.info("third level = " + thirdLevelNode.getName() + ": " + qualifier);
                     qualifier = ("none".equals(qualifier) ? null : qualifier);
 
+                    // Test to see how deep remaining tree is, to test whether qualifier node
+                    // actually does exist. If not, this node is actually language, not qualifier.
+                    List<Element> fourthLevelNodes = thirdLevelNode.getChildren();
                     if(fourthLevelNodes.size() > 0
                             && fourthLevelNodes.get(0).getChildren().size() > 0) {
                         // Fourth level: LANGUAGE
                         // Values of "none are crosswalked to NULL
                         for (Element fourthLevelNode : fourthLevelNodes) {
-                            log.info("fourth level = " + fourthLevelNode.getName() + ": " + qualifier);
                             String language = fourthLevelNode.getAttributeValue("name");
                             language = ("none".equals(language) ? null : language);
 
@@ -102,7 +101,6 @@ public class XOAIIngestionCrosswalk implements IngestionCrosswalk {
                             List<Element> fifthLevelNodes = fourthLevelNode.getChildren();
                             for (Element fifthLevelNode : fifthLevelNodes) {
                                 String value = fifthLevelNode.getText();
-                                log.info("fifth level = " + fifthLevelNode.getName() + ": " + value + " (value?)");
                                 MetadataField metadataField = metadataValidator.checkMetadata(context,
                                         schema,
                                         element,
@@ -121,7 +119,6 @@ public class XOAIIngestionCrosswalk implements IngestionCrosswalk {
                         List<Element> fieldNodes = thirdLevelNode.getChildren();
                         for (Element fieldNode : fieldNodes) {
                             String value = fieldNode.getText();
-                            log.info("fourth level = " + fieldNode.getName() + ": " + value + "(value?)");
                             MetadataField metadataField = metadataValidator.checkMetadata(context,
                                     schema,
                                     element,
