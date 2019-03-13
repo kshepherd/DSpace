@@ -329,6 +329,8 @@ public class ItemViewer extends AbstractDSpaceTransformer implements CacheablePr
     public void addBody(Body body) throws SAXException, WingException,
             UIException, SQLException, IOException, AuthorizeException
     {
+        String handlePrefix = ConfigurationManager.getProperty("handle.prefix");
+        String canonicalPrefix = ConfigurationManager.getProperty("handle.canonical.prefix");
 
         DSpaceObject dso = HandleUtil.obtainHandle(objectModel);
         if (!(dso instanceof Item))
@@ -365,14 +367,29 @@ public class ItemViewer extends AbstractDSpaceTransformer implements CacheablePr
             if(replacedByEnabled) {
                 Metadatum[] replacedBy = item.getMetadataByMetadataString(replacedByField);
                 if (replacedBy != null && replacedBy.length > 0) {
-                    String replacementUri = replacedBy[0].value;
-                    log.debug(item.getHandle() + ": found replaced-by metadata in field "+replacedByField+": " + replacementUri);
-                    if (replacementUri.length() > 0 && replacementUri.startsWith("http")) {
-                        Para replacement = div.addPara();
-                        replacement.addContent(T_replaced_by);
-                        replacement.addContent(" "); // Ensure a space between message and link
-                        replacement.addXref(replacementUri).addContent(replacementUri);
+                    for(Metadatum r : replacedBy) {
+                        String replacementUri = r.value;
+                        log.debug(item.getHandle() + ": found replaced-by metadata in field "+replacedByField+": " + replacementUri);
+                        if (replacementUri.length() > 0 && replacementUri.startsWith("http")) {
+                            Para replacement = div.addPara();
+                            replacement.addContent(T_replaced_by);
+                            replacement.addContent(" "); // Ensure a space between message and link
+                            replacement.addXref(replacementUri).addContent(replacementUri);
+                            // Break loop now since we found a good un
+                            break;
+                        }
+                        else if(replacementUri.length() > 0 && handlePrefix != null &&
+                                replacementUri.startsWith(handlePrefix) && canonicalPrefix != null) {
+                            replacementUri = canonicalPrefix + handlePrefix;
+                            Para replacement = div.addPara();
+                            replacement.addContent(T_replaced_by);
+                            replacement.addContent(" "); // Ensure a space between message and link
+                            replacement.addXref(replacementUri).addContent(replacementUri);
+                            // Break loop now since we found a good un
+                            break;
+                        }
                     }
+
                 }
 
             }

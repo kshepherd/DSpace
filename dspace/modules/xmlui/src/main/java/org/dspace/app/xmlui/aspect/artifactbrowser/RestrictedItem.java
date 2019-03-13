@@ -126,6 +126,8 @@ public class RestrictedItem extends AbstractDSpaceTransformer //implements Cache
     {
         Request request = ObjectModelHelper.getRequest(objectModel);
         DSpaceObject dso = HandleUtil.obtainHandle(objectModel);
+        String handlePrefix = ConfigurationManager.getProperty("handle.prefix");
+        String canonicalPrefix = ConfigurationManager.getProperty("handle.canonical.prefix");
 
         Division unauthorized = null;
         boolean isWithdrawn = false;
@@ -202,9 +204,18 @@ public class RestrictedItem extends AbstractDSpaceTransformer //implements Cache
                     if(replacedByEnabled) {
                         Metadatum[] replacedBy = ((Item)dso).getMetadataByMetadataString(replacedByField);
                         if (replacedBy != null && replacedBy.length > 0) {
-                            replacementUri = replacedBy[0].value;
-                            if (replacementUri.length() > 0 && replacementUri.startsWith("http")) {
-                                isReplaced = true;
+                            for(Metadatum r : replacedBy) {
+                                replacementUri = r.value;
+                                if (replacementUri.length() > 0 && replacementUri.startsWith("http")) {
+                                    isReplaced = true;
+                                    break;
+                                }
+                                else if(handlePrefix != null && canonicalPrefix != null &&
+                                        replacementUri.startsWith(handlePrefix)) {
+                                    replacementUri = canonicalPrefix + handlePrefix;
+                                    isReplaced = true;
+                                    break;
+                                }
                             }
                         }
                     }
