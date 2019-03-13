@@ -212,7 +212,7 @@ public class RestrictedItem extends AbstractDSpaceTransformer //implements Cache
                                 }
                                 else if(handlePrefix != null && canonicalPrefix != null &&
                                         replacementUri.startsWith(handlePrefix)) {
-                                    replacementUri = canonicalPrefix + handlePrefix;
+                                    replacementUri = canonicalPrefix + replacementUri;
                                     isReplaced = true;
                                     break;
                                 }

@@ -380,7 +380,7 @@ public class ItemViewer extends AbstractDSpaceTransformer implements CacheablePr
                         }
                         else if(replacementUri.length() > 0 && handlePrefix != null &&
                                 replacementUri.startsWith(handlePrefix) && canonicalPrefix != null) {
-                            replacementUri = canonicalPrefix + handlePrefix;
+                            replacementUri = canonicalPrefix + replacementUri;
                             Para replacement = div.addPara();
                             replacement.addContent(T_replaced_by);
                             replacement.addContent(" "); // Ensure a space between message and link
