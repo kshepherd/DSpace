@@ -16,7 +16,6 @@ import java.io.IOException;
 
 public class NoOpCurationTask extends AbstractCurationTask
 {
-
     protected int status = Curator.CURATE_UNSET;
     protected String result = null;
 
@@ -29,7 +28,7 @@ public class NoOpCurationTask extends AbstractCurationTask
             Item item = (Item)dso;
             status = Curator.CURATE_SUCCESS;
             result = "No operation performed on " + item.getHandle();
-            
+
             setResult(result);
             report(result);
 		}
