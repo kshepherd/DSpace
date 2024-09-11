@@ -29,7 +29,7 @@ public interface AuthorityValueService {
 
     public AuthorityValue update(AuthorityValue value);
 
-    public AuthorityValue findByUID(Context context, String authorityID);
+    public AuthorityValue findByUID(String authorityID);
 
     public List<AuthorityValue> findByValue(Context context, String field, String value);
 

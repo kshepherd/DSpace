@@ -133,7 +133,7 @@ public class UpdateAuthorities {
         if (selectedIDs != null && !selectedIDs.isEmpty()) {
             authorities = new ArrayList<>();
             for (String selectedID : selectedIDs) {
-                AuthorityValue byUID = authorityValueService.findByUID(context, selectedID);
+                AuthorityValue byUID = authorityValueService.findByUID(selectedID);
                 authorities.add(byUID);
             }
         } else {

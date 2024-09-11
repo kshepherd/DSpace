@@ -21,7 +21,6 @@ import org.apache.solr.common.SolrDocument;
 import org.dspace.authority.service.AuthorityValueService;
 import org.dspace.content.authority.SolrAuthority;
 import org.dspace.core.Context;
-import org.dspace.core.LogHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -118,35 +117,34 @@ public class AuthorityValueServiceImpl implements AuthorityValueService {
     /**
      * Item.ANY does not work here.
      *
-     * @param context     Context
      * @param authorityID authority id
      * @return AuthorityValue
      */
     @Override
-    public AuthorityValue findByUID(Context context, String authorityID) {
+    public AuthorityValue findByUID(String authorityID) {
         //Ensure that if we use the full identifier to match on
         String queryString = "id:\"" + authorityID + "\"";
-        List<AuthorityValue> findings = find(context, queryString);
+        List<AuthorityValue> findings = find(queryString);
         return findings.size() > 0 ? findings.get(0) : null;
     }
 
     @Override
     public List<AuthorityValue> findByValue(Context context, String field, String value) {
         String queryString = "value:" + value + " AND field:" + field;
-        return find(context, queryString);
+        return find(queryString);
     }
 
     @Override
     public AuthorityValue findByOrcidID(Context context, String orcid_id) {
         String queryString = "orcid_id:" + orcid_id;
-        List<AuthorityValue> findings = find(context, queryString);
+        List<AuthorityValue> findings = find(queryString);
         return findings.size() > 0 ? findings.get(0) : null;
     }
 
     @Override
     public List<AuthorityValue> findByExactValue(Context context, String field, String value) {
         String queryString = "value:\"" + value + "\" AND field:" + field;
-        return find(context, queryString);
+        return find(queryString);
     }
 
     @Override
@@ -162,7 +160,7 @@ public class AuthorityValueServiceImpl implements AuthorityValueService {
         String field = fieldParameter(schema, element, qualifier);
         String queryString = "first_name:" + name + " OR last_name:" + name + " OR name_variant:" + name + " AND " +
             "field:" + field;
-        return find(context, queryString);
+        return find(queryString);
     }
 
     @Override
@@ -170,19 +168,19 @@ public class AuthorityValueServiceImpl implements AuthorityValueService {
                                                         String qualifier, String value) {
         String field = fieldParameter(schema, element, qualifier);
         String queryString = "all_Labels:" + value + " AND field:" + field;
-        return find(context, queryString);
+        return find(queryString);
     }
 
     @Override
     public List<AuthorityValue> findOrcidHolders(Context context) {
         String queryString = "orcid_id:*";
-        return find(context, queryString);
+        return find(queryString);
     }
 
     @Override
     public List<AuthorityValue> findAll(Context context) {
         String queryString = "*:*";
-        return find(context, queryString);
+        return find(queryString);
     }
 
     @Override
@@ -204,7 +202,7 @@ public class AuthorityValueServiceImpl implements AuthorityValueService {
         return fromAuthority;
     }
 
-    protected List<AuthorityValue> find(Context context, String queryString) {
+    protected List<AuthorityValue> find(String queryString) {
         List<AuthorityValue> findings = new ArrayList<AuthorityValue>();
         try {
             SolrQuery solrQuery = new SolrQuery();
@@ -220,8 +218,7 @@ public class AuthorityValueServiceImpl implements AuthorityValueService {
                 }
             }
         } catch (Exception e) {
-            log.error(LogHelper.getHeader(context, "Error while retrieving AuthorityValue from solr",
-                                           "query: " + queryString), e);
+            log.error("Error while retrieving AuthorityValue from solr. query: " + queryString, e);
         }
 
         return findings;
