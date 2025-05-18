@@ -7,7 +7,7 @@
  */
 package org.dspace.curate;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -22,7 +22,7 @@ import org.dspace.content.service.SiteService;
 import org.dspace.core.factory.CoreServiceFactory;
 import org.dspace.ctask.general.NoOpCurationTask;
 import org.dspace.services.ConfigurationService;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author mhwood

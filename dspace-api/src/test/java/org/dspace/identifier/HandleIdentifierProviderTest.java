@@ -7,7 +7,7 @@
  */
 package org.dspace.identifier;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
 import java.util.Map;
@@ -16,11 +16,11 @@ import java.util.Properties;
 import org.dspace.AbstractDSpaceTest;
 import org.dspace.kernel.ServiceManager;
 import org.dspace.services.factory.DSpaceServicesFactory;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.After;
+import org.junit.jupiter.api.AfterClass;
+import org.junit.jupiter.api.Before;
+import org.junit.jupiter.api.BeforeClass;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
 import org.springframework.beans.factory.support.GenericBeanDefinition;
 import org.springframework.context.ApplicationContext;

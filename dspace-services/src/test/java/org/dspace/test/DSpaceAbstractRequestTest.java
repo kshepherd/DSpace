@@ -7,10 +7,10 @@
  */
 package org.dspace.test;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
+import org.junit.jupiter.api.After;
+import org.junit.jupiter.api.AfterClass;
+import org.junit.jupiter.api.Before;
+import org.junit.jupiter.api.BeforeClass;
 
 
 /**

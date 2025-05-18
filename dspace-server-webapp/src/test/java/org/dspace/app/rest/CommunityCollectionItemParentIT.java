@@ -30,9 +30,9 @@ import org.dspace.content.Item;
 import org.dspace.content.service.CollectionService;
 import org.dspace.content.service.CommunityService;
 import org.hamcrest.Matchers;
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Before;
+import org.junit.jupiter.api.Ignore;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class CommunityCollectionItemParentIT extends AbstractControllerIntegrationTest {

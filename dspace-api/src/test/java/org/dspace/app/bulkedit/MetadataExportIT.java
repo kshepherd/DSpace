@@ -33,9 +33,9 @@ import org.dspace.scripts.factory.ScriptServiceFactory;
 import org.dspace.scripts.service.ScriptService;
 import org.dspace.services.ConfigurationService;
 import org.dspace.services.factory.DSpaceServicesFactory;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.ExpectedException;
+import org.junit.jupiter.api.Rule;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.rules.ExpectedException;
 
 public class MetadataExportIT
         extends AbstractIntegrationTestWithDatabase {

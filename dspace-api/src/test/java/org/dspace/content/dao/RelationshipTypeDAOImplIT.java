@@ -7,8 +7,8 @@
  */
 package org.dspace.content.dao;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,9 +31,9 @@ import org.dspace.content.service.ItemService;
 import org.dspace.content.service.RelationshipService;
 import org.dspace.content.service.RelationshipTypeService;
 import org.dspace.content.service.WorkspaceItemService;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.After;
+import org.junit.jupiter.api.Before;
+import org.junit.jupiter.api.Test;
 
 public class RelationshipTypeDAOImplIT extends AbstractIntegrationTest {
 

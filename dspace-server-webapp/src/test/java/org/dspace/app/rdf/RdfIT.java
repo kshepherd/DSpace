@@ -9,7 +9,7 @@ package org.dspace.app.rdf;
 
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.equalTo;
-import static org.junit.Assert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThat;
 import static org.mockito.Mockito.doReturn;
 
 import java.net.URI;
@@ -24,9 +24,9 @@ import org.dspace.rdf.factory.RDFFactoryImpl;
 import org.dspace.rdf.storage.RDFStorage;
 import org.dspace.rdf.storage.RDFStorageImpl;
 import org.dspace.services.ConfigurationService;
-import org.junit.Assume;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assume;
+import org.junit.jupiter.api.Before;
+import org.junit.jupiter.api.Test;
 import org.mockito.Spy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

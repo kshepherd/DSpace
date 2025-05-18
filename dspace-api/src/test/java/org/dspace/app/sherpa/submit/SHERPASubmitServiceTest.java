@@ -7,8 +7,8 @@
  */
 package org.dspace.app.sherpa.submit;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.sql.SQLException;
 
@@ -31,11 +31,11 @@ import org.dspace.content.service.MetadataFieldService;
 import org.dspace.content.service.MetadataValueService;
 import org.dspace.content.service.WorkspaceItemService;
 import org.dspace.services.factory.DSpaceServicesFactory;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.After;
+import org.junit.jupiter.api.AfterClass;
+import org.junit.jupiter.api.Before;
+import org.junit.jupiter.api.BeforeClass;
+import org.junit.jupiter.api.Test;
 
 /**
  * SHERPASubmitServiceTest creates a dummy item with an ISSN in its metadata, and makes sure

@@ -41,9 +41,9 @@ import org.dspace.eperson.EPerson;
 import org.dspace.eperson.service.EPersonService;
 import org.dspace.services.ConfigurationService;
 import org.dspace.util.UUIDUtils;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.After;
+import org.junit.jupiter.api.Before;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.servlet.MvcResult;
 

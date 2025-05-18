@@ -7,7 +7,7 @@
  */
 package org.dspace.ctask.general;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
 
@@ -23,7 +23,7 @@ import org.dspace.identifier.VersionedHandleIdentifierProvider;
 import org.dspace.identifier.VersionedHandleIdentifierProviderWithCanonicalHandles;
 import org.dspace.services.ConfigurationService;
 import org.dspace.services.factory.DSpaceServicesFactory;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * Rudimentary test of the curation task.

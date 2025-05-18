@@ -9,7 +9,7 @@ package org.dspace.content;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.IOException;
 import java.io.StringWriter;
@@ -36,9 +36,9 @@ import org.dspace.core.service.LicenseService;
 import org.dspace.eperson.EPerson;
 import org.dspace.eperson.factory.EPersonServiceFactory;
 import org.dspace.eperson.service.EPersonService;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.After;
+import org.junit.jupiter.api.Before;
+import org.junit.jupiter.api.Test;
 
 /**
  * Unit Tests for class LicenseUtils

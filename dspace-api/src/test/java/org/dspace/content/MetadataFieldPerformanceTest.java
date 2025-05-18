@@ -16,8 +16,8 @@ import org.dspace.content.factory.ContentServiceFactory;
 import org.dspace.content.service.CollectionService;
 import org.dspace.content.service.CommunityService;
 import org.dspace.content.service.MetadataFieldService;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assert;
+import org.junit.jupiter.api.Test;
 
 /**
  * Unit Tests for Performance of class MetadataField

@@ -8,9 +8,9 @@
 package org.dspace.content;
 
 import org.dspace.AbstractUnitTest;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.After;
+import org.junit.jupiter.api.Before;
+import org.junit.jupiter.api.Test;
 
 /**
  * Unit Tests for interface InProgressSubmission. As it is an interface

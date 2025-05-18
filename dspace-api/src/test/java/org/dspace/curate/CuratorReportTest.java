@@ -23,12 +23,12 @@ import org.dspace.content.DSpaceObject;
 import org.dspace.content.Site;
 import org.dspace.content.factory.ContentServiceFactory;
 import org.dspace.services.ConfigurationService;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.After;
+import org.junit.jupiter.api.AfterClass;
+import org.junit.jupiter.api.Assert;
+import org.junit.jupiter.api.Before;
+import org.junit.jupiter.api.BeforeClass;
+import org.junit.jupiter.api.Test;
 
 /**
  * Drive the Curator and check results.

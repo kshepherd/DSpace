@@ -7,7 +7,7 @@
  */
 package org.dspace.xmlworkflow;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -40,8 +40,8 @@ import org.dspace.xmlworkflow.service.XmlWorkflowService;
 import org.dspace.xmlworkflow.state.Workflow;
 import org.dspace.xmlworkflow.state.actions.processingaction.SelectReviewerAction;
 import org.dspace.xmlworkflow.storedcomponents.ClaimedTask;
-import org.junit.After;
-import org.junit.Test;
+import org.junit.jupiter.api.After;
+import org.junit.jupiter.api.Test;
 import org.springframework.mock.web.MockHttpServletRequest;
 
 /**

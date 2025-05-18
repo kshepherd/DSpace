@@ -10,7 +10,7 @@ package org.dspace.content;
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertNull;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -31,8 +31,8 @@ import org.dspace.discovery.SearchServiceException;
 import org.dspace.services.ConfigurationService;
 import org.dspace.services.factory.DSpaceServicesFactory;
 import org.dspace.xmlworkflow.storedcomponents.XmlWorkflowItem;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Before;
+import org.junit.jupiter.api.Test;
 
 /**
  *

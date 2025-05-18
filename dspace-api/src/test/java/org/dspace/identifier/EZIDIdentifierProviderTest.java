@@ -8,9 +8,9 @@
 
 package org.dspace.identifier;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -41,11 +41,11 @@ import org.dspace.services.factory.DSpaceServicesFactory;
 import org.dspace.workflow.WorkflowException;
 import org.dspace.workflow.WorkflowItem;
 import org.dspace.workflow.factory.WorkflowServiceFactory;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.After;
+import org.junit.jupiter.api.AfterClass;
+import org.junit.jupiter.api.Before;
+import org.junit.jupiter.api.BeforeClass;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author mwood

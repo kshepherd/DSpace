@@ -7,7 +7,7 @@
  */
 package org.dspace;
 
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.IOException;
 import java.net.URL;
@@ -22,12 +22,12 @@ import org.dspace.builder.AbstractBuilder;
 import org.dspace.discovery.SearchUtils;
 import org.dspace.servicemanager.DSpaceKernelImpl;
 import org.dspace.servicemanager.DSpaceKernelInit;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Rule;
-import org.junit.rules.TestName;
+import org.junit.jupiter.api.After;
+import org.junit.jupiter.api.AfterClass;
+import org.junit.jupiter.api.Before;
+import org.junit.jupiter.api.BeforeClass;
+import org.junit.jupiter.api.Rule;
+import org.junit.jupiter.api.rules.TestName;
 
 /**
  * Abstract Test class copied from DSpace API

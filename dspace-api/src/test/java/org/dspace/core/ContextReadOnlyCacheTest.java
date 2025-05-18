@@ -7,9 +7,9 @@
  */
 package org.dspace.core;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
 
 import java.util.Arrays;
@@ -19,9 +19,9 @@ import java.util.UUID;
 import org.dspace.content.Item;
 import org.dspace.eperson.EPerson;
 import org.dspace.eperson.Group;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Before;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;

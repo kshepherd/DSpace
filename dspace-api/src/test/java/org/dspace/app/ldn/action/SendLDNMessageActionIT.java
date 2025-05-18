@@ -9,7 +9,7 @@ package org.dspace.app.ldn.action;
 
 import static org.dspace.app.ldn.action.LDNActionStatus.ABORT;
 import static org.dspace.app.ldn.action.LDNActionStatus.CONTINUE;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -46,9 +46,9 @@ import org.dspace.services.factory.DSpaceServicesFactory;
 import org.dspace.workflow.WorkflowItem;
 import org.dspace.workflow.WorkflowService;
 import org.dspace.workflow.factory.WorkflowServiceFactory;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.After;
+import org.junit.jupiter.api.Before;
+import org.junit.jupiter.api.Test;
 
 /**
  * Integration Tests against {@link SendLDNMessageAction}

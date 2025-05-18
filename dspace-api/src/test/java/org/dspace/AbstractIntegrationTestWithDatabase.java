@@ -7,7 +7,7 @@
  */
 package org.dspace;
 
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -40,9 +40,9 @@ import org.dspace.statistics.MockSolrStatisticsCore;
 import org.dspace.statistics.SolrStatisticsCore;
 import org.dspace.storage.rdbms.DatabaseUtils;
 import org.jdom2.Document;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
+import org.junit.jupiter.api.After;
+import org.junit.jupiter.api.Before;
+import org.junit.jupiter.api.BeforeClass;
 
 /**
  * Abstract Test class that will initialize the in-memory database

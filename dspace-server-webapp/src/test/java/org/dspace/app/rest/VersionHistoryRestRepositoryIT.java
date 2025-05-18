@@ -44,9 +44,9 @@ import org.dspace.versioning.service.VersionHistoryService;
 import org.dspace.versioning.service.VersioningService;
 import org.dspace.xmlworkflow.storedcomponents.XmlWorkflowItem;
 import org.hamcrest.Matchers;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.After;
+import org.junit.jupiter.api.Before;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**

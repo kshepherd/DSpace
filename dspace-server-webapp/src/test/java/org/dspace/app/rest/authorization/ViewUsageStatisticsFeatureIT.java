@@ -44,8 +44,8 @@ import org.dspace.content.Item;
 import org.dspace.content.Site;
 import org.dspace.content.service.SiteService;
 import org.dspace.services.ConfigurationService;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Before;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**

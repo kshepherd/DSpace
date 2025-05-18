@@ -7,8 +7,8 @@
  */
 package org.dspace.content;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.Iterator;
 import java.util.List;
@@ -23,8 +23,8 @@ import org.dspace.builder.ItemBuilder;
 import org.dspace.content.service.MetadataDSpaceCsvExportService;
 import org.dspace.scripts.handler.DSpaceRunnableHandler;
 import org.dspace.utils.DSpace;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Ignore;
+import org.junit.jupiter.api.Test;
 
 /**
  *

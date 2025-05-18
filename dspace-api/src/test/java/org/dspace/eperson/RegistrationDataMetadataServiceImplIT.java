@@ -18,9 +18,9 @@ import org.dspace.content.MetadataField;
 import org.dspace.eperson.factory.EPersonServiceFactory;
 import org.dspace.eperson.service.RegistrationDataMetadataService;
 import org.dspace.eperson.service.RegistrationDataService;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.After;
+import org.junit.jupiter.api.Before;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author Vincenzo Mecca (vins01-4science - vincenzo.mecca at 4science.com)

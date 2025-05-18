@@ -41,10 +41,10 @@ import org.dspace.content.Item;
 import org.dspace.core.Constants;
 import org.dspace.google.client.GoogleAnalyticsClient;
 import org.dspace.services.ConfigurationService;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.After;
+import org.junit.jupiter.api.Assert;
+import org.junit.jupiter.api.Before;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**

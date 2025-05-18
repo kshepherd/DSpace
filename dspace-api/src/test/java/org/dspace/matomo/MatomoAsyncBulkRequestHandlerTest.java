@@ -14,8 +14,8 @@ import org.dspace.matomo.client.MatomoClient;
 import org.dspace.matomo.model.MatomoRequestDetails;
 import org.dspace.matomo.model.MatomoRequestDetailsBuilder;
 import org.dspace.usage.UsageEvent;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Before;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 

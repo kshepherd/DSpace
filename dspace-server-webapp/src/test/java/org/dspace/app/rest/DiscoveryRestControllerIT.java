@@ -84,8 +84,8 @@ import org.dspace.supervision.SupervisionOrder;
 import org.dspace.xmlworkflow.storedcomponents.ClaimedTask;
 import org.dspace.xmlworkflow.storedcomponents.XmlWorkflowItem;
 import org.hamcrest.Matchers;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Ignore;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 

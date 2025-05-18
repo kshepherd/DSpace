@@ -7,7 +7,7 @@
  */
 package org.dspace.app.rest.security.jwt;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -21,9 +21,9 @@ import com.nimbusds.jwt.SignedJWT;
 import jakarta.servlet.http.HttpServletRequest;
 import org.dspace.core.Context;
 import org.dspace.eperson.EPerson;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Before;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mockito;
 import org.mockito.Spy;

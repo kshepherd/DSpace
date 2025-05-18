@@ -8,8 +8,8 @@
 
 package org.dspace.util;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.time.ZonedDateTime;
 import java.util.Arrays;
@@ -18,12 +18,12 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
+import org.junit.jupiter.api.After;
+import org.junit.jupiter.api.Before;
+import org.junit.jupiter.api.BeforeClass;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.runner.RunWith;
+import org.junit.jupiter.api.runners.Parameterized;
 
 /**
  * Drive the MultiFormatDateParser from a table of test formats and sample data

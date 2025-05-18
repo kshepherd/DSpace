@@ -18,8 +18,8 @@ import org.dspace.builder.CommunityBuilder;
 import org.dspace.content.Collection;
 import org.dspace.content.Community;
 import org.hamcrest.Matchers;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Before;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test class for {@link CommunityCollectionLinkRepository}

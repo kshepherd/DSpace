@@ -10,8 +10,8 @@ package org.dspace.app.sword2;
 
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.nio.file.Path;
 import java.util.List;
@@ -27,11 +27,11 @@ import org.dspace.content.Item;
 import org.dspace.content.WorkspaceItem;
 import org.dspace.services.ConfigurationService;
 import org.dspace.xmlworkflow.storedcomponents.XmlWorkflowItem;
-import org.junit.Assume;
-import org.junit.Before;
-import org.junit.ClassRule;
-import org.junit.Test;
-import org.junit.rules.TemporaryFolder;
+import org.junit.jupiter.api.Assume;
+import org.junit.jupiter.api.Before;
+import org.junit.jupiter.api.ClassRule;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.rules.TemporaryFolder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.ContentDisposition;

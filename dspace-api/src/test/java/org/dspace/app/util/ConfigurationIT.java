@@ -12,18 +12,18 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.arrayWithSize;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.collection.IsArrayContainingInAnyOrder.arrayContainingInAnyOrder;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.dspace.AbstractDSpaceTest;
 import org.dspace.services.ConfigurationService;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.contrib.java.lang.system.Assertion;
-import org.junit.contrib.java.lang.system.ExpectedSystemExit;
-import org.junit.contrib.java.lang.system.SystemErrRule;
-import org.junit.contrib.java.lang.system.SystemOutRule;
+import org.junit.jupiter.api.AfterClass;
+import org.junit.jupiter.api.BeforeClass;
+import org.junit.jupiter.api.Rule;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.contrib.java.lang.system.Assertion;
+import org.junit.jupiter.api.contrib.java.lang.system.ExpectedSystemExit;
+import org.junit.jupiter.api.contrib.java.lang.system.SystemErrRule;
+import org.junit.jupiter.api.contrib.java.lang.system.SystemOutRule;
 
 /**
  * Tests for configuration utilities.

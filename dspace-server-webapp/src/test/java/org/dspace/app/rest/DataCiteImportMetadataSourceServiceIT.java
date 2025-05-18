@@ -7,7 +7,7 @@
  */
 package org.dspace.app.rest;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
 import java.io.InputStream;
@@ -29,8 +29,8 @@ import org.dspace.importer.external.liveimportclient.service.LiveImportClientImp
 import org.dspace.importer.external.metadatamapping.MetadatumDTO;
 import org.dspace.kernel.ServiceManager;
 import org.dspace.services.factory.DSpaceServicesFactory;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Before;
+import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentMatchers;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;

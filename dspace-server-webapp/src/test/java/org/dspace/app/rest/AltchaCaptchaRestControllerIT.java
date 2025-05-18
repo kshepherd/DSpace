@@ -14,9 +14,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import org.dspace.app.rest.test.AbstractControllerIntegrationTest;
 import org.dspace.services.ConfigurationService;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.After;
+import org.junit.jupiter.api.Before;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**

@@ -7,10 +7,10 @@
  */
 package org.dspace.eperson;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
@@ -19,9 +19,9 @@ import java.security.NoSuchAlgorithmException;
 import org.apache.commons.codec.DecoderException;
 import org.dspace.AbstractDSpaceTest;
 import org.dspace.core.Constants;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.After;
+import org.junit.jupiter.api.Before;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author mwood

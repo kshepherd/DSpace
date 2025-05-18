@@ -8,7 +8,7 @@
 package org.dspace.app.rest.security;
 
 import static org.hamcrest.Matchers.containsInAnyOrder;
-import static org.junit.Assert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 
 import java.util.List;
@@ -17,8 +17,8 @@ import java.util.stream.Collectors;
 import org.dspace.authorize.service.AuthorizeService;
 import org.dspace.core.Context;
 import org.dspace.eperson.EPerson;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;

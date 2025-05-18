@@ -8,7 +8,7 @@
 package org.dspace.app.rest.security.jwt;
 
 import static org.hamcrest.Matchers.containsInAnyOrder;
-import static org.junit.Assert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 
 import java.util.ArrayList;
@@ -18,10 +18,10 @@ import java.util.UUID;
 import com.nimbusds.jwt.JWTClaimsSet;
 import jakarta.servlet.http.HttpServletRequest;
 import org.dspace.core.Context;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.After;
+import org.junit.jupiter.api.Before;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;

@@ -21,8 +21,8 @@ import org.dspace.app.rest.model.EPersonRest;
 import org.dspace.app.rest.projection.DefaultProjection;
 import org.dspace.app.rest.test.AbstractControllerIntegrationTest;
 import org.hamcrest.Matchers;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Before;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**

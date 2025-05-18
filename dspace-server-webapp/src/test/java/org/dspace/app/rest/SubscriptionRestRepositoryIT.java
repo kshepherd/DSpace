@@ -44,8 +44,8 @@ import org.dspace.eperson.EPerson;
 import org.dspace.eperson.Subscription;
 import org.dspace.eperson.SubscriptionParameter;
 import org.hamcrest.Matchers;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Before;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 

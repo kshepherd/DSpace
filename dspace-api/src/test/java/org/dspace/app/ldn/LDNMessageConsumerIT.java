@@ -10,10 +10,10 @@ package org.dspace.app.ldn;
 import static org.dspace.app.ldn.LDNMessageEntity.QUEUE_STATUS_QUEUED;
 import static org.dspace.matcher.NotifyServiceEntityMatcher.matchesNotifyServiceEntity;
 import static org.hamcrest.CoreMatchers.containsString;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThat;
 
 import java.io.InputStream;
 import java.sql.SQLException;
@@ -44,9 +44,9 @@ import org.dspace.services.factory.DSpaceServicesFactory;
 import org.dspace.workflow.WorkflowItem;
 import org.dspace.workflow.WorkflowService;
 import org.dspace.workflow.factory.WorkflowServiceFactory;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.After;
+import org.junit.jupiter.api.Before;
+import org.junit.jupiter.api.Test;
 
 /**
  * Integration Tests against {@link LDNMessageConsumer}

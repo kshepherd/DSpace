@@ -7,7 +7,7 @@
  */
 package org.dspace.eperson;
 
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
@@ -18,9 +18,9 @@ import org.dspace.eperson.service.CaptchaService;
 import org.dspace.services.ConfigurationService;
 import org.dspace.services.factory.DSpaceServicesFactory;
 import org.json.JSONObject;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.After;
+import org.junit.jupiter.api.Before;
+import org.junit.jupiter.api.Test;
 
 /**
  * Basic tests to verity the Altcha captcha service can verify payloads from the client

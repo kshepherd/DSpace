@@ -40,8 +40,8 @@ import org.dspace.content.Community;
 import org.dspace.content.Item;
 import org.dspace.core.Constants;
 import org.hamcrest.Matchers;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Before;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class DownloadFeatureIT extends AbstractControllerIntegrationTest {

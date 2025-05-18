@@ -17,9 +17,9 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 
 import org.dspace.utils.DSpace;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Ignore;
+import org.junit.jupiter.api.After;
+import org.junit.jupiter.api.Before;
+import org.junit.jupiter.api.Ignore;
 
 /**
  * This is the base class for Integration Tests. It inherits from the class

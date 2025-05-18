@@ -58,8 +58,8 @@ import org.dspace.content.service.ItemService;
 import org.dspace.core.Constants;
 import org.dspace.eperson.EPerson;
 import org.hamcrest.Matchers;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Before;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.servlet.MvcResult;
 

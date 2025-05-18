@@ -8,7 +8,7 @@
 package org.dspace.core;
 
 import static org.apache.bcel.Const.ACC_PUBLIC;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -17,11 +17,11 @@ import java.util.jar.JarEntry;
 import java.util.jar.JarOutputStream;
 
 import org.apache.bcel.generic.ClassGen;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.After;
+import org.junit.jupiter.api.AfterClass;
+import org.junit.jupiter.api.Before;
+import org.junit.jupiter.api.BeforeClass;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test the PathsClassLoader.

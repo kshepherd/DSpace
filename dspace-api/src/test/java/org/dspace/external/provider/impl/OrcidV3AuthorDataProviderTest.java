@@ -22,8 +22,8 @@ import java.util.List;
 import org.dspace.AbstractDSpaceTest;
 import org.dspace.external.OrcidRestConnector;
 import org.dspace.external.model.ExternalDataObject;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Before;
+import org.junit.jupiter.api.Test;
 
 
 /**

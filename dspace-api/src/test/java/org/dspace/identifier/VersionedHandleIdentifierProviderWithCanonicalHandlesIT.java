@@ -7,8 +7,8 @@
  */
 package org.dspace.identifier;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -26,8 +26,8 @@ import org.dspace.content.MetadataValue;
 import org.dspace.content.factory.ContentServiceFactory;
 import org.dspace.kernel.ServiceManager;
 import org.dspace.services.factory.DSpaceServicesFactory;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Before;
+import org.junit.jupiter.api.Test;
 
 public class VersionedHandleIdentifierProviderWithCanonicalHandlesIT extends AbstractIdentifierProviderIT {
     private ServiceManager serviceManager;

@@ -23,8 +23,8 @@ import org.dspace.eperson.Group;
 import org.dspace.eperson.factory.EPersonServiceFactory;
 import org.dspace.eperson.service.EPersonService;
 import org.dspace.eperson.service.GroupService;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assert;
+import org.junit.jupiter.api.Test;
 
 /**
  * Created by pbecker to write a test against DS-3572.

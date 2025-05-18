@@ -40,8 +40,8 @@ import org.dspace.scripts.Process;
 import org.dspace.scripts.ProcessLogLevel;
 import org.dspace.scripts.service.ProcessService;
 import org.hamcrest.Matchers;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Before;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class ProcessRestRepositoryIT extends AbstractControllerIntegrationTest {

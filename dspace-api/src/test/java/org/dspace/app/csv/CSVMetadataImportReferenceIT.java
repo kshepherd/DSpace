@@ -45,8 +45,8 @@ import org.dspace.scripts.DSpaceRunnable;
 import org.dspace.scripts.configuration.ScriptConfiguration;
 import org.dspace.scripts.factory.ScriptServiceFactory;
 import org.dspace.scripts.service.ScriptService;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Before;
+import org.junit.jupiter.api.Test;
 
 /**
  * Created by: Andrew Wood

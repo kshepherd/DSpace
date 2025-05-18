@@ -31,8 +31,8 @@ import org.dspace.content.Community;
 import org.dspace.content.Item;
 import org.dspace.content.Site;
 import org.dspace.eperson.Group;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Ignore;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**

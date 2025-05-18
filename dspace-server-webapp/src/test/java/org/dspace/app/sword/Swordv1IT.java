@@ -10,14 +10,14 @@ package org.dspace.app.sword;
 
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.equalTo;
-import static org.junit.Assert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThat;
 
 import org.dspace.app.rest.test.AbstractWebClientIntegrationTest;
 import org.dspace.services.ConfigurationService;
-import org.junit.Assume;
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Assume;
+import org.junit.jupiter.api.Before;
+import org.junit.jupiter.api.Ignore;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

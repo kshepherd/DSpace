@@ -8,9 +8,9 @@
 
 package org.dspace.services.email;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import jakarta.mail.MessagingException;
 import jakarta.mail.PasswordAuthentication;
@@ -18,7 +18,7 @@ import jakarta.mail.Session;
 import org.dspace.services.ConfigurationService;
 import org.dspace.services.EmailService;
 import org.dspace.test.DSpaceAbstractKernelTest;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author mwood

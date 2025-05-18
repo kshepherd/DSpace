@@ -7,7 +7,7 @@
  */
 package org.dspace.app.rest;
 
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
@@ -27,10 +27,10 @@ import org.dspace.identifier.DOIIdentifierProvider;
 import org.dspace.identifier.factory.IdentifierServiceFactory;
 import org.dspace.identifier.service.DOIService;
 import org.dspace.services.factory.DSpaceServicesFactory;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Assert;
+import org.junit.jupiter.api.Before;
+import org.junit.jupiter.api.Ignore;
+import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
 
 /**

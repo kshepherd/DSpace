@@ -7,9 +7,9 @@
  */
 package org.dspace.app.mediafilter;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -19,7 +19,7 @@ import org.apache.commons.io.IOUtils;
 import org.dspace.AbstractUnitTest;
 import org.dspace.services.ConfigurationService;
 import org.dspace.services.factory.DSpaceServicesFactory;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test the TikaTextExtractionFilter using test files for all major formats.

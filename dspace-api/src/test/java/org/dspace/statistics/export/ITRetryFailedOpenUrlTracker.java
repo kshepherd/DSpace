@@ -7,7 +7,7 @@
  */
 package org.dspace.statistics.export;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -24,8 +24,8 @@ import org.dspace.scripts.service.ScriptService;
 import org.dspace.services.factory.DSpaceServicesFactory;
 import org.dspace.statistics.export.factory.OpenURLTrackerLoggerServiceFactory;
 import org.dspace.statistics.export.service.FailedOpenURLTrackerService;
-import org.junit.After;
-import org.junit.Test;
+import org.junit.jupiter.api.After;
+import org.junit.jupiter.api.Test;
 
 /**
  * Class to test the RetryFailedOpenUrlTracker

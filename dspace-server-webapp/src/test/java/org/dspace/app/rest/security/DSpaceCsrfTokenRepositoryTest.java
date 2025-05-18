@@ -15,9 +15,9 @@ import static org.mockito.Mockito.verify;
 
 import jakarta.servlet.http.Cookie;
 import jakarta.ws.rs.core.HttpHeaders;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Before;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.runner.RunWith;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;

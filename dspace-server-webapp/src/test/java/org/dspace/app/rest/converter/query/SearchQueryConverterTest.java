@@ -7,14 +7,14 @@
  */
 package org.dspace.app.rest.converter.query;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.LinkedList;
 import java.util.List;
 
 import org.dspace.app.rest.parameter.SearchFilter;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Before;
+import org.junit.jupiter.api.Test;
 
 public class SearchQueryConverterTest {
 

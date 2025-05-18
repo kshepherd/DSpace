@@ -7,14 +7,14 @@
  */
 package org.dspace.browse;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import org.dspace.AbstractDSpaceTest;
 import org.dspace.services.ConfigurationService;
 import org.dspace.utils.DSpace;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Before;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test class for {@link CrossLinks}

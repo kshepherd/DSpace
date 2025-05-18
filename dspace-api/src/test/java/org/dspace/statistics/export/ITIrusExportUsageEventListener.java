@@ -7,8 +7,8 @@
  */
 package org.dspace.statistics.export;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -56,9 +56,9 @@ import org.dspace.services.factory.DSpaceServicesFactory;
 import org.dspace.statistics.export.factory.OpenURLTrackerLoggerServiceFactory;
 import org.dspace.statistics.export.service.FailedOpenURLTrackerService;
 import org.dspace.usage.UsageEvent;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.After;
+import org.junit.jupiter.api.Before;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test class for the IrusExportUsageEventListener

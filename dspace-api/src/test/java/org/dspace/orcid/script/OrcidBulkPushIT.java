@@ -58,9 +58,9 @@ import org.dspace.orcid.service.impl.OrcidHistoryServiceImpl;
 import org.dspace.profile.OrcidSynchronizationMode;
 import org.dspace.services.ConfigurationService;
 import org.dspace.services.factory.DSpaceServicesFactory;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.After;
+import org.junit.jupiter.api.Before;
+import org.junit.jupiter.api.Test;
 
 /**
  * Integration tests for {@link OrcidBulkPush}.

@@ -11,9 +11,9 @@ import static java.util.stream.Collectors.toList;
 import static org.dspace.content.Item.ANY;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.startsWith;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -37,9 +37,9 @@ import org.dspace.content.service.RelationshipTypeService;
 import org.dspace.core.I18nUtil;
 import org.dspace.eperson.EPerson;
 import org.dspace.eperson.service.EPersonService;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.After;
+import org.junit.jupiter.api.Before;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class RelationshipDeleteRestRepositoryIT extends AbstractEntityIntegrationTest {

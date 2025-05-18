@@ -54,9 +54,9 @@ import org.dspace.services.factory.DSpaceServicesFactory;
 import org.dspace.utils.DSpace;
 import org.dspace.versioning.Version;
 import org.dspace.versioning.service.VersioningService;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.After;
+import org.junit.jupiter.api.Before;
+import org.junit.jupiter.api.Test;
 
 /**
  * Integration tests for {@link OrcidQueueConsumer}.
