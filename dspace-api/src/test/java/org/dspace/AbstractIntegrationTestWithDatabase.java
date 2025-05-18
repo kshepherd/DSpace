@@ -40,9 +40,9 @@ import org.dspace.statistics.MockSolrStatisticsCore;
 import org.dspace.statistics.SolrStatisticsCore;
 import org.dspace.storage.rdbms.DatabaseUtils;
 import org.jdom2.Document;
-import org.junit.jupiter.api.After;
-import org.junit.jupiter.api.Before;
-import org.junit.jupiter.api.BeforeClass;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
 
 /**
  * Abstract Test class that will initialize the in-memory database

@@ -24,7 +24,7 @@ import org.hamcrest.Description;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.junit.jupiter.api.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class MatomoRequestBuilderTest extends AbstractUnitTest {

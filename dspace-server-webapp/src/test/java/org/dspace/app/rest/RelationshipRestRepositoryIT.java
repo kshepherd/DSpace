@@ -75,7 +75,7 @@ import org.dspace.core.Constants;
 import org.dspace.core.I18nUtil;
 import org.dspace.discovery.MockSolrSearchCore;
 import org.dspace.eperson.EPerson;
-import org.junit.jupiter.api.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;

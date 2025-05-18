@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.dspace.app.rest.DiscoveryRestController;
 import org.dspace.app.rest.model.hateoas.SearchSupportResource;
-import org.junit.jupiter.api.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 /**

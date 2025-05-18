@@ -18,7 +18,7 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.dspace.AbstractUnitTest;
 import org.dspace.matomo.exception.MatomoClientException;
 import org.dspace.matomo.model.MatomoRequestDetails;
-import org.junit.jupiter.api.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;

@@ -19,7 +19,7 @@ import org.dspace.AbstractUnitTest;
 import org.dspace.eperson.EPerson;
 import org.dspace.utils.DSpace;
 import org.hibernate.Session;
-import org.junit.jupiter.api.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 /**

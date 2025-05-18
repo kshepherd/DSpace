@@ -28,7 +28,7 @@ import org.dspace.content.WorkspaceItem;
 import org.dspace.services.ConfigurationService;
 import org.dspace.xmlworkflow.storedcomponents.XmlWorkflowItem;
 import org.junit.jupiter.api.Assume;
-import org.junit.jupiter.api.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.ClassRule;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.rules.TemporaryFolder;

@@ -24,7 +24,7 @@ import java.util.UUID;
 
 import org.dspace.content.Item;
 import org.dspace.core.Context;
-import org.junit.jupiter.api.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
 

@@ -13,7 +13,7 @@ import static org.mockito.Mockito.when;
 
 import org.dspace.AbstractIntegrationTest;
 import org.dspace.services.ConfigurationService;
-import org.junit.jupiter.api.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.runner.RunWith;
 import org.mockito.InjectMocks;

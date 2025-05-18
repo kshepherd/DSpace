@@ -27,7 +27,7 @@ import org.dspace.eperson.EPerson;
 import org.dspace.handle.service.HandleService;
 import org.dspace.identifier.DOIIdentifierProvider;
 import org.dspace.services.ConfigurationService;
-import org.junit.jupiter.api.After;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 

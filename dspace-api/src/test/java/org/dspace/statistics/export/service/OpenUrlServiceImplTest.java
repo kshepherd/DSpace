@@ -30,7 +30,7 @@ import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.dspace.core.Context;
 import org.dspace.statistics.export.OpenURLTracker;
-import org.junit.jupiter.api.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.runner.RunWith;
 import org.mockito.Mock;

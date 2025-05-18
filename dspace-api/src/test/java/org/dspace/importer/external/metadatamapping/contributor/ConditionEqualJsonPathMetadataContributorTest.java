@@ -16,7 +16,7 @@ import java.util.Collections;
 import java.util.List;
 
 import org.dspace.importer.external.metadatamapping.MetadatumDTO;
-import org.junit.jupiter.api.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;

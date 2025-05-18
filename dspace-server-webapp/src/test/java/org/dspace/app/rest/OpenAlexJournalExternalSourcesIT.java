@@ -32,7 +32,7 @@ import org.dspace.app.rest.test.AbstractControllerIntegrationTest;
 import org.dspace.importer.external.liveimportclient.service.LiveImportClient;
 import org.dspace.importer.external.openalex.service.OpenAlexImportMetadataSourceServiceImpl;
 import org.hamcrest.Matchers;
-import org.junit.jupiter.api.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.springframework.beans.factory.annotation.Autowired;

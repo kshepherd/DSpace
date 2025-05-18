@@ -14,7 +14,7 @@ import static org.mockito.Mockito.when;
 import org.dspace.app.rest.model.RootRest;
 import org.dspace.app.util.Util;
 import org.dspace.services.ConfigurationService;
-import org.junit.jupiter.api.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.runner.RunWith;
 import org.mockito.InjectMocks;

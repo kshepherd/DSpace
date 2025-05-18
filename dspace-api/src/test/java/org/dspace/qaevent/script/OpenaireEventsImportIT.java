@@ -57,8 +57,8 @@ import org.dspace.qaevent.service.QAEventService;
 import org.dspace.qaevent.service.impl.OpenaireClientFactoryImpl;
 import org.dspace.services.ConfigurationService;
 import org.dspace.utils.DSpace;
-import org.junit.jupiter.api.After;
-import org.junit.jupiter.api.Before;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Ignore;
 import org.junit.jupiter.api.Test;
 

@@ -23,7 +23,7 @@ import org.dspace.content.Item;
 import org.dspace.content.MetadataValue;
 import org.dspace.content.factory.ContentServiceFactory;
 import org.dspace.services.factory.DSpaceServicesFactory;
-import org.junit.jupiter.api.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class VersionedHandleIdentifierProviderIT extends AbstractIdentifierProviderIT  {

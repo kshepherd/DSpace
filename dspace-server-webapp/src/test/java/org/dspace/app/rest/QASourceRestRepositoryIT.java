@@ -27,7 +27,7 @@ import org.dspace.content.Community;
 import org.dspace.content.Item;
 import org.dspace.content.QAEvent;
 import org.dspace.services.ConfigurationService;
-import org.junit.jupiter.api.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 

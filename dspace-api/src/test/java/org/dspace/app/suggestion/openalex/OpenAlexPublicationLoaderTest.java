@@ -20,7 +20,7 @@ import java.util.List;
 
 import org.dspace.content.Item;
 import org.dspace.content.service.ItemService;
-import org.junit.jupiter.api.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;

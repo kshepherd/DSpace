@@ -17,8 +17,8 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 
 import org.dspace.utils.DSpace;
-import org.junit.jupiter.api.After;
-import org.junit.jupiter.api.Before;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Ignore;
 
 /**

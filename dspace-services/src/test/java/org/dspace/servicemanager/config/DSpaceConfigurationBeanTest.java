@@ -14,7 +14,7 @@ import java.io.File;
 
 import org.dspace.services.ConfigurationService;
 import org.dspace.test.DSpaceAbstractKernelTest;
-import org.junit.jupiter.api.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 /**

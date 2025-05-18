@@ -29,8 +29,8 @@ import org.dspace.xoai.filter.DateFromFilter;
 import org.dspace.xoai.filter.DateUntilFilter;
 import org.dspace.xoai.services.impl.solr.DSpaceSolrQueryResolver;
 import org.dspace.xoai.tests.unit.services.impl.AbstractQueryResolverTest;
-import org.junit.jupiter.api.After;
-import org.junit.jupiter.api.Before;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class DSpaceSolrQueryResolverTest extends AbstractQueryResolverTest {

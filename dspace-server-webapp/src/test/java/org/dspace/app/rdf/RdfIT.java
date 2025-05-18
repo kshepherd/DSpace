@@ -25,7 +25,7 @@ import org.dspace.rdf.storage.RDFStorage;
 import org.dspace.rdf.storage.RDFStorageImpl;
 import org.dspace.services.ConfigurationService;
 import org.junit.jupiter.api.Assume;
-import org.junit.jupiter.api.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Spy;
 import org.springframework.beans.factory.annotation.Autowired;

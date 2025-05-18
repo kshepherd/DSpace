@@ -23,11 +23,11 @@ import org.dspace.content.DSpaceObject;
 import org.dspace.content.Site;
 import org.dspace.content.factory.ContentServiceFactory;
 import org.dspace.services.ConfigurationService;
-import org.junit.jupiter.api.After;
-import org.junit.jupiter.api.AfterClass;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assert;
-import org.junit.jupiter.api.Before;
-import org.junit.jupiter.api.BeforeClass;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 /**

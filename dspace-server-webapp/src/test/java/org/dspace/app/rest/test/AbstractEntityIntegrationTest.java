@@ -12,7 +12,7 @@ import org.dspace.builder.RelationshipTypeBuilder;
 import org.dspace.content.EntityType;
 import org.dspace.content.service.EntityTypeService;
 import org.dspace.content.service.RelationshipTypeService;
-import org.junit.jupiter.api.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class AbstractEntityIntegrationTest extends AbstractControllerIntegrationTest {

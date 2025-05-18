@@ -51,7 +51,7 @@ import org.dspace.supervision.service.SupervisionOrderService;
 import org.dspace.workflow.WorkflowItem;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Assert;
-import org.junit.jupiter.api.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 

@@ -13,7 +13,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.dspace.app.rest.parameter.SearchFilter;
-import org.junit.jupiter.api.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class SearchQueryConverterTest {

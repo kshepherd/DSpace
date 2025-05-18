@@ -66,7 +66,7 @@ import org.dspace.eperson.service.GroupService;
 import org.dspace.versioning.Version;
 import org.dspace.versioning.factory.VersionServiceFactory;
 import org.dspace.versioning.service.VersioningService;
-import org.junit.jupiter.api.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class ItemServiceIT extends AbstractIntegrationTestWithDatabase {

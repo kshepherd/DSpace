@@ -16,8 +16,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.dspace.AbstractDSpaceTest;
 import org.dspace.services.ConfigurationService;
-import org.junit.jupiter.api.AfterClass;
-import org.junit.jupiter.api.BeforeClass;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Rule;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.contrib.java.lang.system.Assertion;
