@@ -21,9 +21,9 @@ import org.dspace.content.Bitstream;
 import org.dspace.content.BitstreamFormat;
 import org.dspace.content.Bundle;
 import org.dspace.core.Context;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 
 public class GoogleBitstreamComparatorTest extends AbstractUnitTest {
@@ -58,7 +58,7 @@ public class GoogleBitstreamComparatorTest extends AbstractUnitTest {
      *
      * @throws Exception
      */
-    @Before
+    @BeforeEach
     @Override
     public void init() {
         super.init();
@@ -373,7 +373,7 @@ public class GoogleBitstreamComparatorTest extends AbstractUnitTest {
             "bitstream1", toSort.get(2).getName());
     }
 
-    @After
+    @AfterEach
     @Override
     public void destroy() {
         settings = null;

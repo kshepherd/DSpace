@@ -15,9 +15,9 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author Mark Wood
@@ -40,7 +40,7 @@ public class IPMatcherTest {
      * @throws IPMatcherException if there is an error parsing the specification (i.e. it is
      *                            somehow malformed)
      */
-    @BeforeClass
+    @BeforeAll
     static public void setUp() throws IPMatcherException {
         ip6FullMatcher = new IPMatcher(IP6_FULL_ADDRESS1);
         ip6MaskedMatcher = new IPMatcher(IP6_MASKED_ADDRESS);
@@ -326,7 +326,7 @@ public class IPMatcherTest {
     }
 
 
-    @AfterClass
+    @AfterAll
     static public void cleanup() {
         ip6FullMatcher = null;
         ip6MaskedMatcher = null;

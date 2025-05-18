@@ -36,8 +36,8 @@ import org.dspace.content.service.ItemService;
 import org.dspace.content.service.RelationshipService;
 import org.dspace.content.service.RelationshipTypeService;
 import org.dspace.content.service.WorkspaceItemService;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class RelationshipMetadataServiceIT extends AbstractIntegrationTestWithDatabase {
 
@@ -70,7 +70,7 @@ public class RelationshipMetadataServiceIT extends AbstractIntegrationTestWithDa
      *
      * @throws Exception passed through.
      */
-    @Before
+    @BeforeEach
     @Override
     public void setUp() throws Exception {
         super.setUp();

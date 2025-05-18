@@ -19,8 +19,8 @@ import org.dspace.AbstractUnitTest;
 import org.dspace.eperson.EPerson;
 import org.dspace.utils.DSpace;
 import org.hibernate.Session;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * Perform some basic unit tests for HibernateDBConnection
@@ -38,7 +38,7 @@ public class HibernateDBConnectionTest extends AbstractUnitTest {
      * Other methods can be annotated with @Before here or in subclasses
      * but no execution order is guaranteed
      */
-    @Before
+    @BeforeEach
     @Override
     public void init() {
         super.init();

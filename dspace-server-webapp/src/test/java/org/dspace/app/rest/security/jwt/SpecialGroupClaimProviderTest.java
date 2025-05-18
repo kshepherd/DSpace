@@ -18,9 +18,9 @@ import java.util.UUID;
 import com.nimbusds.jwt.JWTClaimsSet;
 import jakarta.servlet.http.HttpServletRequest;
 import org.dspace.core.Context;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -50,7 +50,7 @@ public class SpecialGroupClaimProviderTest {
 
     private JWTClaimsSet jwtClaimsSet;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         context = Mockito.mock(Context.class);
         //Stub the specialgroups list that is normally kept in the context class
@@ -70,7 +70,7 @@ public class SpecialGroupClaimProviderTest {
             .build();
     }
 
-    @After
+    @AfterEach
     public void tearDown() throws Exception {
         specialGroups.clear();
     }

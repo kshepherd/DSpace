@@ -45,8 +45,8 @@ import org.dspace.service.ClientInfoService;
 import org.dspace.usage.UsageEvent;
 import org.hamcrest.CoreMatchers;
 import org.hamcrest.Matchers;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
@@ -65,7 +65,7 @@ public class MatomoRequestDetailsBuilderTest extends AbstractUnitTest {
 
     final String siteId = "test";
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         enrichers = new ArrayList<>();
         builder = new MatomoRequestDetailsBuilder(enrichers, siteId);

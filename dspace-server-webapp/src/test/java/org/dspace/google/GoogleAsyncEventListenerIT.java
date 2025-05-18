@@ -41,10 +41,10 @@ import org.dspace.content.Item;
 import org.dspace.core.Constants;
 import org.dspace.google.client.GoogleAnalyticsClient;
 import org.dspace.services.ConfigurationService;
-import org.junit.After;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -73,7 +73,7 @@ public class GoogleAsyncEventListenerIT extends AbstractControllerIntegrationTes
 
     private GoogleAnalyticsClient secondGaClientMock = mock(GoogleAnalyticsClient.class);
 
-    @Before
+    @BeforeEach
     public void setup() throws Exception {
 
         context.turnOffAuthorisationSystem();
@@ -106,7 +106,7 @@ public class GoogleAsyncEventListenerIT extends AbstractControllerIntegrationTes
 
     }
 
-    @After
+    @AfterEach
     public void cleanup() {
         googleAsyncEventListener.setGoogleAnalyticsClients(originalGoogleAnalyticsClients);
     }

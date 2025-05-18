@@ -31,9 +31,9 @@ import org.dspace.content.service.ItemService;
 import org.dspace.content.service.RelationshipService;
 import org.dspace.content.service.RelationshipTypeService;
 import org.dspace.content.service.WorkspaceItemService;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * Created by: Andrew Wood
@@ -74,7 +74,7 @@ public class RelationshipDAOImplIT extends AbstractIntegrationTest {
     /**
      * Initialize DSpace objects used for testing for each test
      */
-    @Before
+    @BeforeEach
     @Override
     public void init() {
         super.init();
@@ -108,7 +108,7 @@ public class RelationshipDAOImplIT extends AbstractIntegrationTest {
     /**
      * Delete all initialized DSpace objects after each test
      */
-    @After
+    @AfterEach
     @Override
     public void destroy() {
         try {

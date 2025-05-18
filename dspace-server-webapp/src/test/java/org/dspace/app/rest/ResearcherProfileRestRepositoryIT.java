@@ -88,8 +88,8 @@ import org.dspace.orcid.service.OrcidSynchronizationService;
 import org.dspace.orcid.service.OrcidTokenService;
 import org.dspace.services.ConfigurationService;
 import org.dspace.util.UUIDUtils;
-import org.junit.After;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -173,7 +173,7 @@ public class ResearcherProfileRestRepositoryIT extends AbstractControllerIntegra
         useInstanceForBean(researcherProfileAddOrcidOperation, orcidClientMock);
     }
 
-    @After
+    @AfterEach
     public void after() {
         orcidTokenService.deleteAll(context);
         useInstanceForBean(orcidSynchronizationService, orcidClient);

@@ -11,8 +11,8 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
 import org.dspace.access.status.DefaultAccessStatusHelper;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test the AccessStatusRest class
@@ -21,7 +21,7 @@ public class AccessStatusRestTest {
 
     AccessStatusRest accessStatusRest;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         accessStatusRest = new AccessStatusRest();
     }

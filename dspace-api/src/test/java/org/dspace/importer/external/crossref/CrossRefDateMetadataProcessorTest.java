@@ -7,11 +7,11 @@
  */
 package org.dspace.importer.external.crossref;
 
+import org.junit.jupiter.api.Test;
+
 import static org.junit.Assert.assertEquals;
 
 import java.util.Collection;
-
-import org.junit.Test;
 
 /**
  *

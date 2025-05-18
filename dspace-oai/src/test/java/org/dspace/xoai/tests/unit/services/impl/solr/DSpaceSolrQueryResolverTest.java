@@ -29,9 +29,9 @@ import org.dspace.xoai.filter.DateFromFilter;
 import org.dspace.xoai.filter.DateUntilFilter;
 import org.dspace.xoai.services.impl.solr.DSpaceSolrQueryResolver;
 import org.dspace.xoai.tests.unit.services.impl.AbstractQueryResolverTest;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class DSpaceSolrQueryResolverTest extends AbstractQueryResolverTest {
     private static final Instant DATE = Instant.now();
@@ -41,12 +41,12 @@ public class DSpaceSolrQueryResolverTest extends AbstractQueryResolverTest {
 
     private DSpaceSolrQueryResolver underTest = new DSpaceSolrQueryResolver();
 
-    @Before
+    @BeforeEach
     public void autowire() {
         autowire(underTest);
     }
 
-    @After
+    @AfterEach
     public void cleanup() {
         underTest = null;
     }

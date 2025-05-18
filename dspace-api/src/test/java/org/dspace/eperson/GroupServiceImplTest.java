@@ -12,9 +12,9 @@ import java.sql.SQLException;
 import org.dspace.AbstractUnitTest;
 import org.dspace.eperson.factory.EPersonServiceFactory;
 import org.dspace.eperson.service.GroupService;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test integration of GroupServiceImpl.
@@ -41,13 +41,13 @@ public class GroupServiceImplTest
     }
 */
 
-    @Before
+    @BeforeEach
     @Override
     public void init() {
         super.init();
     }
 
-    @After
+    @AfterEach
     @Override
     public void destroy() {
         super.destroy();

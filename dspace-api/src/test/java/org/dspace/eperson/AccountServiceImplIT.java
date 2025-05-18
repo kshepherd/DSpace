@@ -27,8 +27,8 @@ import org.dspace.eperson.factory.EPersonServiceFactory;
 import org.dspace.eperson.service.AccountService;
 import org.dspace.eperson.service.EPersonService;
 import org.dspace.eperson.service.RegistrationDataService;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class AccountServiceImplIT extends AbstractIntegrationTestWithDatabase {
 
@@ -50,7 +50,7 @@ public class AccountServiceImplIT extends AbstractIntegrationTestWithDatabase {
     RegistrationData orcidToken;
     MetadataField metadataField;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 

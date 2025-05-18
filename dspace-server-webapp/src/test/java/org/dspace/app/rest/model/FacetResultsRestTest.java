@@ -10,8 +10,8 @@ package org.dspace.app.rest.model;
 import static junit.framework.TestCase.assertNotNull;
 import static org.junit.Assert.assertEquals;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * This class' purpose is to test the FacetResultsRest class
@@ -20,7 +20,7 @@ public class FacetResultsRestTest {
 
     FacetResultsRest facetResultsRest;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         facetResultsRest = new FacetResultsRest();
     }

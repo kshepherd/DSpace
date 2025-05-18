@@ -45,8 +45,8 @@ import org.dspace.scripts.DSpaceRunnable;
 import org.dspace.scripts.configuration.ScriptConfiguration;
 import org.dspace.scripts.factory.ScriptServiceFactory;
 import org.dspace.scripts.service.ScriptService;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * Created by: Andrew Wood
@@ -70,7 +70,7 @@ public class CSVMetadataImportReferenceIT extends AbstractIntegrationTestWithDat
      * Setup testing environment.
      * @throws java.sql.SQLException passed through.
      */
-    @Before
+    @BeforeEach
     public void setup() throws SQLException {
         context.turnOffAuthorisationSystem();
         parentCommunity = CommunityBuilder.createCommunity(context)

@@ -25,9 +25,9 @@ import org.dspace.AbstractDSpaceTest;
 import org.dspace.services.ConfigurationService;
 import org.dspace.services.factory.DSpaceServicesFactory;
 import org.eclipse.jetty.http.HttpStatus;
-import org.junit.BeforeClass;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.Rule;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.mockserver.client.MockServerClient;
 import org.mockserver.junit.MockServerRule;
 
@@ -44,7 +44,7 @@ public class HttpConnectionPoolServiceTest
 
     private MockServerClient mockServerClient;
 
-    @BeforeClass
+    @BeforeAll
     public static void initClass() {
         configurationService = DSpaceServicesFactory.getInstance()
                 .getConfigurationService();

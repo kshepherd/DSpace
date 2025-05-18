@@ -19,9 +19,9 @@ import java.time.ZonedDateTime;
 import java.util.Locale;
 import java.util.TimeZone;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author pvillega
@@ -44,7 +44,7 @@ public class DCDateTest {
      * Other methods can be annotated with @Before here or in subclasses
      * but no execution order is guaranteed
      */
-    @Before
+    @BeforeEach
     public void init() {
         // Set the default timezone for all tests to GMT-8
         // This will also ensure ZoneId.systemDefault() returns GMT-8
@@ -58,7 +58,7 @@ public class DCDateTest {
      * Other methods can be annotated with @After here or in subclasses
      * but no execution order is guaranteed
      */
-    @After
+    @AfterEach
     public void destroy() {
         dc = null;
         zdt = null;

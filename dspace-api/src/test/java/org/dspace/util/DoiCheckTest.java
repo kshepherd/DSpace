@@ -16,7 +16,7 @@ import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
 import org.dspace.importer.external.service.DoiCheck;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test class for the DoiCheck

@@ -18,7 +18,7 @@ import jakarta.mail.Session;
 import org.dspace.services.ConfigurationService;
 import org.dspace.services.EmailService;
 import org.dspace.test.DSpaceAbstractKernelTest;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author mwood

@@ -18,9 +18,9 @@ import org.dspace.eperson.service.CaptchaService;
 import org.dspace.services.ConfigurationService;
 import org.dspace.services.factory.DSpaceServicesFactory;
 import org.json.JSONObject;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * Basic tests to verity the Altcha captcha service can verify payloads from the client
@@ -32,11 +32,11 @@ public class AltchaCaptchaServiceTest extends AbstractUnitTest {
     CaptchaService captchaService;
     ConfigurationService configurationService = DSpaceServicesFactory.getInstance().getConfigurationService();
 
-    @After
+    @AfterEach
     public void tearDown() {
         configurationService.setProperty("captcha.provider", "google");
     }
-    @Before
+    @BeforeEach
     public void setUp() {
         configurationService.setProperty("captcha.provider", "altcha");
         configurationService.setProperty("altcha.hmac.key", "onetwothreesecret");

@@ -18,7 +18,7 @@ import java.util.Map;
 import org.dspace.AbstractUnitTest;
 import org.hamcrest.CoreMatchers;
 import org.hamcrest.MatcherAssert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class MatomoRequestDetailsSplitterTest extends AbstractUnitTest {
 

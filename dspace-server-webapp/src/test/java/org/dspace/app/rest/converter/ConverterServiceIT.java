@@ -34,8 +34,8 @@ import org.dspace.app.rest.projection.Projection;
 import org.dspace.app.rest.test.AbstractControllerIntegrationTest;
 import org.dspace.core.Context;
 import org.dspace.services.RequestService;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.EntityModel;
@@ -72,7 +72,7 @@ public class ConverterServiceIT extends AbstractControllerIntegrationTest {
     @Autowired
     private ObjectMapper mapper;
 
-    @Before
+    @BeforeEach
     public void setup() {
         // We're mocking a request here because we've started using the Context in the ConverterService#toRest
         // method by invoking the DSpacePermissionEvaluator. This will traverse the RestPermissionEvaluatorPlugins

@@ -26,7 +26,7 @@ import org.dspace.eperson.service.GroupService;
 import org.dspace.scripts.Process;
 import org.dspace.scripts.factory.ScriptServiceFactory;
 import org.dspace.scripts.service.ProcessService;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * This class will aim to test Process related use cases

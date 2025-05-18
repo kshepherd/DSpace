@@ -16,7 +16,7 @@ import static org.junit.Assert.assertTrue;
 import org.dspace.AbstractDSpaceTest;
 import org.dspace.core.factory.CoreServiceFactory;
 import org.dspace.core.service.PluginService;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * Tests for Plugin Service.

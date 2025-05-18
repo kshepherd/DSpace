@@ -22,10 +22,10 @@ import org.dspace.builder.AbstractBuilder;
 import org.dspace.discovery.SearchUtils;
 import org.dspace.servicemanager.DSpaceKernelImpl;
 import org.dspace.servicemanager.DSpaceKernelInit;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.Rule;
 import org.junit.rules.TestName;
 
@@ -68,7 +68,7 @@ public class AbstractDSpaceIntegrationTest {
      *
      * This method loads our test properties for usage in test environment.
      */
-    @BeforeClass
+    @BeforeAll
     public static void initTestEnvironment() {
         try {
             //Stops System.exit(0) throws exception instead of exiting
@@ -103,7 +103,7 @@ public class AbstractDSpaceIntegrationTest {
         }
     }
 
-    @Before
+    @BeforeEach
     public void printTestMethodBefore() {
         // Log the test method being executed. Put lines around it to make it stand out.
         log.info("---");
@@ -111,7 +111,7 @@ public class AbstractDSpaceIntegrationTest {
         log.info("---");
     }
 
-    @After
+    @AfterEach
     public void printTestMethodAfter() {
         // Log the test method just completed.
         log.info("Finished execution of test method: {}()", testName.getMethodName());
@@ -122,7 +122,7 @@ public class AbstractDSpaceIntegrationTest {
      * will clean resources initialized by the @BeforeClass methods.
      * @throws java.sql.SQLException
      */
-    @AfterClass
+    @AfterAll
     public static void destroyTestEnvironment() throws SQLException {
         System.setSecurityManager(null);
 

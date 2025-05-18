@@ -15,9 +15,9 @@ import org.dspace.core.factory.CoreServiceFactory;
 import org.dspace.service.ClientInfoService;
 import org.dspace.services.ConfigurationService;
 import org.dspace.services.factory.DSpaceServicesFactory;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author mwood
@@ -32,7 +32,7 @@ public class SpiderDetectorServiceImplTest extends AbstractDSpaceTest {
 
     private SpiderDetectorService spiderDetectorService;
 
-    @Before
+    @BeforeEach
     public void init() {
         configurationService = DSpaceServicesFactory.getInstance().getConfigurationService();
         clientInfoService = CoreServiceFactory.getInstance().getClientInfoService();
@@ -328,7 +328,7 @@ public class SpiderDetectorServiceImplTest extends AbstractDSpaceTest {
      *
      * @throws Exception
      */
-    @After
+    @AfterEach
     public void cleanup() throws Exception {
         spiderDetectorService = null;
         configurationService.setProperty("usage-statistics.bots.case-insensitive", false);

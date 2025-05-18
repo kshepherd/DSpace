@@ -13,8 +13,8 @@ import static org.mockito.Mockito.when;
 
 import org.dspace.AbstractIntegrationTest;
 import org.dspace.services.ConfigurationService;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -34,7 +34,7 @@ public class RegexPasswordValidatorIT extends AbstractIntegrationTest {
     @InjectMocks
     private RegexPasswordValidator regexPasswordValidator;
 
-    @Before
+    @BeforeEach
     public void setup() {
         when(configurationService.getProperty("authentication-password.regex-validation.pattern"))
         .thenReturn("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[^\\da-zA-Z]).{8,15}$");

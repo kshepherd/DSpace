@@ -26,8 +26,8 @@ import org.dspace.content.MetadataValue;
 import org.dspace.content.factory.ContentServiceFactory;
 import org.dspace.kernel.ServiceManager;
 import org.dspace.services.factory.DSpaceServicesFactory;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class VersionedHandleIdentifierProviderWithCanonicalHandlesIT extends AbstractIdentifierProviderIT {
     private ServiceManager serviceManager;
@@ -42,7 +42,7 @@ public class VersionedHandleIdentifierProviderWithCanonicalHandlesIT extends Abs
     private Item itemV2;
     private Item itemV3;
 
-    @Before
+    @BeforeEach
     @Override
     public void setUp() throws Exception {
         super.setUp();

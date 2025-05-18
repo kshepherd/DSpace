@@ -18,10 +18,10 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
@@ -83,7 +83,7 @@ public class MultiFormatDateParserTest {
         });
     }
 
-    @BeforeClass
+    @BeforeAll
     public static void setUpClass() {
         Map<String, String> formats = new HashMap<>(32);
         formats.put("\\d{8}", "yyyyMMdd");
@@ -119,11 +119,11 @@ public class MultiFormatDateParserTest {
         new MultiFormatDateParser().setPatterns(formats);
     }
 
-    @Before
+    @BeforeEach
     public void setUp() {
     }
 
-    @After
+    @AfterEach
     public void tearDown() {
     }
 

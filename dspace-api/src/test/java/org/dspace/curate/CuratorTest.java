@@ -22,7 +22,7 @@ import org.dspace.content.service.SiteService;
 import org.dspace.core.factory.CoreServiceFactory;
 import org.dspace.ctask.general.NoOpCurationTask;
 import org.dspace.services.ConfigurationService;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author mhwood

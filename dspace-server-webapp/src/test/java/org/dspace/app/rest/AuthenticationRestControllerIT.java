@@ -76,9 +76,9 @@ import org.dspace.orcid.client.OrcidConfiguration;
 import org.dspace.orcid.model.OrcidTokenResponseDTO;
 import org.dspace.services.ConfigurationService;
 import org.hamcrest.Matchers;
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
@@ -139,7 +139,7 @@ public class AuthenticationRestControllerIT extends AbstractControllerIntegratio
     private final String feature = CanChangePasswordFeature.NAME;
 
 
-    @Before
+    @BeforeEach
     public void setup() throws Exception {
         super.setUp();
 
@@ -283,7 +283,7 @@ public class AuthenticationRestControllerIT extends AbstractControllerIntegratio
     }
 
     @Test
-    @Ignore
+    @Disabled
     // Ignored until an endpoint is added to return all groups. Anonymous is not considered a direct group.
     public void testStatusAuthenticatedAsNormalUser() throws Exception {
         String token = getAuthToken(eperson.getEmail(), password);
@@ -1076,7 +1076,7 @@ public class AuthenticationRestControllerIT extends AbstractControllerIntegratio
     }
 
     @Test
-    @Ignore
+    @Disabled
     // Ignored until an endpoint is added to return all groups
     public void testShibbolethLoginRequestAttribute() throws Exception {
         context.turnOffAuthorisationSystem();
@@ -1134,7 +1134,7 @@ public class AuthenticationRestControllerIT extends AbstractControllerIntegratio
     }
 
     @Test
-    @Ignore
+    @Disabled
     // Ignored until an endpoint is added to return all groups
     public void testShibbolethLoginRequestHeaderWithIpAuthentication() throws Exception {
         configurationService.setProperty("plugin.sequence.org.dspace.authenticate.AuthenticationMethod", SHIB_AND_IP);

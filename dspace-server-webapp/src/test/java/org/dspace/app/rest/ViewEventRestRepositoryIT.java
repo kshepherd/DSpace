@@ -35,7 +35,7 @@ import org.dspace.content.Item;
 import org.dspace.content.Site;
 import org.dspace.statistics.SolrStatisticsCore;
 import org.dspace.utils.DSpace;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class ViewEventRestRepositoryIT extends AbstractControllerIntegrationTest {

@@ -31,8 +31,8 @@ import java.util.List;
 
 import org.dspace.orcid.model.validator.impl.OrcidValidatorImpl;
 import org.dspace.services.ConfigurationService;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -68,7 +68,7 @@ public class OrcidValidatorTest {
     @InjectMocks
     private OrcidValidatorImpl validator;
 
-    @Before
+    @BeforeEach
     public void before() {
         when(configurationService.getBooleanProperty("orcid.validation.work.enabled", true)).thenReturn(true);
         when(configurationService.getBooleanProperty("orcid.validation.funding.enabled", true)).thenReturn(true);

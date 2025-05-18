@@ -14,12 +14,12 @@ import static org.junit.Assert.assertTrue;
 import java.util.Set;
 
 import org.dspace.statistics.util.IPTable.IPFormatException;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.BeforeEach;
 
 /**
  *
@@ -31,19 +31,19 @@ public class IPTableTest {
     public IPTableTest() {
     }
 
-    @BeforeClass
+    @BeforeAll
     public static void setUpClass() {
     }
 
-    @AfterClass
+    @AfterAll
     public static void tearDownClass() {
     }
 
-    @Before
+    @BeforeEach
     public void setUp() {
     }
 
-    @After
+    @AfterEach
     public void tearDown() {
     }
 
@@ -194,7 +194,7 @@ public class IPTableTest {
     /**
      * Test of toSet method, of class IPTable.
      */
-    @Ignore
+    @Disabled
     @Test
     public void testToSet() {
     }

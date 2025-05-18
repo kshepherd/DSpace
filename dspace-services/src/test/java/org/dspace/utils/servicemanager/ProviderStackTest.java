@@ -20,7 +20,7 @@ import java.util.Map;
 
 import org.dspace.kernel.ServiceManager;
 import org.dspace.kernel.mixins.OrderedService;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.context.ConfigurableApplicationContext;
 
 

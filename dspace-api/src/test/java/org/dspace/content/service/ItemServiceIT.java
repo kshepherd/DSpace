@@ -66,8 +66,8 @@ import org.dspace.eperson.service.GroupService;
 import org.dspace.versioning.Version;
 import org.dspace.versioning.factory.VersionServiceFactory;
 import org.dspace.versioning.service.VersioningService;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class ItemServiceIT extends AbstractIntegrationTestWithDatabase {
     private static final Logger log = org.apache.logging.log4j.LogManager.getLogger(ItemServiceIT.class);
@@ -107,7 +107,7 @@ public class ItemServiceIT extends AbstractIntegrationTestWithDatabase {
      * This method will be run before every test as per @Before. It will
      * initialize resources required for the tests.
      */
-    @Before
+    @BeforeEach
     @Override
     public void setUp() throws Exception {
         super.setUp();

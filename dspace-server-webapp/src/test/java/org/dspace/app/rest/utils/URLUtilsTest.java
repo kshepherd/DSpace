@@ -10,8 +10,8 @@ package org.dspace.app.rest.utils;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author mwood
@@ -24,7 +24,7 @@ public class URLUtilsTest {
     /**
      * Test of decode method, of class URLUtils.
      */
-    @Ignore
+    @Disabled
     @Test
     public void testDecode() {
     }
@@ -32,7 +32,7 @@ public class URLUtilsTest {
     /**
      * Test of encode method, of class URLUtils.
      */
-    @Ignore
+    @Disabled
     @Test
     public void testEncode() {
     }

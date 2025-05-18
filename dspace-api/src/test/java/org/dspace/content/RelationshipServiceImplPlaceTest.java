@@ -32,9 +32,9 @@ import org.dspace.content.service.RelationshipService;
 import org.dspace.content.service.RelationshipTypeService;
 import org.dspace.content.service.WorkspaceItemService;
 import org.dspace.core.Constants;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class RelationshipServiceImplPlaceTest extends AbstractUnitTest {
 
@@ -95,7 +95,7 @@ public class RelationshipServiceImplPlaceTest extends AbstractUnitTest {
      * This method will be run before every test as per @Before. It will
      * initialize resources required for the tests.
      */
-    @Before
+    @BeforeEach
     @Override
     public void init() {
         super.init();
@@ -244,7 +244,7 @@ public class RelationshipServiceImplPlaceTest extends AbstractUnitTest {
      * This method will be run after every test as per @After. It will
      * clean resources initialized by the @Before methods.
      */
-    @After
+    @AfterEach
     @Override
     public void destroy() {
         context.abort();

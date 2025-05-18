@@ -39,8 +39,8 @@ import org.dspace.harvest.OAIHarvester;
 import org.dspace.harvest.service.HarvestedCollectionService;
 import org.hamcrest.Matchers;
 import org.json.JSONObject;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -60,7 +60,7 @@ public class CollectionHarvestSettingsControllerIT extends AbstractControllerInt
     Collection collectionNoHarvestSettings;
     EPerson ePersonWithWriteRights;
 
-    @Before
+    @BeforeEach
     public void SetUp() throws SQLException, AuthorizeException {
         context.turnOffAuthorisationSystem();
 

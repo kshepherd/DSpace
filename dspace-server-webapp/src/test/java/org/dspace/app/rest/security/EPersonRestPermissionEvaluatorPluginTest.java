@@ -21,8 +21,8 @@ import org.dspace.app.rest.model.patch.Operation;
 import org.dspace.app.rest.model.patch.Patch;
 import org.dspace.app.rest.model.patch.ReplaceOperation;
 import org.dspace.services.RequestService;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -45,7 +45,7 @@ public class EPersonRestPermissionEvaluatorPluginTest {
     @Mock
     private RequestService requestService;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         ePersonRestPermissionEvaluatorPlugin = spy(EPersonRestPermissionEvaluatorPlugin.class);
         authentication = mock(Authentication.class);

@@ -45,8 +45,8 @@ import org.dspace.eperson.service.GroupService;
 import org.dspace.scripts.DSpaceCommandLineParameter;
 import org.dspace.scripts.Process;
 import org.dspace.scripts.service.ProcessService;
-import org.junit.After;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockMultipartFile;
@@ -74,7 +74,7 @@ public class BulkAccessControlScriptIT extends AbstractEntityIntegrationTest {
     private final static String CURATE_SCRIPT_ENDPOINT = SCRIPTS_ENDPOINT + "/bulk-access-control/" +
         ProcessRest.PLURAL_NAME;
 
-    @After
+    @AfterEach
     @Override
     public void destroy() throws Exception {
         List<Process> processes = processService.findAll(context);

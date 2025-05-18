@@ -15,12 +15,12 @@ import org.dspace.core.service.PluginService;
 import org.dspace.services.ConfigurationService;
 import org.dspace.services.factory.DSpaceServicesFactory;
 import org.jdom2.Namespace;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
 
 /**
  *
@@ -50,7 +50,7 @@ public class QDCCrosswalkTest
 
     private static PluginService pluginService;
 
-    @BeforeClass
+    @BeforeAll
     public static void setUpClass() {
         DSpaceServicesFactory dsf = DSpaceServicesFactory.getInstance();
 
@@ -70,17 +70,17 @@ public class QDCCrosswalkTest
         cfg.setProperty(PROPERTIES_KEY, PROPERTIES);
     }
 
-    @AfterClass
+    @AfterAll
     public static void tearDownClass() {
     }
 
-    @Before
+    @BeforeEach
     public void setUp() {
         // make sure that the config properties set in @BeforeClass are picked up
         QDCCrosswalk.initStatic();
     }
 
-    @After
+    @AfterEach
     public void tearDown() {
     }
 
@@ -125,7 +125,7 @@ public class QDCCrosswalkTest
      * Test of disseminateList method, of class QDCCrosswalk.
      * @throws java.lang.Exception passed through.
      */
-    @Ignore
+    @Disabled
     @Test
     public void testDisseminateList() throws Exception {
     }
@@ -134,7 +134,7 @@ public class QDCCrosswalkTest
      * Test of disseminateElement method, of class QDCCrosswalk.
      * @throws java.lang.Exception passed through.
      */
-    @Ignore
+    @Disabled
     @Test
     public void testDisseminateElement() throws Exception {
     }
@@ -142,7 +142,7 @@ public class QDCCrosswalkTest
     /**
      * Test of canDisseminate method, of class QDCCrosswalk.
      */
-    @Ignore
+    @Disabled
     @Test
     public void testCanDisseminate() {
     }
@@ -151,7 +151,7 @@ public class QDCCrosswalkTest
      * Test of ingest method, of class QDCCrosswalk.
      * @throws java.lang.Exception passed through.
      */
-    @Ignore
+    @Disabled
     @Test
     public void testIngest_4args_1() throws Exception {
     }
@@ -160,7 +160,7 @@ public class QDCCrosswalkTest
      * Test of ingest method, of class QDCCrosswalk.
      * @throws java.lang.Exception passed through.
      */
-    @Ignore
+    @Disabled
     @Test
     public void testIngest_4args_2() throws Exception {
     }

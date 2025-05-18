@@ -28,9 +28,9 @@ import org.dspace.content.WorkspaceItem;
 import org.dspace.services.ConfigurationService;
 import org.dspace.xmlworkflow.storedcomponents.XmlWorkflowItem;
 import org.junit.Assume;
-import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.ClassRule;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.rules.TemporaryFolder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
@@ -81,7 +81,7 @@ public class Swordv2IT extends AbstractWebClientIntegrationTest {
     @ClassRule
     public static final TemporaryFolder uploadTempFolder = new TemporaryFolder();
 
-    @Before
+    @BeforeEach
     public void onlyRunIfConfigExists() {
         // These integration tests REQUIRE that SWORDv2WebConfig is found/available (as this class deploys SWORDv2)
         // If this class is not available, the below "Assume" will cause all tests to be SKIPPED

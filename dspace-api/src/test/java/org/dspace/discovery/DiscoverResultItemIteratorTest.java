@@ -28,8 +28,8 @@ import org.dspace.discovery.indexobject.IndexableWorkspaceItem;
 import org.dspace.xmlworkflow.storedcomponents.ClaimedTask;
 import org.dspace.xmlworkflow.storedcomponents.PoolTask;
 import org.dspace.xmlworkflow.storedcomponents.XmlWorkflowItem;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
 
 /**
@@ -53,7 +53,7 @@ public class DiscoverResultItemIteratorTest {
     private PoolTask mockPoolTask;
     private ClaimedTask mockClaimedTask;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         mockContext = mock(Context.class);
         mockDiscoverQuery = mock(DiscoverQuery.class);

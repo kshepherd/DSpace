@@ -24,8 +24,8 @@ import java.util.UUID;
 
 import org.dspace.content.Item;
 import org.dspace.core.Context;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
 
 /**
@@ -43,7 +43,7 @@ public class DiscoverResultIteratorTest {
     private Item mockItem1;
     private Item mockItem2;
 
-    @Before
+    @BeforeEach
     public void setUp() throws SearchServiceException {
         // Mock dependencies
         mockSearchService = mock(SearchService.class);

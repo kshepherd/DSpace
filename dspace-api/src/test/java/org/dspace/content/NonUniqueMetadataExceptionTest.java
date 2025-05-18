@@ -9,7 +9,7 @@ package org.dspace.content;
 
 import static org.junit.Assert.assertTrue;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * Unit Tests for class NonUniqueMetadataException. Being an exception

@@ -56,9 +56,9 @@ import org.dspace.content.service.WorkspaceItemService;
 import org.dspace.services.ConfigurationService;
 import org.hamcrest.Matcher;
 import org.hamcrest.Matchers;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 
@@ -107,7 +107,7 @@ public class PatchMetadataIT extends AbstractEntityIntegrationTest {
     private String addedAuthor;
     private String replacedAuthor;
 
-    @Before
+    @BeforeEach
     @Override
     public void setUp() throws Exception {
         super.setUp();
@@ -128,7 +128,7 @@ public class PatchMetadataIT extends AbstractEntityIntegrationTest {
         context.restoreAuthSystemState();
     }
 
-    @After
+    @AfterEach
     @Override
     public void destroy() throws Exception {
         super.destroy();

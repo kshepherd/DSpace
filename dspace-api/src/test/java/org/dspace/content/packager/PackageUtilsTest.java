@@ -33,11 +33,10 @@ import org.dspace.eperson.factory.EPersonServiceFactory;
 import org.dspace.eperson.service.GroupService;
 import org.dspace.handle.factory.HandleServiceFactory;
 import org.dspace.handle.service.HandleService;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
 
 /**
  * @author Andrea Schweer schweer@waikato.ac.nz
@@ -67,7 +66,7 @@ public class PackageUtilsTest extends AbstractUnitTest {
      * Other methods can be annotated with @Before here or in subclasses
      * but no execution order is guaranteed
      */
-    @BeforeClass
+    @BeforeAll
     public static void setUpClass() {
         try {
             Context context = new Context();
@@ -118,7 +117,7 @@ public class PackageUtilsTest extends AbstractUnitTest {
     /**
      * This method will be run once at the very end
      */
-    @AfterClass
+    @AfterAll
     public static void tearDownClass() {
         try {
             Context context = new Context();
@@ -146,7 +145,7 @@ public class PackageUtilsTest extends AbstractUnitTest {
     /**
      * Pass through initialisation; turn off authorisation
      */
-    @Before
+    @BeforeEach
     @Override
     public void init() {
         // call init() from AbstractUnitTest to initialize testing framework
@@ -217,7 +216,7 @@ public class PackageUtilsTest extends AbstractUnitTest {
         testCollection.setWorkflowGroup(context, 1, originalFirstStepWorkflowGroup);
     }
 
-    @After
+    @AfterEach
     @Override
     public void destroy() {
         context.abort();

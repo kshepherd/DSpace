@@ -18,7 +18,7 @@ import org.dspace.scripts.DSpaceRunnable;
 import org.dspace.scripts.configuration.ScriptConfiguration;
 import org.dspace.scripts.factory.ScriptServiceFactory;
 import org.dspace.scripts.service.ScriptService;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class CurationIT extends AbstractIntegrationTestWithDatabase {
 

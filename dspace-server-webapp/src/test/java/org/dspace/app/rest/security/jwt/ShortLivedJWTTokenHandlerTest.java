@@ -21,8 +21,8 @@ import com.nimbusds.jwt.SignedJWT;
 import jakarta.servlet.http.HttpServletRequest;
 import org.dspace.core.Context;
 import org.dspace.eperson.EPerson;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mockito;
@@ -41,7 +41,7 @@ public class ShortLivedJWTTokenHandlerTest extends JWTTokenHandlerTest {
     @Spy
     private ShortLivedJWTTokenHandler shortLivedJWTTokenHandler;
 
-    @Before
+    @BeforeEach
     @Override
     public void setUp() throws Exception {
         when(ePerson.getSessionSalt()).thenReturn("01234567890123456789012345678901");

@@ -31,8 +31,8 @@ import org.dspace.discovery.SearchServiceException;
 import org.dspace.services.ConfigurationService;
 import org.dspace.services.factory.DSpaceServicesFactory;
 import org.dspace.xmlworkflow.storedcomponents.XmlWorkflowItem;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  *
@@ -56,7 +56,7 @@ public class DuplicateDetectionTest extends AbstractIntegrationTestWithDatabase 
 
     private static final Logger log = LogManager.getLogger();
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
         // Temporarily enable duplicate detection and set comparison distance to 1

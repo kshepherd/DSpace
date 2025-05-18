@@ -43,8 +43,8 @@ import org.dspace.scripts.DSpaceRunnable;
 import org.dspace.scripts.configuration.ScriptConfiguration;
 import org.dspace.scripts.factory.ScriptServiceFactory;
 import org.dspace.scripts.service.ScriptService;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class MetadataImportIT extends AbstractIntegrationTestWithDatabase {
 
@@ -59,7 +59,7 @@ public class MetadataImportIT extends AbstractIntegrationTestWithDatabase {
     private Collection publicationCollection;
     private Collection personCollection;
 
-    @Before
+    @BeforeEach
     @Override
     public void setUp() throws Exception {
         super.setUp();

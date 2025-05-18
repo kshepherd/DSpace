@@ -51,8 +51,8 @@ import org.dspace.supervision.service.SupervisionOrderService;
 import org.dspace.workflow.WorkflowItem;
 import org.hamcrest.Matchers;
 import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -68,7 +68,7 @@ public class SupervisionOrderRestRepositoryIT extends AbstractControllerIntegrat
     @Autowired
     private InstallItemService installItemService;
 
-    @Before
+    @BeforeEach
     public void init() throws Exception {
         context.turnOffAuthorisationSystem();
         parentCommunity = CommunityBuilder.createCommunity(context)

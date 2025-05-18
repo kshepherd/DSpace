@@ -19,8 +19,8 @@ import org.dspace.external.factory.ExternalServiceFactory;
 import org.dspace.external.model.ExternalDataObject;
 import org.dspace.external.provider.ExternalDataProvider;
 import org.dspace.external.service.ExternalDataService;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * Unit tests for OpenaireFundingDataProvider
@@ -40,7 +40,7 @@ public class OpenaireFundingDataProviderTest extends AbstractDSpaceTest {
      * Other methods can be annotated with @Before here or in subclasses but no
      * execution order is guaranteed
      */
-    @Before
+    @BeforeEach
     public void init() {
         // Set up External Service Factory and set data providers
         externalDataService = ExternalServiceFactory.getInstance().getExternalDataService();

@@ -33,9 +33,9 @@ import org.dspace.util.UUIDUtils;
 import org.hamcrest.core.AllOf;
 import org.hamcrest.core.StringEndsWith;
 import org.hamcrest.core.StringStartsWith;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.servlet.MvcResult;
 
@@ -52,7 +52,7 @@ public class SamlAuthenticationRestControllerIT extends AbstractControllerIntegr
 
     private EPerson testUser;
 
-    @Before
+    @BeforeEach
     public void beforeEach() throws Exception {
         testUser = null;
 
@@ -85,7 +85,7 @@ public class SamlAuthenticationRestControllerIT extends AbstractControllerIntegr
         relyingPartyRegistrationRepository.reload();
     }
 
-    @After
+    @AfterEach
     public void afterEach() throws Exception {
         if (testUser != null) {
             EPersonBuilder.deleteEPerson(testUser.getID());

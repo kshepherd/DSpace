@@ -59,10 +59,9 @@ import org.dspace.services.ConfigurationService;
 import org.dspace.services.factory.DSpaceServicesFactory;
 import org.hamcrest.Matcher;
 import org.hamcrest.Matchers;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 
 /**
@@ -85,7 +84,7 @@ public class S3BitStoreServiceIT extends AbstractIntegrationTestWithDatabase {
     private ConfigurationService configurationService = DSpaceServicesFactory.getInstance().getConfigurationService();
 
 
-    @Before
+    @BeforeEach
     public void setup() throws Exception {
 
         configurationService.setProperty("assetstore.s3.enabled", "true");
@@ -111,7 +110,7 @@ public class S3BitStoreServiceIT extends AbstractIntegrationTestWithDatabase {
         context.restoreAuthSystemState();
     }
 
-    @After
+    @AfterEach
     public void cleanUp() throws IOException {
         FileUtils.deleteDirectory(s3Directory);
         s3Mock.shutdown();

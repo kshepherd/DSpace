@@ -29,7 +29,7 @@ import org.dspace.app.rest.test.AbstractEntityIntegrationTest;
 import org.dspace.content.RelationshipType;
 import org.dspace.content.service.EntityTypeService;
 import org.dspace.content.service.RelationshipTypeService;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class RelationshipTypeRestRepositoryIT extends AbstractEntityIntegrationTest {

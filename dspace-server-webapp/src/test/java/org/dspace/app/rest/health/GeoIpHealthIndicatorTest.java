@@ -17,7 +17,7 @@ import java.util.Map;
 import com.maxmind.geoip2.DatabaseReader;
 import org.dspace.app.rest.configuration.ActuatorConfiguration;
 import org.dspace.statistics.GeoIpService;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;

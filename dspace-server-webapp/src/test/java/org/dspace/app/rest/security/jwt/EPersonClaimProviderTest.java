@@ -19,9 +19,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.dspace.core.Context;
 import org.dspace.eperson.EPerson;
 import org.dspace.eperson.service.EPersonService;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -52,7 +52,7 @@ public class EPersonClaimProviderTest {
     private JWTClaimsSet jwtClaimsSet;
 
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         context = Mockito.mock(Context.class);
         Mockito.doCallRealMethod().when(context).setCurrentUser(any(EPerson.class));
@@ -63,7 +63,7 @@ public class EPersonClaimProviderTest {
         when(ePersonService.find(any(), any(UUID.class))).thenReturn(ePerson);
     }
 
-    @After
+    @AfterEach
     public void tearDown() throws Exception {
     }
 

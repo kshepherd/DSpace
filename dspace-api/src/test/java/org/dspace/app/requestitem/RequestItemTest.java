@@ -47,10 +47,10 @@ import org.dspace.handle.factory.HandleServiceFactory;
 import org.dspace.handle.service.HandleService;
 import org.dspace.services.ConfigurationService;
 import org.dspace.services.factory.DSpaceServicesFactory;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 /**
  * Unit testing for RequestItem and RequestItemService ("Request-a-copy" feature)
@@ -70,7 +70,7 @@ public class RequestItemTest extends AbstractUnitTest {
     private Bitstream bitstream;
     private Context context;
 
-    @BeforeClass
+    @BeforeAll
     public static void setUpClass()
             throws SQLException {
         AbstractBuilder.init(); // AbstractUnitTest doesn't do this for us.
@@ -80,7 +80,7 @@ public class RequestItemTest extends AbstractUnitTest {
         ctx.complete();
     }
 
-    @AfterClass
+    @AfterAll
     public static void tearDownClass() throws Exception {
         // AbstractUnitTest doesn't do this for us.
         AbstractBuilder.cleanupObjects();
@@ -88,7 +88,7 @@ public class RequestItemTest extends AbstractUnitTest {
     }
 
    // @Override
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         //super.setUp();
         configurationService = DSpaceServicesFactory.getInstance().getConfigurationService();

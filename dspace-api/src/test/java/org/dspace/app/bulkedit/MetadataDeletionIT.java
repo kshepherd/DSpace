@@ -33,8 +33,8 @@ import org.dspace.content.service.MetadataFieldService;
 import org.dspace.content.service.MetadataValueService;
 import org.dspace.services.ConfigurationService;
 import org.dspace.services.factory.DSpaceServicesFactory;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * Integration tests for {@link MetadataDeletion}.
@@ -50,7 +50,7 @@ public class MetadataDeletionIT extends AbstractIntegrationTestWithDatabase {
 
     private ConfigurationService configurationService = DSpaceServicesFactory.getInstance().getConfigurationService();
 
-    @Before
+    @BeforeEach
     public void setup() {
 
         context.turnOffAuthorisationSystem();

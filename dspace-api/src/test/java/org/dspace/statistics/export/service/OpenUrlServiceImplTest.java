@@ -30,8 +30,8 @@ import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.dspace.core.Context;
 import org.dspace.statistics.export.OpenURLTracker;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -54,7 +54,7 @@ public class OpenUrlServiceImplTest {
     @Mock
     private CloseableHttpClient httpClient;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         // spy on the class under test
         openUrlService = Mockito.spy(OpenUrlServiceImpl.class);

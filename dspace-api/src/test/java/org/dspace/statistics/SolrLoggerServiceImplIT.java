@@ -35,11 +35,11 @@ import org.dspace.core.factory.CoreServiceFactory;
 import org.dspace.services.ConfigurationService;
 import org.dspace.services.factory.DSpaceServicesFactory;
 import org.dspace.utils.DSpace;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
 
 /**
  * Test some methods of SolrLoggerServiceImpl.
@@ -78,7 +78,7 @@ public class SolrLoggerServiceImplIT
     private static Path testAddressesPath;
     private static Path testAgentsPath;
 
-    @BeforeClass
+    @BeforeAll
     public static void setUpClass()
             throws IOException {
         Path spidersPath = Paths.get(cfg.getProperty("dspace.dir"), "config", "spiders");
@@ -102,18 +102,18 @@ public class SolrLoggerServiceImplIT
                 .close();
     }
 
-    @AfterClass
+    @AfterAll
     public static void tearDownClass()
             throws IOException {
         Files.deleteIfExists(testAddressesPath);
         Files.deleteIfExists(testAgentsPath);
     }
 
-    @Before
+    @BeforeEach
     public void setUpTest() {
     }
 
-    @After
+    @AfterEach
     public void tearDownTest() {
     }
 

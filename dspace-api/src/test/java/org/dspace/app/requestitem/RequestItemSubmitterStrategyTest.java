@@ -23,10 +23,8 @@ import org.dspace.content.Community;
 import org.dspace.content.Item;
 import org.dspace.core.Context;
 import org.dspace.eperson.EPerson;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.BeforeAll;
 
 /**
  *
@@ -40,7 +38,7 @@ public class RequestItemSubmitterStrategyTest
 
     private Item item;
 
-    @BeforeClass
+    @BeforeAll
     public static void setUpClass()
             throws SQLException {
         AbstractBuilder.init(); // AbstractUnitTest doesn't do this for us.
@@ -55,14 +53,14 @@ public class RequestItemSubmitterStrategyTest
         ctx.complete();
     }
 
-    @AfterClass
+    @AfterAll
     public static void tearDownClass() throws Exception {
         // AbstractUnitTest doesn't do this for us.
         AbstractBuilder.cleanupObjects();
         AbstractBuilder.destroy();
     }
 
-    @Before
+    @BeforeEach
     public void setUp() {
         context = new Context();
         context.setCurrentUser(johnDoe);

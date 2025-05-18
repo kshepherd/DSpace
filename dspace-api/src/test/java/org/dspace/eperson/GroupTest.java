@@ -29,9 +29,9 @@ import org.dspace.authorize.AuthorizeException;
 import org.dspace.eperson.factory.EPersonServiceFactory;
 import org.dspace.eperson.service.EPersonService;
 import org.dspace.eperson.service.GroupService;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * Unit tests for the Group class
@@ -59,7 +59,7 @@ public class GroupTest extends AbstractUnitTest {
      * Other methods can be annotated with @Before here or in subclasses
      * but no execution order is guaranteed
      */
-    @Before
+    @BeforeEach
     @Override
     public void init() {
         super.init();
@@ -88,7 +88,7 @@ public class GroupTest extends AbstractUnitTest {
         }
     }
 
-    @After
+    @AfterEach
     @Override
     public void destroy() {
         try {

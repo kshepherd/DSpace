@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.dspace.AbstractUnitTest;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class DSpaceCommandLineParameterTest extends AbstractUnitTest {
 

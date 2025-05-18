@@ -26,9 +26,9 @@ import org.dspace.eperson.EPerson;
 import org.dspace.eperson.service.EPersonService;
 import org.dspace.service.ClientInfoService;
 import org.dspace.services.ConfigurationService;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -74,7 +74,7 @@ public class JWTTokenHandlerTest {
     @Spy
     protected List<JWTClaimProvider> jwtClaimProviders = new ArrayList<>();
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         when(ePerson.getSessionSalt()).thenReturn("01234567890123456789012345678901");
         when(ePerson.getLastActive()).thenReturn(Instant.now());
@@ -85,7 +85,7 @@ public class JWTTokenHandlerTest {
         jwtClaimProviders.add(ePersonClaimProvider);
     }
 
-    @After
+    @AfterEach
     public void tearDown() throws Exception {
     }
 

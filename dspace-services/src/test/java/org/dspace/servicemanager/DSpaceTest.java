@@ -14,7 +14,7 @@ import static org.junit.Assert.fail;
 import org.dspace.kernel.DSpaceKernel;
 import org.dspace.kernel.DSpaceKernelManager;
 import org.dspace.utils.DSpace;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * Make sure the DSpace static cover works

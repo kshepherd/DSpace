@@ -46,9 +46,9 @@ import org.dspace.scripts.factory.ScriptServiceFactory;
 import org.dspace.scripts.service.ScriptService;
 import org.dspace.services.ConfigurationService;
 import org.dspace.utils.DSpace;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 
 public class MetadataEditControlledVocabularyIT extends AbstractIntegrationTestWithDatabase {
     ConfigurationService configurationService = new DSpace().getConfigurationService();
@@ -62,7 +62,7 @@ public class MetadataEditControlledVocabularyIT extends AbstractIntegrationTestW
 
     private File file;
 
-    @Before
+    @BeforeEach
     @Override
     public void setUp() throws Exception {
         super.setUp();
@@ -97,7 +97,7 @@ public class MetadataEditControlledVocabularyIT extends AbstractIntegrationTestW
         context.restoreAuthSystemState();
     }
 
-    @After
+    @AfterEach
     @Override
     public void destroy() throws Exception {
         super.destroy();

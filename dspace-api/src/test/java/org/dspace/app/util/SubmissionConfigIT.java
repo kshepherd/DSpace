@@ -16,7 +16,7 @@ import org.dspace.content.Collection;
 import org.dspace.content.Community;
 import org.dspace.submit.factory.SubmissionServiceFactory;
 import org.dspace.submit.service.SubmissionConfigService;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * Integration Tests for parsing and utilities on submission config forms / readers

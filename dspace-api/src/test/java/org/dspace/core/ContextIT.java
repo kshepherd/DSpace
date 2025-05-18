@@ -16,7 +16,7 @@ import org.dspace.authorize.ResourcePolicy;
 import org.dspace.authorize.factory.AuthorizeServiceFactory;
 import org.dspace.authorize.service.AuthorizeService;
 import org.dspace.builder.CommunityBuilder;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ContextIT extends AbstractIntegrationTestWithDatabase {
 

@@ -60,13 +60,13 @@ import org.dspace.handle.service.HandleService;
 import org.dspace.services.ConfigurationService;
 import org.dspace.services.factory.DSpaceServicesFactory;
 import org.dspace.workflow.WorkflowException;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.ClassRule;
 import org.junit.Rule;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.rules.TemporaryFolder;
 
 /**
@@ -130,7 +130,7 @@ public class ITDSpaceAIP extends AbstractIntegrationTest {
      * Other methods can be annotated with @Before here or in subclasses
      * but no execution order is guaranteed
      */
-    @BeforeClass
+    @BeforeAll
     public static void setUpClass() {
         try {
             Context context = new Context();
@@ -247,7 +247,7 @@ public class ITDSpaceAIP extends AbstractIntegrationTest {
     /**
      * This method will be run once at the very end
      */
-    @AfterClass
+    @AfterAll
     public static void tearDownClass() {
         try {
             Context context = new Context();
@@ -286,7 +286,7 @@ public class ITDSpaceAIP extends AbstractIntegrationTest {
     /**
      * Create an initial set of AIPs for the test content generated in setUpClass() above.
      */
-    @Before
+    @BeforeEach
     @Override
     public void init() {
         // call init() from AbstractUnitTest to initialize testing framework
@@ -307,7 +307,7 @@ public class ITDSpaceAIP extends AbstractIntegrationTest {
         }
     }
 
-    @After
+    @AfterEach
     @Override
     public void destroy() {
         context.abort();

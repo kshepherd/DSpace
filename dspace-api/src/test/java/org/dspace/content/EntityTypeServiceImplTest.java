@@ -18,7 +18,7 @@ import java.util.List;
 import org.dspace.authorize.service.AuthorizeService;
 import org.dspace.content.dao.EntityTypeDAO;
 import org.dspace.core.Context;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;

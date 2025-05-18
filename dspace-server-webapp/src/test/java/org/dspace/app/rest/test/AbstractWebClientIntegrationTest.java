@@ -12,7 +12,7 @@ import org.dspace.AbstractIntegrationTestWithDatabase;
 import org.dspace.app.TestApplication;
 import org.dspace.app.rest.utils.DSpaceConfigurationInitializer;
 import org.dspace.app.rest.utils.DSpaceKernelInitializer;
-import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -66,7 +66,7 @@ public class AbstractWebClientIntegrationTest extends AbstractIntegrationTestWit
     protected ApplicationContext applicationContext;
 
     @Override
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 

@@ -12,7 +12,7 @@ import static junit.framework.TestCase.assertEquals;
 import org.dspace.AbstractUnitTest;
 import org.dspace.utils.DSpace;
 import org.dspace.xmlworkflow.state.Workflow;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * Tests that check that the spring beans (of type {@link Role}) in workflow.xml get created correctly

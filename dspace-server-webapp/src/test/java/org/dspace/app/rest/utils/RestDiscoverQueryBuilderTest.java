@@ -38,8 +38,8 @@ import org.dspace.discovery.configuration.DiscoverySortFieldConfiguration;
 import org.dspace.discovery.configuration.HierarchicalSidebarFacetConfiguration;
 import org.dspace.discovery.utils.DiscoverQueryBuilder;
 import org.dspace.discovery.utils.parameter.QueryBuilderSearchFilter;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -72,7 +72,7 @@ public class RestDiscoverQueryBuilderTest {
 
     private PageRequest page;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         discoveryConfiguration = new DiscoveryConfiguration();
         discoveryConfiguration.setDefaultFilterQueries(Arrays.asList("archived:true"));

@@ -28,10 +28,10 @@ import org.dspace.content.service.CommunityService;
 import org.dspace.content.service.InstallItemService;
 import org.dspace.content.service.ItemService;
 import org.dspace.content.service.WorkspaceItemService;
-import org.junit.After;
-import org.junit.Before;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.Rule;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.rules.ExpectedException;
 
 /**
@@ -63,7 +63,7 @@ public class InstallItemTest extends AbstractUnitTest {
     public ExpectedException thrown = ExpectedException.none();
 
 
-    @Before
+    @BeforeEach
     @Override
     public void init() {
         super.init();
@@ -85,7 +85,7 @@ public class InstallItemTest extends AbstractUnitTest {
      * Other methods can be annotated with @After here or in subclasses
      * but no execution order is guaranteed
      */
-    @After
+    @AfterEach
     @Override
     public void destroy() {
         try {

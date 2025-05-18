@@ -14,8 +14,8 @@ import static org.mockito.Mockito.when;
 import org.dspace.app.rest.model.RootRest;
 import org.dspace.app.util.Util;
 import org.dspace.services.ConfigurationService;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -39,7 +39,7 @@ public class RootConverterTest {
     private String serverURL = "https://dspace-rest/server";
     private String serverSSRURL = "http://internal-rest:8080/server";
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         when(configurationService.getProperty("dspace.ui.url")).thenReturn("dspaceurl");
         when(configurationService.getProperty("dspace.name")).thenReturn("dspacename");

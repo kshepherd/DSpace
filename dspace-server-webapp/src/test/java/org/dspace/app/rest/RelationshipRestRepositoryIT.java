@@ -75,8 +75,8 @@ import org.dspace.core.Constants;
 import org.dspace.core.I18nUtil;
 import org.dspace.discovery.MockSolrSearchCore;
 import org.dspace.eperson.EPerson;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MvcResult;
@@ -134,7 +134,7 @@ public class RelationshipRestRepositoryIT extends AbstractEntityIntegrationTest 
     protected RelationshipType isOrgUnitOfPersonRelationshipType;
     protected EPerson user1;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 

@@ -65,8 +65,8 @@ import org.dspace.services.factory.DSpaceServicesFactory;
 import org.dspace.versioning.Version;
 import org.hamcrest.Matcher;
 import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
 
 public class VersioningWithRelationshipsIT extends AbstractIntegrationTestWithDatabase {
@@ -99,7 +99,7 @@ public class VersioningWithRelationshipsIT extends AbstractIntegrationTestWithDa
     protected RelationshipType isProjectOfPerson;
 
     @Override
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 

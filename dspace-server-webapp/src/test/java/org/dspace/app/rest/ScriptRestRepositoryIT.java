@@ -64,8 +64,8 @@ import org.dspace.scripts.service.ProcessService;
 import org.dspace.services.ConfigurationService;
 import org.hamcrest.CoreMatchers;
 import org.hamcrest.Matchers;
-import org.junit.After;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockMultipartFile;
@@ -757,7 +757,7 @@ public class ScriptRestRepositoryIT extends AbstractControllerIntegrationTest {
         }
     }
 
-    @After
+    @AfterEach
     public void destroy() throws Exception {
         context.turnOffAuthorisationSystem();
         CollectionUtils.emptyIfNull(processService.findAll(context)).stream().forEach(process -> {

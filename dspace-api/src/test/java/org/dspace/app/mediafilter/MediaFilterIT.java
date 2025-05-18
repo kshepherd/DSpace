@@ -32,8 +32,8 @@ import org.dspace.content.Item;
 import org.dspace.content.factory.ContentServiceFactory;
 import org.dspace.content.service.BitstreamService;
 import org.dspace.content.service.ItemService;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * Tests of {@link MediaFilterScript}.
@@ -70,7 +70,7 @@ public class MediaFilterIT extends AbstractIntegrationTestWithDatabase {
     protected Item item2_1_a;
     protected Item item2_1_b;
 
-    @Before
+    @BeforeEach
     public void setup() throws IOException, SQLException, AuthorizeException {
         context.turnOffAuthorisationSystem();
         topComm1 = CommunityBuilder.createCommunity(context).withName("Parent Community1").build();

@@ -58,8 +58,8 @@ import org.dspace.discovery.utils.parameter.QueryBuilderSearchFilter;
 import org.dspace.services.ConfigurationService;
 import org.hamcrest.FeatureMatcher;
 import org.hamcrest.Matcher;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -101,7 +101,7 @@ public class DiscoverQueryBuilderTest {
     private QueryBuilderSearchFilter searchFilter;
 
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         queryBuilder.setIndexableFactories(Collections.singletonList(indexFactory));
 

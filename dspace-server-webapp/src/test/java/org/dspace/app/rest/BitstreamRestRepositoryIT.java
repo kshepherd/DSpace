@@ -75,8 +75,8 @@ import org.dspace.eperson.service.GroupService;
 import org.dspace.services.factory.DSpaceServicesFactory;
 import org.hamcrest.Matchers;
 import org.junit.Assert;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.servlet.MvcResult;
 
@@ -161,7 +161,7 @@ public class BitstreamRestRepositoryIT extends AbstractControllerIntegrationTest
     }
 
     //TODO Re-enable test after https://jira.duraspace.org/browse/DS-3774 is fixed
-    @Ignore
+    @Disabled
     @Test
     public void findAllWithDeletedTest() throws Exception {
         //We turn off the authorization system in order to create the structure as defined below

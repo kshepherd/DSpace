@@ -22,11 +22,11 @@ import org.dspace.external.factory.ExternalServiceFactory;
 import org.dspace.external.model.ExternalDataObject;
 import org.dspace.external.provider.ExternalDataProvider;
 import org.dspace.external.service.ExternalDataService;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 /**
  *
@@ -44,15 +44,15 @@ public class SHERPADataProviderTest extends AbstractDSpaceTest {
         new MetadataFieldRef("dc", "identifier", "sherpaPublisher");
     private static final MetadataFieldRef OTHER_FIELD = new MetadataFieldRef("dc", "identifier", "other");
 
-    @BeforeClass
+    @BeforeAll
     public static void setUpClass() {
     }
 
-    @AfterClass
+    @AfterAll
     public static void tearDownClass() {
     }
 
-    @Before
+    @BeforeEach
     public void setUp() {
         // Set up External Service Factory and set data providers
         externalDataService = ExternalServiceFactory.getInstance().getExternalDataService();
@@ -62,7 +62,7 @@ public class SHERPADataProviderTest extends AbstractDSpaceTest {
          externalDataService.getExternalDataProvider("sherpaJournalIssn");
     }
 
-    @After
+    @AfterEach
     public void tearDown() {
     }
 

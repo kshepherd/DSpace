@@ -27,7 +27,7 @@ import org.apache.solr.common.SolrDocumentList;
 import org.apache.solr.common.SolrInputDocument;
 import org.dspace.AbstractIntegrationTestWithDatabase;
 import org.dspace.utils.DSpace;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * Integration test to test the {@link AnonymizeStatistics} script.

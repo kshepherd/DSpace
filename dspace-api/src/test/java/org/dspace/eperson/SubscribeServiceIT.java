@@ -36,8 +36,8 @@ import org.dspace.content.Community;
 import org.dspace.content.DSpaceObject;
 import org.dspace.content.factory.ContentServiceFactory;
 import org.dspace.eperson.service.SubscribeService;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class SubscribeServiceIT extends AbstractIntegrationTestWithDatabase {
 
@@ -46,7 +46,7 @@ public class SubscribeServiceIT extends AbstractIntegrationTestWithDatabase {
     private Collection firstCollection;
     private Collection secondCollection;
 
-    @Before
+    @BeforeEach
     public void init() throws Exception {
         context.turnOffAuthorisationSystem();
         Community parentCommunity = CommunityBuilder.createCommunity(context).build();

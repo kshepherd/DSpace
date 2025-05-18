@@ -13,8 +13,8 @@ import static org.junit.Assert.assertTrue;
 import org.dspace.AbstractDSpaceTest;
 import org.dspace.services.ConfigurationService;
 import org.dspace.services.factory.DSpaceServicesFactory;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author mwood
@@ -22,7 +22,7 @@ import org.junit.Test;
 public class SpiderDetectorTest extends AbstractDSpaceTest {
     private static final String NOT_A_BOT_ADDRESS = "192.168.0.1";
 
-    @Before
+    @BeforeEach
     public void init() {
         // Get current configuration
         ConfigurationService configurationService = DSpaceServicesFactory.getInstance().getConfigurationService();

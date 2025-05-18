@@ -11,8 +11,8 @@ import static org.junit.Assert.assertEquals;
 
 import org.dspace.app.rest.DiscoveryRestController;
 import org.dspace.app.rest.model.hateoas.SearchSupportResource;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * This class' purpose is to test the SearchSupportHalLinkFactory class
@@ -20,7 +20,7 @@ import org.junit.Test;
 public class SearchSupportHalLinkFactoryTest {
     SearchSupportHalLinkFactory searchSupportHalLinkFactory;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         searchSupportHalLinkFactory = new SearchSupportHalLinkFactory();
     }

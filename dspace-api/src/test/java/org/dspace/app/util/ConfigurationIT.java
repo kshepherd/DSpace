@@ -16,10 +16,10 @@ import static org.junit.Assert.assertEquals;
 
 import org.dspace.AbstractDSpaceTest;
 import org.dspace.services.ConfigurationService;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.Rule;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.contrib.java.lang.system.Assertion;
 import org.junit.contrib.java.lang.system.ExpectedSystemExit;
 import org.junit.contrib.java.lang.system.SystemErrRule;
@@ -66,7 +66,7 @@ public class ConfigurationIT
     /**
      * Create some expected properties before all tests.
      */
-    @BeforeClass
+    @BeforeAll
     public static void setupSuite() {
         cfg = kernelImpl.getConfigurationService();
 
@@ -79,7 +79,7 @@ public class ConfigurationIT
     /**
      * After all tests, remove the properties that were created at entry.
      */
-    @AfterClass
+    @AfterAll
     public static void teardownSuite() {
         if (null != cfg) {
             cfg.setProperty(SINGLE_PROPERTY, null);

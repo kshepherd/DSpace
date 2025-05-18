@@ -18,8 +18,8 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.dspace.AbstractUnitTest;
 import org.dspace.matomo.exception.MatomoClientException;
 import org.dspace.matomo.model.MatomoRequestDetails;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 
@@ -44,7 +44,7 @@ public class MatomoClientImplTest extends AbstractUnitTest {
 
     MatomoClientImpl matomoClient;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         matomoClient = new MatomoClientImpl("testURL", "custom-token", builder, reader, httpClient);
     }

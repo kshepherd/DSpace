@@ -38,8 +38,8 @@ import org.dspace.xoai.services.api.cache.XOAICacheService;
 import org.dspace.xoai.services.api.config.XOAIManagerResolver;
 import org.dspace.xoai.services.api.xoai.DSpaceFilterResolver;
 import org.junit.Assume;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.mock.mockito.SpyBean;
@@ -89,7 +89,7 @@ public class OAIpmhIT extends AbstractControllerIntegrationTest {
     private DSpaceFilterResolver filterResolver;
 
 
-    @Before
+    @BeforeEach
     public void onlyRunIfConfigExists() {
         // These integration tests REQUIRE that OAIWebConfig is found/available (as this class deploys OAI)
         // If this class is not available, the below "Assume" will cause all tests to be SKIPPED

@@ -19,11 +19,10 @@ import java.util.TimeZone;
 import org.apache.logging.log4j.Logger;
 import org.dspace.servicemanager.DSpaceKernelImpl;
 import org.dspace.servicemanager.DSpaceKernelInit;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Ignore;
+import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.Rule;
 import org.junit.rules.TestName;
 import org.junit.runner.RunWith;
@@ -42,7 +41,7 @@ import org.mockito.junit.MockitoJUnitRunner;
  * @see AbstractUnitTest
  * @see AbstractIntegrationTest
  */
-@Ignore
+@Disabled
 @RunWith(MockitoJUnitRunner.class)
 public class AbstractDSpaceTest {
 
@@ -80,7 +79,7 @@ public class AbstractDSpaceTest {
      * This method loads our test properties to initialize our test environment,
      * and then starts the DSpace Kernel (which allows access to services).
      */
-    @BeforeClass
+    @BeforeAll
     public static void initKernel() {
         try {
             // All tests should assume UTC timezone by default (unless overridden in the test itself)
@@ -107,7 +106,7 @@ public class AbstractDSpaceTest {
         }
     }
 
-    @Before
+    @BeforeEach
     public void printTestMethodBefore() {
         // Log the test method being executed. Put lines around it to make it stand out.
         log.info("---");
@@ -115,7 +114,7 @@ public class AbstractDSpaceTest {
         log.info("---");
     }
 
-    @After
+    @AfterEach
     public void printTestMethodAfter() {
         // Log the test method just completed.
         log.info("Finished execution of test method: {}()", testName.getMethodName());
@@ -125,7 +124,7 @@ public class AbstractDSpaceTest {
      * This method will be run after all tests finish as per @AfterClass. It
      * will clean resources initialized by the @BeforeClass methods.
      */
-    @AfterClass
+    @AfterAll
     public static void destroyKernel() throws SQLException {
         //we clear the properties
         testProps.clear();

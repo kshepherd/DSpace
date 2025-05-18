@@ -19,7 +19,7 @@ import org.apache.commons.io.IOUtils;
 import org.dspace.AbstractUnitTest;
 import org.dspace.services.ConfigurationService;
 import org.dspace.services.factory.DSpaceServicesFactory;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test the TikaTextExtractionFilter using test files for all major formats.

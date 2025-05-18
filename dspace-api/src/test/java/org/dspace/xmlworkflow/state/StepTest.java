@@ -17,7 +17,7 @@ import org.dspace.AbstractUnitTest;
 import org.dspace.utils.DSpace;
 import org.dspace.xmlworkflow.WorkflowConfigurationException;
 import org.dspace.xmlworkflow.state.actions.WorkflowActionConfig;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * Tests that check that the spring beans (of type {@link Step}) in workflow.xml get created correctly

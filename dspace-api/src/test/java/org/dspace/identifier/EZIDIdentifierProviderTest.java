@@ -41,11 +41,11 @@ import org.dspace.services.factory.DSpaceServicesFactory;
 import org.dspace.workflow.WorkflowException;
 import org.dspace.workflow.WorkflowItem;
 import org.dspace.workflow.factory.WorkflowServiceFactory;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author mwood
@@ -140,7 +140,7 @@ public class EZIDIdentifierProviderTest
         return item;
     }
 
-    @BeforeClass
+    @BeforeAll
     public static void setUpClass()
         throws Exception {
         // Find the configuration service
@@ -165,7 +165,7 @@ public class EZIDIdentifierProviderTest
                                                              EZIDIdentifierProvider.class));
     }
 
-    @AfterClass
+    @AfterAll
     public static void tearDownClass()
         throws Exception {
         DSpaceServicesFactory.getInstance().getServiceManager()
@@ -173,7 +173,7 @@ public class EZIDIdentifierProviderTest
         System.out.print("Tearing down\n\n");
     }
 
-    @Before
+    @BeforeEach
     public void setUp()
         throws Exception {
         context.turnOffAuthorisationSystem();
@@ -190,7 +190,7 @@ public class EZIDIdentifierProviderTest
         collectionService.update(context, collection);
     }
 
-    @After
+    @AfterEach
     public void tearDown()
         throws SQLException {
         context.restoreAuthSystemState();

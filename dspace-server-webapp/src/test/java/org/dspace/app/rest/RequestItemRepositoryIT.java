@@ -60,9 +60,9 @@ import org.dspace.content.Item;
 import org.dspace.services.ConfigurationService;
 import org.exparity.hamcrest.date.LocalDateTimeMatchers;
 import org.hamcrest.Matchers;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 
@@ -104,12 +104,12 @@ public class RequestItemRepositoryIT
 
     private Map<String, Object> altchaPayload;
 
-    @After
+    @AfterEach
     public void tearDown() {
         configurationService.setProperty("captcha.provider", "google");
     }
 
-    @Before
+    @BeforeEach
     public void init()
             throws SQLException, AuthorizeException, IOException {
         context.turnOffAuthorisationSystem();

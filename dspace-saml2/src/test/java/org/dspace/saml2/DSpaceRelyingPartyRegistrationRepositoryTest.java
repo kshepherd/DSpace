@@ -20,9 +20,9 @@ import org.dspace.AbstractDSpaceTest;
 import org.dspace.servicemanager.config.DSpaceConfigurationService;
 import org.dspace.services.ConfigurationService;
 import org.dspace.services.factory.DSpaceServicesFactory;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.security.saml2.core.Saml2X509Credential;
 import org.springframework.security.saml2.provider.service.registration.RelyingPartyRegistration;
@@ -32,12 +32,12 @@ import org.springframework.security.saml2.provider.service.registration.Saml2Mes
 public class DSpaceRelyingPartyRegistrationRepositoryTest extends AbstractDSpaceTest {
     private static ConfigurationService configurationService;
 
-    @BeforeClass
+    @BeforeAll
     public static void beforeAll() {
         configurationService = DSpaceServicesFactory.getInstance().getConfigurationService();
     }
 
-    @Before
+    @BeforeEach
     public void beforeEach() {
         resetConfigurationService();
     }

@@ -44,9 +44,9 @@ import org.dspace.services.factory.DSpaceServicesFactory;
 import org.dspace.workflow.WorkflowItem;
 import org.dspace.workflow.WorkflowService;
 import org.dspace.workflow.factory.WorkflowServiceFactory;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * Integration Tests against {@link LDNMessageConsumer}
@@ -63,7 +63,7 @@ public class LDNMessageConsumerIT extends AbstractIntegrationTestWithDatabase {
     private WorkflowService workflowService = WorkflowServiceFactory.getInstance().getWorkflowService();
     private ItemService itemService = ContentServiceFactory.getInstance().getItemService();
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
         context.turnOffAuthorisationSystem();
@@ -432,7 +432,7 @@ public class LDNMessageConsumerIT extends AbstractIntegrationTestWithDatabase {
     }
 
     @Override
-    @After
+    @AfterEach
     public void destroy() throws Exception {
         List<LDNMessageEntity> ldnMessageEntities = ldnMessageService.findAll(context);
         if (CollectionUtils.isNotEmpty(ldnMessageEntities)) {

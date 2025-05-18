@@ -25,8 +25,8 @@ import org.dspace.core.Constants;
 import org.dspace.core.Context;
 import org.dspace.services.ConfigurationService;
 import org.dspace.versioning.utils.RelationshipVersioningUtils;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -76,7 +76,7 @@ public class RelationshipServiceImplTest {
     @Spy
     private RelationshipVersioningUtils relationshipVersioningUtils;
 
-    @Before
+    @BeforeEach
     public void init() {
         relationshipsList = new ArrayList<>();
         relationshipsList.add(relationship);

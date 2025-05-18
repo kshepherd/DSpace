@@ -30,9 +30,9 @@ import org.apache.commons.configuration2.builder.fluent.Configurations;
 import org.apache.commons.configuration2.ex.ConfigurationException;
 import org.apache.commons.configuration2.tree.ImmutableNode;
 import org.apache.commons.io.FileUtils;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 
 /**
@@ -48,7 +48,7 @@ public class DSpaceConfigurationServiceTest {
     // Path to our main test config file (local.properties)
     private String propertyFilePath;
 
-    @Before
+    @BeforeEach
     public void init() {
         configurationService = new DSpaceConfigurationService();
 
@@ -84,7 +84,7 @@ public class DSpaceConfigurationServiceTest {
         l = null;
     }
 
-    @After
+    @AfterEach
     public void tearDown() {
         configurationService = null;
     }

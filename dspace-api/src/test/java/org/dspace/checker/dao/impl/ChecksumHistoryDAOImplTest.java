@@ -23,11 +23,8 @@ import org.dspace.content.factory.ContentServiceFactory;
 import org.dspace.content.service.BitstreamService;
 import org.dspace.core.CoreHelpers;
 import org.dspace.core.HibernateDBConnection;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.AfterEach;
 
 /**
  * @author mwood
@@ -37,20 +34,20 @@ public class ChecksumHistoryDAOImplTest
     public ChecksumHistoryDAOImplTest() {
     }
 
-    @BeforeClass
+    @BeforeAll
     public static void setUpClass()
         throws SQLException, ClassNotFoundException {
     }
 
-    @AfterClass
+    @AfterAll
     public static void tearDownClass() {
     }
 
-    @Before
+    @BeforeEach
     public void setUp() {
     }
 
-    @After
+    @AfterEach
     public void tearDown()
         throws SQLException {
     }

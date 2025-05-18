@@ -21,8 +21,8 @@ import org.dspace.AbstractDSpaceTest;
 import org.dspace.content.Item;
 import org.dspace.content.MetadataField;
 import org.dspace.content.MetadataValue;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -39,7 +39,7 @@ public class CoverPageServiceTest extends AbstractDSpaceTest {
 
     CoverPageService sut;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         Mockito.doReturn(itemMetaData).when(item).getMetadata();
 

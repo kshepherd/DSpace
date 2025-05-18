@@ -18,8 +18,8 @@ import static org.junit.Assert.assertThrows;
 import java.util.List;
 
 import org.dspace.google.GoogleAnalyticsEvent;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * Unit tests for {@link UniversalAnalyticsClientRequestBuilder}.
@@ -31,7 +31,7 @@ public class UniversalAnalyticsClientRequestBuilderTest {
 
     private UniversalAnalyticsClientRequestBuilder requestBuilder;
 
-    @Before
+    @BeforeEach
     public void setup() {
         requestBuilder = new UniversalAnalyticsClientRequestBuilder("https://google-analytics/test");
     }

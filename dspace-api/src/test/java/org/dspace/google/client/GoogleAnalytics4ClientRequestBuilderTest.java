@@ -23,8 +23,8 @@ import org.dspace.google.GoogleAnalyticsEvent;
 import org.dspace.services.ConfigurationService;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * Unit tests for {@link GoogleAnalytics4ClientRequestBuilder}.
@@ -38,7 +38,7 @@ public class GoogleAnalytics4ClientRequestBuilderTest {
 
     private ConfigurationService configurationService = mock(ConfigurationService.class);
 
-    @Before
+    @BeforeEach
     public void setup() {
         requestBuilder = new GoogleAnalytics4ClientRequestBuilder("https://google-analytics/test");
         requestBuilder.setConfigurationService(configurationService);

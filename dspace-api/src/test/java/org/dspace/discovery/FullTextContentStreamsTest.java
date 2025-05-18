@@ -24,8 +24,8 @@ import org.dspace.content.Bitstream;
 import org.dspace.content.Bundle;
 import org.dspace.content.Item;
 import org.dspace.content.service.BitstreamService;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -62,7 +62,7 @@ public class FullTextContentStreamsTest {
     private Bitstream textBitstream3;
 
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         when(item.getHandle()).thenReturn(HANDLE);
         when(originalBundle.getName()).thenReturn("ORIGINAL");

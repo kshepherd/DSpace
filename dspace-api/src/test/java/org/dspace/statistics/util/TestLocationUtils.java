@@ -13,7 +13,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.Locale;
 
 import org.dspace.AbstractDSpaceTest;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author mwood

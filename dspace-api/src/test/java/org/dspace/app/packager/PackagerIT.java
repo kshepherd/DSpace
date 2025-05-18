@@ -40,9 +40,9 @@ import org.dspace.content.service.WorkspaceItemService;
 import org.dspace.services.ConfigurationService;
 import org.dspace.services.factory.DSpaceServicesFactory;
 import org.jdom2.Element;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * Basic integration testing for the Packager restore feature
@@ -63,7 +63,7 @@ public class PackagerIT extends AbstractIntegrationTestWithDatabase {
     protected Item article;
     File tempFile;
 
-    @Before
+    @BeforeEach
     public void setup() throws IOException {
         context.turnOffAuthorisationSystem();
         parentCommunity = CommunityBuilder.createCommunity(context)
@@ -85,7 +85,7 @@ public class PackagerIT extends AbstractIntegrationTestWithDatabase {
         context.restoreAuthSystemState();
     }
 
-    @After
+    @AfterEach
     @Override
     public void destroy() throws Exception {
         tempFile.delete();

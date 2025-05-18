@@ -65,10 +65,10 @@ import org.dspace.versioning.Version;
 import org.dspace.xmlworkflow.storedcomponents.XmlWorkflowItem;
 import org.hamcrest.Matcher;
 import org.hamcrest.Matchers;
-import org.junit.After;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 
@@ -104,7 +104,7 @@ public class DiscoveryVersioningIT extends AbstractControllerIntegrationTest {
     protected Community community;
 
     @Override
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
 
@@ -118,7 +118,7 @@ public class DiscoveryVersioningIT extends AbstractControllerIntegrationTest {
     }
 
     @Override
-    @After
+    @AfterEach
     public void destroy() throws Exception {
         super.destroy();
     }

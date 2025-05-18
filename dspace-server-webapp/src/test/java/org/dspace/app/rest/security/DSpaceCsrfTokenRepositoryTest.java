@@ -15,8 +15,8 @@ import static org.mockito.Mockito.verify;
 
 import jakarta.servlet.http.Cookie;
 import jakarta.ws.rs.core.HttpHeaders;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.mock.web.MockHttpServletRequest;
@@ -38,7 +38,7 @@ public class DSpaceCsrfTokenRepositoryTest {
     MockHttpServletResponse response;
     MockHttpServletRequest request;
 
-    @Before
+    @BeforeEach
     public void setup() {
         this.repository = new DSpaceCsrfTokenRepository();
         this.request = new MockHttpServletRequest();

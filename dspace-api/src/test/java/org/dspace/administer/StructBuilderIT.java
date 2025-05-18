@@ -33,10 +33,10 @@ import org.dspace.content.factory.ContentServiceFactory;
 import org.dspace.content.service.CollectionService;
 import org.dspace.content.service.CommunityService;
 import org.dspace.handle.Handle;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Node;
 import org.xmlunit.builder.DiffBuilder;
@@ -63,11 +63,11 @@ public class StructBuilderIT
     public StructBuilderIT() {
     }
 
-    @BeforeClass
+    @BeforeAll
     public static void setUpClass() {
     }
 
-    @AfterClass
+    @AfterAll
     public static void tearDownClass() {
     }
 
@@ -78,7 +78,7 @@ public class StructBuilderIT
      * @throws AuthorizeException passed through.
      * @throws IOException passed through.
      */
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
         // Clear out all communities and collections.

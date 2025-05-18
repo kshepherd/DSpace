@@ -18,8 +18,8 @@ import org.dspace.service.ClientInfoService;
 import org.dspace.services.ConfigurationService;
 import org.dspace.services.factory.DSpaceServicesFactory;
 import org.dspace.statistics.util.DummyHttpServletRequest;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
 
 /**
@@ -34,7 +34,7 @@ public class ClientInfoServiceImplTest extends AbstractDSpaceTest {
 
     private ConfigurationService configurationService;
 
-    @Before
+    @BeforeEach
     public void init() {
         configurationService = DSpaceServicesFactory.getInstance().getConfigurationService();
     }

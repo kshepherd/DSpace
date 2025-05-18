@@ -34,8 +34,8 @@ import org.apache.http.conn.routing.HttpRoute;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.protocol.HttpContext;
 import org.dspace.services.ConfigurationService;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -60,7 +60,7 @@ public class DSpaceHttpClientFactoryTest {
 
     private MockWebServer mockServer;
 
-    @Before
+    @BeforeEach
     public void init() {
         this.httpClientFactory.setProxyRoutePlanner(new DSpaceProxyRoutePlanner(configurationService));
         this.mockProxy = new MockWebServer();

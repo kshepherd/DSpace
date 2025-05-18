@@ -25,8 +25,8 @@ import org.dspace.rdf.storage.RDFStorage;
 import org.dspace.rdf.storage.RDFStorageImpl;
 import org.dspace.services.ConfigurationService;
 import org.junit.Assume;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Spy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -71,7 +71,7 @@ public class RdfIT extends AbstractWebClientIntegrationTest {
     private final String SERIALIZE_PATH = "/rdf/handle";
     private final String REDIRECTION_PATH = "/rdf/resource";
 
-    @Before
+    @BeforeEach
     public void onlyRunIfConfigExists() {
         // These integration tests REQUIRE that RDFWebConfig is found/available (as this class deploys RDF)
         // If this class is not available, the below "Assume" will cause all tests to be SKIPPED

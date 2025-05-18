@@ -15,7 +15,7 @@ import org.dspace.content.MetadataField;
 import org.dspace.content.MetadataSchema;
 import org.dspace.content.factory.ContentServiceFactory;
 import org.dspace.core.Context;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class MetadataFieldServiceTest extends AbstractUnitTest {
 
