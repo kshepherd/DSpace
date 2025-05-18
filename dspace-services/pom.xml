@@ -124,8 +124,8 @@
         </dependency>
         <!-- SPECIAL CASE - need JUNIT at build time and testing time -->
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
             <scope>provided</scope>
         </dependency>
         <dependency>
